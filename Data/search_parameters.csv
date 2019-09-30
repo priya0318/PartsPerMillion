@@ -1,0 +1,12 @@
+Parameter,Setting
+Data Type:,Site Phenometrics
+Start Date:,2009-01-01
+End Date:,2019-12-31
+Data Precision Filter:,30
+States:,LA
+Species:,
+Phenophase Categories:,
+Output Fields:,"Partner Group, Site Name, Species Functional Type, Species Category, USDA PLANTS Symbol, ITIS Number, Phenophase Category, SD First Yes in Days, Min First Yes DOY, Max First Yes DOY, Median First Yes DOY, SD NumDays Since Prior No, SD Last Yes in Days, Min Last Yes DOY, Max Last Yes DOY, Median Last Yes DOY, SD NumDays Until Next No, Num Individuals with Multiple FirstY, Multiple FirstY Individual IDs, Observed Status Conflict Flag, Observed Status Conflict Flag Individual IDs"
+Partner Groups:,"Barataria Phenology Trail, Barataria Phenology Trail"
+Integrated Datasets:,Nature's Notebook
+Stations:,
