@@ -77,7 +77,8 @@ ___Work assignments for these subtasks will be determined at a later time___
 #### Contributorship statement
 Mike Rouw, Priyanka Choudhary and Pratheeba Nalligounder Palanisami contributed to this work plan and writing of this document.
 
-
+#### Proofreader statement
+I, priyanka choudhary, have reviewed this work and agree that it is ready for submission.
 
 
 
