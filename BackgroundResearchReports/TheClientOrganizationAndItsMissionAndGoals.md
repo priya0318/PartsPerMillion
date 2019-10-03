@@ -16,6 +16,13 @@ Inside the Barataria Preserve, the area is teaming with wildlife.  There is a wi
 
 The Barataria Preserve is also home to a wide variety of plant life and foliage.  The Barataria Preserve contains three major plant systems: hardwood forest, swamp, and marsh.  There are over 400 different species of plants found on the preserve.  In the spring, wildflowers are abundant throughout the area, with one of the most stunning being the giant blue iris population.  In summer, the freshwater marsh turns bright green, highlighting systems of reeds, sedges, grasses, and shrubs.  Fall is colorful at the preserve, with brilliant red maples and bright yellow bur-marigolds.  As the preserve covers both wetlands and prairie areas, the vegetation may differ greatly from region to region within the park.
 
-One concern at Jean Lafitte National Historical Park and Preserve is the effects of increasing climate change.  Melting polar ice means rising seas everywhere, including along Louisiana's Gulf Coast. Stronger storms flood more coastline and erode more land.  To make it worse, the levees and other flood controls along the Mississippi River and other waterways mean that no new land is being built on the delta. Much of the region's land is from sediment deposited by the river over time.  The natural compression and sinking of the sediment-made land goes on with no new soil washing downstream by seasonal floods. Recent studies have shown that as the land is sinking while the seas are rising, the relative sea levels are rising faster in this area than most places.
+One concern at Jean Lafitte National Historical Park and Preserve is the effects of increasing climate change.  Melting polar ice means rising seas everywhere, including along Louisiana's Gulf Coast. Stronger storms flood more coastline and erode more land.  To make it worse, the levees and other flood controls along the Mississippi River and other waterways mean that no new land is being built on the delta. Much of the region's land is from sediment deposited by the river over time.  The natural compression and sinking of the sediment-made land goes on with no new soil washing downstream by seasonal floods. Recent studies have shown that as the land is sinking while the seas are rising, the relative sea levels are rising faster in this area than most places.  Another concern with the changing climate is its effect on the phenology of the region.  In the next section of this document, the description and concerns for the changing phenology will be outlined.
 
-Another concern with the changing climate is its effect on the phenology of the region.  In the next section of this document, the description and concerns for the changing phenology will be outlined.
+**Infomation Sources:
+
+https://en.wikipedia.org/wiki/Jean_Lafitte_National_Historical_Park_and_Preserve
+https://www.nps.gov/jela/learn/historyculture/upload/Jean-Lafitte-pirate-site-bulletin-for-the-web-Sep-2010.pdf
+https://www.nps.gov/jela/learn/historyculture/from-acadian-to-cajun.htm
+https://www.nps.gov/jela/learn/nature/animals.htm
+https://www.nps.gov/jela/learn/nature/plants.htm
+
