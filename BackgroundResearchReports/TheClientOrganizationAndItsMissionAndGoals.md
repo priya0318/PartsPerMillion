@@ -18,11 +18,15 @@ The Barataria Preserve is also home to a wide variety of plant life and foliage.
 
 One concern at Jean Lafitte National Historical Park and Preserve is the effects of increasing climate change.  Melting polar ice means rising seas everywhere, including along Louisiana's Gulf Coast. Stronger storms flood more coastline and erode more land.  To make it worse, the levees and other flood controls along the Mississippi River and other waterways mean that no new land is being built on the delta. Much of the region's land is from sediment deposited by the river over time.  The natural compression and sinking of the sediment-made land goes on with no new soil washing downstream by seasonal floods. Recent studies have shown that as the land is sinking while the seas are rising, the relative sea levels are rising faster in this area than most places.  Another concern with the changing climate is its effect on the phenology of the region.  In the next section of this document, the description and concerns for the changing phenology will be outlined.
 
-**Infomation Sources:
+### Infomation Sources:
 
-https://en.wikipedia.org/wiki/Jean_Lafitte_National_Historical_Park_and_Preserve
-https://www.nps.gov/jela/learn/historyculture/upload/Jean-Lafitte-pirate-site-bulletin-for-the-web-Sep-2010.pdf
-https://www.nps.gov/jela/learn/historyculture/from-acadian-to-cajun.htm
-https://www.nps.gov/jela/learn/nature/animals.htm
-https://www.nps.gov/jela/learn/nature/plants.htm
+* Jean Lafitte National Historical Park and Preserve. (2019, August 19). Retrieved from https://en.wikipedia.org/wiki/Jean_Lafitte_National_Historical_Park_and_Preserve.
+
+* From Acadian to Cajun. (n.d.). Retrieved from https://www.nps.gov/jela/learn/historyculture/from-acadian-to-cajun.htm.
+
+* Jean Lafitte: History and Mystery. (2019). Retrieved from https://www.nps.gov/jela/learn/historyculture/upload/Jean-Lafitte-pirate-site-bulletin-for-the-web-Sep-2010.pdf
+
+* Animals. (n.d.). Retrieved from https://www.nps.gov/jela/learn/nature/animals.htm.
+
+* Plants. (n.d.). Retrieved from https://www.nps.gov/jela/learn/nature/plants.htm
 
