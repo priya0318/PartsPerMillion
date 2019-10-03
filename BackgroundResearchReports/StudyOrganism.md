@@ -9,7 +9,7 @@ Phenology is all about the biological events and the timing that they recur. It 
 It is outside Marrero and offers a taste of Louisiana's wild wetlands. The area of this preserve covers around 26,000 acres. It preserves a representative example of the delta’s environment, containing natural forests, bayous, swamps, and marshes.
 
 ### Classification
-The trail may be classified into two categories based on the kingdom type. Plantae and Animalia would be the two would be the taxonomic kingdoms where the data were recorded. 
+The trail may be classified into two categories based on the kingdom type. Plantae and Animalia would be the two taxonomic kingdoms where the data were recorded. 
 
 ### Blue Iris:
 The major plant systems in this preserve are hardwood forest, swamp, and marsh. In spite of the fact that the blue iris population was reduced for a few a long time, they appear to be making a comeback.
@@ -25,7 +25,7 @@ Height: Can reach up to 6 feet
 Color: pale blue to deep indigo
 
 These plants were widespread throughout the state before the wetlands were drained for agriculture. The Iris can be spotted in swamps and marshes along the Barataria preserve. The unique vertical leaves of the iris enable the plant to receive the most amount of sunlight in tightly packed iris colonies, providing plenty of energy for photosynthesis. 
-        The rhizome of the iris contains a strong, acrid resin that is used by herbalists for therapy of continual vomiting, heartburn, liver, scrofula, skin diseases, and migraines. The iris used to be on occasion recognized as the “pneumonia plant” because a sturdy tea made from the rhizomes was used as a treatment for pneumonia. 
+The rhizome of the iris contains a strong, acrid resin that is used by herbalists for therapy of continual vomiting, heartburn, liver, scrofula, skin diseases, and migraines. The iris used to be on occasion recognized as the “pneumonia plant” because a sturdy tea made from the rhizomes was used as a treatment for pneumonia. 
 
 ### American Alligator:
 
@@ -51,10 +51,11 @@ Common Name: Barred Owl
 
 Other names: Hoot Owl or Eight Hooter
 
-Size: Length 40-63 cm. Wingspan 96-125cm. Tail length 312-380mm. Weight 500-1050g. Females are normally larger and heavier than males.
+Size: Female barred owls are larger and heavier than male barred owls. Their length range from 40 - 63 cm and tail length range from 312-380mm.
+
 Habitat: deep moist forests  
 
-Barred Owl could be spotted in all seasons in the Barataria Preserve. There are only few birds which can be spotted in all seasons and Barred Owl is one among them. The barred owl's nest is often in a tree cavity, often ones created by pileated woodpeckers; it may also take over an old nesting site made previously by a red-shouldered hawk, Cooper's hawk, crow, or squirrel. It is a permanent resident, but may wander after the nesting season. If a nest site has proved suitable in the past they will often reuse it as the birds are non-migratory. In the United States, eggs are laid from early-January in southern Florida to mid-April in northern Maine, and consist of 2 to 4 eggs per clutch. Eggs are brooded by the female with hatching taking place approximately 4 weeks later. Young owls fledge four to five weeks after hatching. The most significant predator of barred owls is the great horned owl. Eggs, juveniles, and occasionally adults are vulnerable. The barred owl has been known to live up to 24 years in the wild and 23 years in captivity
+Barred Owls are spotted in the Barataria Preserve in almost all of the seasons. There are only a few birds that can be spotted in all seasons and Barred Owl is one among them. This barred owl is also known to be alive 23 years in captivity and around 24 years in the wild forest. The young owls develop their wings in four to five weeks after hatching. Since they are non-migratory, the nests are reused again. The horned owl seems to be the most efficient predator. They use the nests created by the woodpeckers, crow or hawk in the tree cavity.
 
 
 
@@ -70,12 +71,12 @@ Barred Owl could be spotted in all seasons in the Barataria Preserve. There are 
 
 5. Barred Owl (Strix varia). (n.d.). Retrieved from https://www.inaturalist.org/taxa/19893-Strix-varia.
 
-https://www.nps.gov/jela/learn/nature/upload/alligator.pdf
+6. Nps.gov. (2019). Barataria Preserve, Jean Lafitte National Historical Park and Preserve, American Alligator. Retrieved from https://www.nps.gov/jela/learn/nature/upload/alligator.pdf.
 
-https://www.nps.gov/jela/learn/nature/upload/BARA%20Bird%20list%20051906.pdf
+7. A White Paper on Phenology across LTER. (2019).Retrieved from https://www.usanpn.org/files/reports/gmh_white_paper.pdf.
 
-https://www.usanpn.org/files/reports/gmh_white_paper.pdf
+8. Nps.gov. (2019). Jean Lafitte National Historical Park and Preserve, Giant Blue Iris. Retrieved from https://www.nps.gov/jela/learn/nature/upload/Giant%20Blue%20Iris%20final%20with%20graphic%20iris.pdf
 
-https://www.nps.gov/jela/learn/nature/upload/Giant%20Blue%20Iris%20final%20with%20graphic%20iris.pdf
+9. Bird Checklist, Barataria Preserve and Adjacent Lakes, Jean Lafitte National Historical Park and Preserve. Retrieved from  https://www.nps.gov/jela/learn/nature/upload/BARA%20Bird%20list%20051906.pdf
 
-https://www.nps.gov/jela/learn/nature/upload/BARA%20Bird%20list%20051906.pdf
+
