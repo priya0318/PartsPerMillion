@@ -5,7 +5,11 @@ Organization: _Jean Lafitte National Historical Park and Preserve_
 
 Individuals: _Dr. Elizabeth (Liz) Marchio_
 
-Dr. Elizabeth (Liz) Marchio
+Dr. Elizabeth (Liz) Marchio  
+
+<p align="center">
+  <img src="https://github.com/priya0318/PartsPerMillion/blob/master/Audience%20Profile/Liz.jpg">
+</p>
 
 - Currently working as Citizen Science Coordinator at Jean Lafitte National Historical Park and Barataria Preserve
 - She has her doctorate in Department of Recreation, Park, and Tourism Science and her speciality is Environmental Sociology.
