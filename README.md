@@ -14,5 +14,6 @@
 * Background Research & RQs
   * [Background Research & RQs](https://github.com/priya0318/PartsPerMillion/blob/master/Background%20Research%20%26%20RQs/Background%20Research%20%26%20RQs.md)
   
-  * Audience Profile
-  * [Audience Profile](https://github.com/priya0318/PartsPerMillion/blob/master/Audience%20Profile/AudienceProfile.md)
+ * Audience Profile
+    * [Audience Profile](https://github.com/priya0318/PartsPerMillion/blob/master/Audience%20Profile/AudienceProfile.md)
+ 
