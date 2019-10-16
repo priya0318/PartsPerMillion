@@ -26,6 +26,8 @@ Employees must be alert and reactive to their training and developmental needs. 
 
 ## Goals
 
+#### Mission
+
 The Jean Lafitte National Historical Park and Preserve mission is to protect and share the area’s cultural, historical, and natural resources. The park provides opportunities to appreciate, learn, understand Louisiana Mississippi delta historical resources and cultural heritage and promote stewardship of the unique natural. Their mission also is to protect, manage, conserve, and preserve the significant physical resources of the park. Some of the values of the National Park System (NPS) is to educate, inspire future generations. The National Park service collaborates with their partners to increase the benefits of outdoor recreation and cultural and natural resource conservation throughout the world.
 
 #### Stakeholders
