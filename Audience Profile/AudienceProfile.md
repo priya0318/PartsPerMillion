@@ -59,4 +59,4 @@ Mike Rouw, Priyanka Choudhary , and Pratheeba Nalligounder Palanisami contribute
 
 ## Proofreader statement
 
-I, Mike Rouw, have proofread this document and approve it for publishing.
+I, Mike Rouw, have proofread this document and approve it for publishing on 10/17/2019.
