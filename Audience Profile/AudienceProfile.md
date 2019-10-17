@@ -51,7 +51,7 @@ Jean Lafitte National Historical Park and Preserve has six sites located in sout
 
 ## Community/Target Markets
 
-Jean Lafitte National Historical Park and Preserve mainly serves the visiting citizens from across the nation to learn about the species, birds and the animals living in the park. They also encourage their visitors to observe and collect data about the various species, and to explore the cultural history of the area.
+Jean Lafitte National Historical Park and Preserve mainly targets the flora and fauna of the park and also serves the visiting citizens from across the nation to learn about the species, birds and the animals living in the park. They also encourage their visitors to observe and collect data about the various species, and to explore the cultural history of the area.
 
 ## Contributorship Statement
 
