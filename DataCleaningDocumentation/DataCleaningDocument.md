@@ -31,7 +31,7 @@ The Metadata
 
 **We have the following metadata regarding the water quality data set:**
 
-**Note **: _A value of "-9999" indicates the organism being monitored is not associated with a partner group_
+**Note** : A value of "-9999" indicates the organism being monitored is not associated with a partner group.
 
 * Partner_Group: The name of the partner group with which the data are associated (Barataria Phenology Trail).	  
 * Site_ID: The unique identifier of the site at which the data were recorded.
@@ -72,7 +72,9 @@ Description of rationale for the steps taken to remediate data
 Data cleaning steps
 ===================
 
-**Fill in missing information about dates **
+**Fill in missing information about dates**
+
+
 If the data contains a "first yes" but no "last yes" information, then set the "last yes" information to the same values as the "first yes" information, and set the lag days to "no" at zero.  The same is true if the data contains a "last yes" but no "first yes".  Effectively, we are saying that if only one "yes" exists, it is both first and last, and the number of days to "no" is zero.
 
 If First_Yes_Sample_Size = 0 and Last_Yes_Sample_Size > 0 then
@@ -91,31 +93,33 @@ We could also move the Julian date and all the statistical columns associated wi
 
 We should now have a dataset with complete information on each observation for "first yes" and "last yes" - anything remaining had NO "yes" observations and will be eliminated in the next pass (based on my Excel look, there are no records to be fully eliminated, but we will put the step in our R script anyway).
 
-*Select rows and columns * 
+**Select rows and columns** 
+
 Select rows only with complete data, and we can select columns based on data we will likely be using in the project.  For rows, we require an observation of at least one "yes".  For columns, we will be eliminating some data that is descriptive but not necessary, columns that have unchanging data, all the "statistical" columns related to sample sizes and Julian dates, and all the observational "conflict" data.  We have elected not to consider the statistical elements (e.g. min, max, std-dev, etc) as all observations are a sample sizes are either 1 or 2.  For samples sizes of 2, the data already contains the mean, so that is the only value we will be using, as the distribution for a sample size of 2 is pretty meaningless.
 
 Select ROWS where the following are true:
 	First_Yes_Sample_Size > 0 and Last_Yes_Sample_Size > 0
 
-*Selected columns * 
-.	Site_ID
-.	Site_Name
-.	Latitude
-.	Longitude
-.	Species_ID
-.	Common_Name
-.	Kingdom
-.	Species_Functional_Type
-.	Phenophase_ID
-.	Phenophase_Description
-.	Mean_First_Yes_Year
-.	Mean_First_Yes_DOY
-.	Mean_Num_Days_Since_Prior_No
-.	Mean_Last_Yes_Year
-.	Mean_Last_Yes_DOY
-.	Mean_Num_Days_Until_Next_No
+**Selected columns** 
+
+.Site_ID
+.Site_Name
+.Latitude
+.Longitude
+.Species_ID
+.Common_Name
+.Kingdom
+.Species_Functional_Type
+.Phenophase_ID
+.Phenophase_Description
+.Mean_First_Yes_Year
+.Mean_First_Yes_DOY
+.Mean_Num_Days_Since_Prior_No
+.Mean_Last_Yes_Year
+.Mean_Last_Yes_DOY
+.Mean_Num_Days_Until_Next_No
 
 This should yield a dataset with 768 ROWS and 18 COLUMNS.  In the next pass, we will enrich the data with some date calculations.
 
-*Contributorship Statement*: Priyanka Choudhary, Mike Rouw, Pratheeba Nalligounder Palanisami contributed to the data cleaning undertaking and the writing of this document.
+**Contributorship Statement**: Priyanka Choudhary, Mike Rouw, Pratheeba Nalligounder Palanisami contributed to the data cleaning undertaking and the writing of this document.
 
