@@ -83,19 +83,18 @@ Third, the temporal integrity of the following dates was checked, and any rows t
 **Fill in missing information about dates**
 
 If the data contains a “first yes” but no “last yes” information, then set the “last yes” information to the same values as the “first yes” information, and set the lag days to “no” at zero.  
-	
+
 
 ```{r FirstYes}
 for(i in 1:nrow(data)){
   if(data$First_Yes_Sample_Size[i] == 0 & data$Last_Yes_Sample_Size[i] > 0) {
     data$First_Yes_Sample_Size[i] <- data$Last_Yes_Sample_Size[i]
-    data$irst_Yes_Year[i] <- data$Last_Yes_Year[i]
+    data$First_Yes_Year[i] <- data$Last_Yes_Year[i]
     data$Mean_First_Yes_DOY[i] <- data$Mean_Last_Yes_DOY[i]
     data$NumLastNo[i] <- 0
   }
 }
 ```
-
 
 The same is true if the data contains a “last yes” but no “first yes”.  Effectively, we are saying that if only one “yes” exists, it is both first and last, and the number of days to “no” is zero.
 
@@ -104,7 +103,7 @@ The same is true if the data contains a “last yes” but no “first yes”.  
 for(i in 1:nrow(data)){
   if(data$Last_Yes_Sample_Size[i] == 0 & data$First_Yes_Sample_Size[i] > 0) {
     data$Last_Yes_Sample_Size[i] <- data$First_Yes_Sample_Size[i]
-    data$irst_Yes_Year[i] <- data$Last_Yes_Year[i]
+    data$Last_Yes_Year[i] <- data$First_Yes_Year[i]
     data$Mean_Last_Yes_DOY[i] <- data$Mean_First_Yes_DOY[i]
     data$NumFirstNo[i] <- 0
   }
@@ -119,46 +118,42 @@ We should now have a dataset with complete information on each observation for �
 
 Select rows only with complete data, and we can select columns based on data we will likely be using in the project.  For rows, we require an observation of at least one “yes”.  For columns, we will be eliminating some data that is descriptive but not necessary, columns that have unchanging data, all the “statistical” columns related to sample sizes and Julian dates, and all the observational “conflict” data.  We have elected not to consider the statistical elements (e.g. min, max, std-dev, etc) as all observations are a sample sizes are either 1 or 2.  For samples sizes of 2, the data already contains the mean, so that is the only value we will be using, as the distribution for a sample size of 2 is pretty meaningless.
 
+The columns are replaced to get it convenient for reading
+```{r rename column}
+data <- data %>% rename(Year = First_Yes_Year)
+data <- data %>% rename(FirstYes = Mean_First_Yes_DOY)
+data <- data %>% rename(LastYes = Mean_Last_Yes_DOY)
+```
 
 ```{r selectrow}
-cols <- c('SiteID', 'SiteName', 'Latitude', 'Longitude', 'SpeciesID', 'SpeciesType',
-          'SpeciesDesc', 'Kingdom', 'PhenophaseID', 'PhenophaseDesc',
-          'First_Yes_Year', 'Mean_First_Yes_DOY', 'Last_Yes_Year', 'Mean_Last_Yes_DOY',
-          'NumLastNo', 'NumFirstNo')
+cols <- c('SiteID', 'SiteName', 'Latitude', 'Longitude', 'SpeciesID', 
+          'SpeciesDesc', 'Kingdom', 'SpeciesType', 'PhenophaseID', 'PhenophaseCategory', 'PhenophaseDesc',
+          'Year', 'FirstYes', 'LastYes', 'NumLastNo', 'NumFirstNo')
 data <- data[cols]
-
 ```
-**Selected columns**
-
-•SiteID
-•SiteName
-•Latitude
-•Longitude
-•SpeciesID
-•SpeciesDesc
-•Kingdom
-•SpeciesType
-•PhenophaseID
-•PhenophaseDesc
-•First_Yes_Year
-•Mean_First_Yes_DOY
-•NumLastNo
-•Last_Yes_Year
-•Mean_Last_Yes_DOY
-•NumFirstNo
-
-
+We will be adding the DOY for “last no” and “first no” to the dataset. This will add 2 columns to the data.
 ```{r selectcol}
-data['LastNo'] <- data$Mean_First_Yes_DOY - data$NumLastNo
-data['FirstNo'] <- data$Mean_Last_Yes_DOY + data$NumFirstNo
+data['LastNo'] <- data$FirstYes - data$NumLastNo
+data['FirstNo'] <- data$LastYes + data$NumFirstNo
 ```  
 
 The temporal integrity of the following dates was checked, and any rows that did not follow this rule were de-selected.
 
 ```{r deselect rows}
-data %>% filterwhich(!(data$LastNo <= data$Mean_First_Yes_DOY &
-          data$Mean_First_Yes_DOY <= data$Mean_Last_Yes_DOY &
-          data$Mean_Last_Yes_DOY <= data$FirstNo))
+   library(dplyr)
+   data <- data %>% filter(data$LastNo <= data$FirstYes &
+          data$FirstYes <= data$LastYes &
+          data$LastYes <= data$FirstNo)
+```
+
+```{r create col}
+data['TotDays'] <- (data$FirstNo - data$LastNo)
+```
+
+The final data set is written back into the csv file
+
+```{r finaldataset}
+write.csv(data, file = "JeanFinalDataSet.csv",row.names=FALSE)
 ```
 
 This should yield a dataset with 768 ROWS and 18 COLUMNS.  In the next pass, we will enrich the data with some date calculations.
