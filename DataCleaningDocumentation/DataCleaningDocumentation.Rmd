@@ -156,4 +156,4 @@ This should yield a dataset with `r nrow(data)` rows and `r ncol(data)` columns 
 **_Contributorship Statement_** : Priyanka Choudhary, Mike Rouw, Pratheeba Nalligounder Palanisami contributed to the data cleaning undertaking and the writing of this document.
 
 
-**_Proofreader statement_** : I, have reviewed and proofread the following work and agree that it is ready for submission.
+**_Proofreader statement_** : I, Priyanka Choudhary have reviewed and proofread the following work and agree that it is ready for submission.
