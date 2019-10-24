@@ -18,9 +18,9 @@
     * [Audience Profile](https://github.com/priya0318/PartsPerMillion/blob/master/Audience%20Profile/AudienceProfile.md)
     
  * Data Cleaning Documentation
-    * [DataCleaningDocumentation.md](https://github.com/priya0318/PartsPerMillion/blob/master/DataCleaningDocumentation/DataCleaningDocument.md)
-    * [DataCleaning.Rmd] (https://github.com/priya0318/PartsPerMillion/blob/master/DataCleaningDocumentation/DataCleaningDocumentation.Rmd)
-    * [DataCleaning.html] (https://github.com/priya0318/PartsPerMillion/blob/master/DataCleaningDocumentation/DataCleaningDocumentation.html)
-    * [Initial_Dataset] (https://github.com/priya0318/PartsPerMillion/blob/master/DataCleaningDocumentation/site_phenometrics_data%20-%20Updated.csv)
-    * [Final_Dataset] (https://github.com/priya0318/PartsPerMillion/blob/master/DataCleaningDocumentation/JeanFinalDataSet.csv)
+    * [DataCleaning Documentation](https://github.com/priya0318/PartsPerMillion/blob/master/DataCleaningDocumentation/DataCleaningDocument.md)
+    * [DataCleaning RMarkdown](https://github.com/priya0318/PartsPerMillion/blob/master/DataCleaningDocumentation/DataCleaningDocumentation.Rmd)
+    * [DataCleaning Html](https://github.com/priya0318/PartsPerMillion/blob/master/DataCleaningDocumentation/DataCleaningDocumentation.html)
+    * [Initial Dataset](https://github.com/priya0318/PartsPerMillion/blob/master/DataCleaningDocumentation/site_phenometrics_data%20-%20Updated.csv)
+    * [Final Dataset](https://github.com/priya0318/PartsPerMillion/blob/master/DataCleaningDocumentation/JeanFinalDataSet.csv)
  
