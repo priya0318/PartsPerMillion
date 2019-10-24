@@ -123,11 +123,11 @@ data <- data %>% rename(SpeciesDesc = Common_Name)
 data <- data %>% rename(PhenophaseID = Phenophase_ID)
 data <- data %>% rename(PhenophaseCategory = Phenophase_Category)
 data <- data %>% rename(PhenophaseDesc = Phenophase_Description)
-data <- data %>% rename(Year = First_Yes_Year)
+data <- data %>% rename(Year = Mean_First_Yes_Year)
 data <- data %>% rename(FirstYes = Mean_First_Yes_DOY)
 data <- data %>% rename(LastYes = Mean_Last_Yes_DOY)
-data <- data %>% rename(NumFirstNo = Mean_Num_Days_Until_Next_No)
-data <- data %>% rename(NumLastNo = Mean_Num_Days_Since_Prior_No)
+data <- data %>% rename(NumFirstNo = Mean_NumDays_Until_Next_No)
+data <- data %>% rename(NumLastNo = Mean_NumDays_Since_Prior_No)
 ```
 
 ```{r selectrow}
