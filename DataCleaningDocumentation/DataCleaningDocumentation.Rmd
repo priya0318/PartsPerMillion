@@ -25,7 +25,7 @@ knitr::opts_knit$set(root.dir = "C:/Users/Priya/Desktop/D2D_Data_Cleaning")
 ## Load data
 
 ```{r loadData, echo=FALSE}
-data <- read.csv("site_phenometrics_data - Updated.csv")
+data <- read.csv("site_phenometrics_data.csv")
 ```
 
 # The Data 
