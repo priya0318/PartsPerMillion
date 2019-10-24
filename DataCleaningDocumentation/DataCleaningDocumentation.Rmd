@@ -17,14 +17,14 @@ output:
 # Embed Code
 ## Set Directory
 
-```{r setup, message=FALSE, warning=FALSE} 
+```{r setup, echo=FALSE, message=FALSE, warning=FALSE} 
 knitr::opts_chunk$set(cache=TRUE)
 knitr::opts_knit$set(root.dir = "C:/Users/Pratheeba/UNO/DatatoDecisions/Data Cleaning") 
 ```
 
 ## Load data
 
-```{r loadData}
+```{r loadData, echo=FALSE}
 data <- read.csv("site_phenometrics_data - Updated.csv")
 ```
 
