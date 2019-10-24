@@ -17,6 +17,8 @@ output:
 # Embed Code
 ## Set Directory
 
+Note: Root directory path needs to be updated to your local
+
 ```{r setup, echo=FALSE, message=FALSE, warning=FALSE} 
 knitr::opts_chunk$set(cache=TRUE)
 knitr::opts_knit$set(root.dir = "C:/Users/Pratheeba/UNO/DatatoDecisions/Data Cleaning") 
@@ -24,7 +26,7 @@ knitr::opts_knit$set(root.dir = "C:/Users/Pratheeba/UNO/DatatoDecisions/Data Cle
 
 ## Load data
 
-```{r loadData, echo=FALSE}
+```{r loadData}
 data <- read.csv("site_phenometrics_data - Updated.csv")
 ```
 
