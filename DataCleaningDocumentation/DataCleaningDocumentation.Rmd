@@ -25,7 +25,7 @@ knitr::opts_knit$set(root.dir = "C:/Users/Priya/Desktop/D2D_Data_Cleaning")
 ## Load data
 
 ```{r loadData, echo=FALSE}
-data <- read.csv("site_phenometrics_data - updated.csv")
+data <- read.csv("site_phenometrics_data - Updated.csv")
 ```
 
 # The Data 
@@ -116,7 +116,7 @@ Select rows only with complete data, and we can select columns based on data we 
 
 The columns are replaced to get it convenient for reading
 ```{r rename column}
-data <- data %>% rename(Year = Mean_First_Yes_Year)
+data <- data %>% rename(Year = First_Yes_Year)
 ```
 
 ```{r selectrow}
