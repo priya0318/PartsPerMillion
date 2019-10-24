@@ -25,7 +25,7 @@ knitr::opts_knit$set(root.dir = "C:/Users/Priya/Desktop/D2D_Data_Cleaning")
 ## Load data
 
 ```{r loadData, echo=FALSE}
-data <- read.csv("site_phenometrics_data.csv")
+data <- read.csv("site_phenometrics_data - updated.csv")
 ```
 
 # The Data 
@@ -89,7 +89,7 @@ for(i in 1:nrow(data)){
   if(data$First_Yes_Sample_Size[i] == 0 & data$Last_Yes_Sample_Size[i] > 0) {
     data$First_Yes_Sample_Size[i] <- data$Last_Yes_Sample_Size[i]
     data$First_Yes_Year[i] <- data$Last_Yes_Year[i]
-    data$Mean_First_Yes_DOY[i] <- data$Mean_Last_Yes_DOY[i]
+    data$FirstYes[i] <- data$LastYes[i]
     data$NumLastNo[i] <- 0
   }
 }
@@ -101,7 +101,7 @@ for(i in 1:nrow(data)){
   if(data$Last_Yes_Sample_Size[i] == 0 & data$First_Yes_Sample_Size[i] > 0) {
     data$Last_Yes_Sample_Size[i] <- data$First_Yes_Sample_Size[i]
     data$Last_Yes_Year[i] <- data$First_Yes_Year[i]
-    data$Mean_Last_Yes_DOY[i] <- data$Mean_First_Yes_DOY[i]
+    data$LastYes[i] <- data$FirstYes[i]
     data$NumFirstNo[i] <- 0
   }
 }
@@ -116,18 +116,7 @@ Select rows only with complete data, and we can select columns based on data we 
 
 The columns are replaced to get it convenient for reading
 ```{r rename column}
-data <- data %>% rename(SiteID = Site_ID)
-data <- data %>% rename(SiteName = Site_Name)
-data <- data %>% rename(SpeciesID = Species_ID)
-data <- data %>% rename(SpeciesDesc = Common_Name)
-data <- data %>% rename(PhenophaseID = Phenophase_ID)
-data <- data %>% rename(PhenophaseCategory = Phenophase_Category)
-data <- data %>% rename(PhenophaseDesc = Phenophase_Description)
 data <- data %>% rename(Year = Mean_First_Yes_Year)
-data <- data %>% rename(FirstYes = Mean_First_Yes_DOY)
-data <- data %>% rename(LastYes = Mean_Last_Yes_DOY)
-data <- data %>% rename(NumFirstNo = Mean_NumDays_Until_Next_No)
-data <- data %>% rename(NumLastNo = Mean_NumDays_Since_Prior_No)
 ```
 
 ```{r selectrow}
