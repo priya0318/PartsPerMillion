@@ -116,9 +116,18 @@ Select rows only with complete data, and we can select columns based on data we 
 
 The columns are replaced to get it convenient for reading
 ```{r rename column}
+data <- data %>% rename(SiteID = Site_ID)
+data <- data %>% rename(SiteName = Site_Name)
+data <- data %>% rename(SpeciesID = Species_ID)
+data <- data %>% rename(SpeciesDesc = Common_Name)
+data <- data %>% rename(PhenophaseID = Phenophase_ID)
+data <- data %>% rename(PhenophaseCategory = Phenophase_Category)
+data <- data %>% rename(PhenophaseDesc = Phenophase_Description)
 data <- data %>% rename(Year = First_Yes_Year)
 data <- data %>% rename(FirstYes = Mean_First_Yes_DOY)
 data <- data %>% rename(LastYes = Mean_Last_Yes_DOY)
+data <- data %>% rename(NumFirstNo = Mean_Num_Days_Until_Next_No)
+data <- data %>% rename(NumLastNo = Mean_Num_Days_Since_Prior_No)
 ```
 
 ```{r selectrow}
