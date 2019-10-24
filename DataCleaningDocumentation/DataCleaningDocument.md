@@ -1,6 +1,6 @@
 Data Cleaning Documentation
 ================
-Priyanka Choudhary <br /> Mike Rouw <br /> Pratheeba Nalligounder Palanisami
+Priyanka Choudhary <br /> Mike Rouw <br /> Pratheeba Nalligounder Palanisami <br />
 October 24, 2019
 
 -   [The Data](#the-data)
@@ -62,11 +62,15 @@ The data is collected in the 'Barataria Phenology Trail' partner group in four s
 Issues you have encountered with the data
 =========================================
 
-The most significant issues encountered were the use of a string of "-9999" which indicates the organism being monitored is not associated with a partner group. Blank data also needed to be addressed.
+The majority of the Jean Lafitte dataset was in good shape as it was given.  Each observation was in a single row, in a single file, and most of the dataset was complete.  The primary thrust of the data can be summarized into four areas:  the phenophase observed, the species exhibiting the phenophase, the mean date(s) it was observed, and the location of the observation.  The main issue with the dataset involved the dates of observation.  Within the date observations, the data contained means, medians, highs, lows, and standard deviations to account for any multiple observations.  However, in a vast majority of cases the sample size was 1, and at most 2, making all the statistical distribution data mostly meaningless.  Also, there were several instances where a row would contain a first observation of a particular phenophase, but no last observation, and vice versa.  In addition, some of dates given for first and last observation did not conform with temporal integrity (e.g. the last date was before the first date).  Finally, the dataset had very lengthy variable names, and excess columns either providing alternate descriptions or the same value for every single observation.
 
 Description of rationale for the steps taken to remediate data
 ==============================================================
 
+First, on data observations that contained no first observation date, that date was set to equal the last observation date (e.g. only observed on one date), and the leading number of days from the last “no” observation was set to zero.  Similarly, on rows that contained no last observation date, that date was set to the first observation date and the trailing number of days until the first “no” observation was set to zero.
+Second, columns that were alternative descriptions, or same values, or meaningless statistical data were de-selected, since they provide no meaningful value for the analysis.  Also, some variable names were shortened to facilitate the analysis.
+Third, the temporal integrity of the following dates was checked, and any rows that did not follow this rule were de-selected:
+	Last “No” Date <= First “Yes” Date <= Last “Yes” Date <= First “No” Date
 
 
 Data cleaning steps
