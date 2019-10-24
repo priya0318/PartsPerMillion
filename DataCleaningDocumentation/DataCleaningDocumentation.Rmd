@@ -17,14 +17,14 @@ output:
 # Embed Code
 ## Set Directory
 
-```{r setup, echo=FALSE, message=FALSE, warning=FALSE} 
+```{r setup, message=FALSE, warning=FALSE} 
 knitr::opts_chunk$set(cache=TRUE)
-knitr::opts_knit$set(root.dir = "C:/Users/Priya/Desktop/D2D_Data_Cleaning") 
+knitr::opts_knit$set(root.dir = "C:/Users/Pratheeba/UNO/DatatoDecisions/Data Cleaning") 
 ```
 
 ## Load data
 
-```{r loadData, echo=FALSE}
+```{r loadData}
 data <- read.csv("site_phenometrics_data - Updated.csv")
 ```
 
@@ -82,17 +82,6 @@ Third, the temporal integrity of the following dates was checked, and any rows t
 # Data cleaning steps
 **Fill in missing information about dates**
 
-In the dataset, the following columns are renamed directly in the csv file:
-Site_ID - SiteID 
-Site_Name - SiteName
-Species_ID - SpeciesID
-Common_Name - SpeciesDesc
-Phenophase_ID - PhenophaseID
-Phenophase_Category - PhenophaseCategory
-Phenophase_Description - PhenophaseDesc
-Mean_Num_Days_Until_Next_No - NumFirstNo
-Mean_Num_Days_Since_Prior_No - NumLastNo
-
 If the data contains a “first yes” but no “last yes” information, then set the “last yes” information to the same values as the “first yes” information, and set the lag days to “no” at zero.  
 
 ```{r FirstYes}
@@ -125,9 +114,10 @@ We should now have a dataset with complete information on each observation for �
 
 Select rows only with complete data, and we can select columns based on data we will likely be using in the project.  For rows, we require an observation of at least one “yes”.  For columns, we will be eliminating some data that is descriptive but not necessary, columns that have unchanging data, all the “statistical” columns related to sample sizes and Julian dates, and all the observational “conflict” data.  We have elected not to consider the statistical elements (e.g. min, max, std-dev, etc) as all observations are a sample sizes are either 1 or 2.  For samples sizes of 2, the data already contains the mean, so that is the only value we will be using, as the distribution for a sample size of 2 is pretty meaningless.
 
-The columns are replaced to get it convenient for reading
+The columns is replaced to get it convenient for reading
 ```{r rename column}
-data <- data %>% rename(Year = First_Yes_Year)
+ library(dplyr)
+ data <- data %>% rename(Year = First_Yes_Year)
 ```
 
 ```{r selectrow}
@@ -145,7 +135,6 @@ data['FirstNo'] <- data$LastYes + data$NumFirstNo
 The temporal integrity of the following dates was checked, and any rows that did not follow this rule were de-selected.
 
 ```{r deselect rows}
-   library(dplyr)
    data <- data %>% filter(data$LastNo <= data$FirstYes &
           data$FirstYes <= data$LastYes &
           data$LastYes <= data$FirstNo)
@@ -153,6 +142,7 @@ The temporal integrity of the following dates was checked, and any rows that did
 
 ```{r create col}
 data['TotDays'] <- (data$FirstNo - data$LastNo)
+data['AveDays'] <- round(mean(data$FirstNo - data$LastYes) + mean(data$FirstYes - data$LastNo)+1 , 0)
 ```
 The final data set is written back into the csv file
 

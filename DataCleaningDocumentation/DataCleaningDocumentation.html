@@ -407,9 +407,12 @@ summary {
 <h1>Embed Code</h1>
 <div id="set-directory" class="section level2">
 <h2>Set Directory</h2>
+<pre class="r"><code>knitr::opts_chunk$set(cache=TRUE)
+knitr::opts_knit$set(root.dir = &quot;C:/Users/Pratheeba/UNO/DatatoDecisions/Data Cleaning&quot;) </code></pre>
 </div>
 <div id="load-data" class="section level2">
 <h2>Load data</h2>
+<pre class="r"><code>data &lt;- read.csv(&quot;site_phenometrics_data - Updated.csv&quot;)</code></pre>
 </div>
 </div>
 <div id="the-data" class="section level1">
@@ -473,14 +476,54 @@ summary {
 <h1>Data cleaning steps</h1>
 <p><strong>Fill in missing information about dates</strong></p>
 <p>If the data contains a “first yes” but no “last yes” information, then set the “last yes” information to the same values as the “first yes” information, and set the lag days to “no” at zero.</p>
+<pre class="r"><code>for(i in 1:nrow(data)){
+  if(data$First_Yes_Sample_Size[i] == 0 &amp; data$Last_Yes_Sample_Size[i] &gt; 0) {
+    data$First_Yes_Sample_Size[i] &lt;- data$Last_Yes_Sample_Size[i]
+    data$First_Yes_Year[i] &lt;- data$Last_Yes_Year[i]
+    data$FirstYes[i] &lt;- data$LastYes[i]
+    data$NumLastNo[i] &lt;- 0
+  }
+}</code></pre>
 <p>The same is true if the data contains a “last yes” but no “first yes”. Effectively, we are saying that if only one “yes” exists, it is both first and last, and the number of days to “no” is zero.</p>
+<pre class="r"><code>for(i in 1:nrow(data)){
+  if(data$Last_Yes_Sample_Size[i] == 0 &amp; data$First_Yes_Sample_Size[i] &gt; 0) {
+    data$Last_Yes_Sample_Size[i] &lt;- data$First_Yes_Sample_Size[i]
+    data$Last_Yes_Year[i] &lt;- data$First_Yes_Year[i]
+    data$LastYes[i] &lt;- data$FirstYes[i]
+    data$NumFirstNo[i] &lt;- 0
+  }
+}</code></pre>
 <p>We could also move the Julian date and all the statistical columns associated with “first yes” and “last yes”, however in the next pass we will be de-selecting all those columns anyway.</p>
 <p>We should now have a dataset with complete information on each observation for “first yes” and “last yes” – anything remaining had NO “yes” observations and will be eliminated in the next pass (based on my Excel look, there are no records to be fully eliminated, but we will put the step in our R script anyway).</p>
 <p><strong>Select rows and columns</strong></p>
 <p>Select rows only with complete data, and we can select columns based on data we will likely be using in the project. For rows, we require an observation of at least one “yes”. For columns, we will be eliminating some data that is descriptive but not necessary, columns that have unchanging data, all the “statistical” columns related to sample sizes and Julian dates, and all the observational “conflict” data. We have elected not to consider the statistical elements (e.g. min, max, std-dev, etc) as all observations are a sample sizes are either 1 or 2. For samples sizes of 2, the data already contains the mean, so that is the only value we will be using, as the distribution for a sample size of 2 is pretty meaningless.</p>
-<p><strong>Selected columns</strong></p>
-<p>•SiteID •SiteName •Latitude •Longitude •SpeciesID •SpeciesDesc •Kingdom •SpeciesType •PhenophaseID •PhenophaseDesc •First_Yes_Year •Mean_First_Yes_DOY •NumLastNo •Last_Yes_Year •Mean_Last_Yes_DOY •NumFirstNo</p>
-<p>This should yield a dataset with 768 ROWS and 18 COLUMNS. In the next pass, we will enrich the data with some date calculations.</p>
+<p>The columns is replaced to get it convenient for reading</p>
+<pre class="r"><code> library(dplyr)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code> data &lt;- data %&gt;% rename(Year = First_Yes_Year)</code></pre>
+<pre class="r"><code>cols &lt;- c(&#39;SiteID&#39;, &#39;SiteName&#39;, &#39;Latitude&#39;, &#39;Longitude&#39;, &#39;SpeciesID&#39;, 
+          &#39;SpeciesDesc&#39;, &#39;Kingdom&#39;, &#39;SpeciesType&#39;, &#39;PhenophaseID&#39;, &#39;PhenophaseCategory&#39;, &#39;PhenophaseDesc&#39;,
+          &#39;Year&#39;, &#39;FirstYes&#39;, &#39;LastYes&#39;, &#39;NumLastNo&#39;, &#39;NumFirstNo&#39;)
+data &lt;- data[cols]</code></pre>
+<p>We will be adding the DOY for “last no” and “first no” to the dataset. This will add 2 columns to the data.</p>
+<pre class="r"><code>data[&#39;LastNo&#39;] &lt;- data$FirstYes - data$NumLastNo
+data[&#39;FirstNo&#39;] &lt;- data$LastYes + data$NumFirstNo</code></pre>
+<p>The temporal integrity of the following dates was checked, and any rows that did not follow this rule were de-selected.</p>
+<pre class="r"><code>   data &lt;- data %&gt;% filter(data$LastNo &lt;= data$FirstYes &amp;
+          data$FirstYes &lt;= data$LastYes &amp;
+          data$LastYes &lt;= data$FirstNo)</code></pre>
+<pre class="r"><code>data[&#39;TotDays&#39;] &lt;- (data$FirstNo - data$LastNo)
+data[&#39;AveDays&#39;] &lt;- round(mean(data$FirstNo - data$LastYes) + mean(data$FirstYes - data$LastNo)+1 , 0)</code></pre>
+<p>The final data set is written back into the csv file</p>
+<pre class="r"><code>write.csv(data, file = &quot;JeanFinalDataSet.csv&quot;,row.names=FALSE)</code></pre>
+<p>This should yield a dataset with 720 rows and 20 columns in the data set. In the next pass, we will enrich the data with some date calculations.</p>
 <p><strong><em>Contributorship Statement</em></strong> : Priyanka Choudhary, Mike Rouw, Pratheeba Nalligounder Palanisami contributed to the data cleaning undertaking and the writing of this document.</p>
 <p><strong><em>Proofreader statement</em></strong> : I, have reviewed and proofread the following work and agree that it is ready for submission.</p>
 </div>
