@@ -92,24 +92,24 @@ Select rows only with complete data, and we can select columns based on data we 
 
 **Selected columns** 
 
-.Site_ID
-.Site_Name
+.SiteID
+.SiteName
 .Latitude
 .Longitude
-.Species_ID
-.Common_Name
+.SpeciesID
+.SpeciesDesc
 .Kingdom
-.Species_Functional_Type
-.Phenophase_ID
-.Phenophase_Description
-.Mean_First_Yes_Year
+.SpeciesType
+.PhenophaseID
+.PhenophaseDesc
+.First_Yes_Year
 .Mean_First_Yes_DOY
-.Mean_Num_Days_Since_Prior_No
-.Mean_Last_Yes_Year
+.NumLastNo
+.Last_Yes_Year
 .Mean_Last_Yes_DOY
-.Mean_Num_Days_Until_Next_No
+.NumFirstNo
 
-This should yield a dataset with 768 ROWS and 18 COLUMNS.  In the next pass, we will enrich the data with some date calculations.
+This should yield a dataset with 720 ROWS and 20 COLUMNS.  In the next pass, we will enrich the data with some date calculations.
 
 **Contributorship Statement**: Priyanka Choudhary, Mike Rouw, Pratheeba Nalligounder Palanisami contributed to the data cleaning undertaking and the writing of this document.
 
