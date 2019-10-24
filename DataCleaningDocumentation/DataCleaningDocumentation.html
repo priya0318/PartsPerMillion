@@ -389,6 +389,10 @@ summary {
 
 <div id="TOC">
 <ul>
+<li><a href="#embed-code">Embed Code</a><ul>
+<li><a href="#set-directory">Set Directory</a></li>
+<li><a href="#load-data">Load data</a></li>
+</ul></li>
 <li><a href="#the-data">The Data</a></li>
 <li><a href="#licensing">Licensing</a></li>
 <li><a href="#the-metadata">The Metadata</a></li>
@@ -399,6 +403,15 @@ summary {
 </div>
 
 <hr />
+<div id="embed-code" class="section level1">
+<h1>Embed Code</h1>
+<div id="set-directory" class="section level2">
+<h2>Set Directory</h2>
+</div>
+<div id="load-data" class="section level2">
+<h2>Load data</h2>
+</div>
+</div>
 <div id="the-data" class="section level1">
 <h1>The Data</h1>
 <p>The data for the Jean Lafitte National Historical Park and Preserve project collected in the <em>‘site_phenometrics_data’</em> dataset. Our professor Dr. Andrea Wiggins acquired this data for us from authorities at Jean Lafitte National Historical Park and Preserve, Louisiana.</p>
@@ -412,7 +425,7 @@ summary {
 <div id="the-metadata" class="section level1">
 <h1>The Metadata</h1>
 <p><strong>We have the following metadata regarding the site phenometrics dataset :</strong></p>
-<p><strong>Note </strong>: <em>A value of “-9999” indicates the organism being monitored is not associated with a partner group</em></p>
+<p><strong>Note</strong> : <em>A value of “-9999” indicates the organism being monitored is not associated with a partner group</em></p>
 <ul>
 <li>Partner_Group: The name of the partner group with which the data are associated (Barataria Phenology Trail).<br />
 </li>
@@ -450,21 +463,23 @@ summary {
 </div>
 <div id="issues-you-have-encountered-with-the-data" class="section level1">
 <h1>Issues you have encountered with the data</h1>
-<p>The most significant issues encountered were the use of a string of “-9999” which indicates the organism being monitored is not associated with a partner group. Blank data also needed to be addressed.</p>
+<p>The majority of the Jean Lafitte dataset was in good shape as it was given. Each observation was in a single row, in a single file, and most of the dataset was complete. The primary thrust of the data can be summarized into four areas: the phenophase observed, the species exhibiting the phenophase, the mean date(s) it was observed, and the location of the observation. The main issue with the dataset involved the dates of observation. Within the date observations, the data contained means, medians, highs, lows, and standard deviations to account for any multiple observations. However, in a vast majority of cases the sample size was 1, and at most 2, making all the statistical distribution data mostly meaningless. Also, there were several instances where a row would contain a first observation of a particular phenophase, but no last observation, and vice versa. In addition, some of dates given for first and last observation did not conform with temporal integrity (e.g. the last date was before the first date). Finally, the dataset had very lengthy variable names, and excess columns either providing alternate descriptions or the same value for every single observation.</p>
 </div>
 <div id="description-of-rationale-for-the-steps-taken-to-remediate-data" class="section level1">
 <h1>Description of rationale for the steps taken to remediate data</h1>
+<p>First, on data observations that contained no first observation date, that date was set to equal the last observation date (e.g. only observed on one date), and the leading number of days from the last “no” observation was set to zero. Similarly, on rows that contained no last observation date, that date was set to the first observation date and the trailing number of days until the first “no” observation was set to zero. Second, columns that were alternative descriptions, or same values, or meaningless statistical data were de-selected, since they provide no meaningful value for the analysis. Also, some variable names were shortened to facilitate the analysis. Third, the temporal integrity of the following dates was checked, and any rows that did not follow this rule were de-selected: Last “No” Date &lt;= First “Yes” Date &lt;= Last “Yes” Date &lt;= First “No” Date</p>
 </div>
 <div id="data-cleaning-steps" class="section level1">
 <h1>Data cleaning steps</h1>
-<p><strong>Fill in missing information about dates </strong> If the data contains a “first yes” but no “last yes” information, then set the “last yes” information to the same values as the “first yes” information, and set the lag days to “no” at zero. The same is true if the data contains a “last yes” but no “first yes”. Effectively, we are saying that if only one “yes” exists, it is both first and last, and the number of days to “no” is zero.</p>
-<p>If First_Yes_Sample_Size = 0 and Last_Yes_Sample_Size &gt; 0 then First_Yes_Sample_Size &lt;- Last_Yes_Sample_Size; Mean_First_Yes_Year &lt;- Mean_Last_Yes_Year; Mean_First_Yes_DOY &lt;- Mean_Last_Yes_DOY; Mean_NumDays_Since_Prior_No &lt;- 0.</p>
-<p>If Last_Yes_Sample_Size = 0 and First_Yes_Sample_Size &gt; 0 then Last_Yes_Sample_Size &lt;- First_Yes_Sample_Size; Mean_Last_Yes_Year &lt;- Mean_First_Yes_Year; Mean_Last_Yes_DOY &lt;- Mean_First_Yes_DOY; Mean_NumDays_Until_Next_No &lt;- 0.</p>
+<p><strong>Fill in missing information about dates</strong></p>
+<p>If the data contains a “first yes” but no “last yes” information, then set the “last yes” information to the same values as the “first yes” information, and set the lag days to “no” at zero.</p>
+<p>The same is true if the data contains a “last yes” but no “first yes”. Effectively, we are saying that if only one “yes” exists, it is both first and last, and the number of days to “no” is zero.</p>
 <p>We could also move the Julian date and all the statistical columns associated with “first yes” and “last yes”, however in the next pass we will be de-selecting all those columns anyway.</p>
 <p>We should now have a dataset with complete information on each observation for “first yes” and “last yes” – anything remaining had NO “yes” observations and will be eliminated in the next pass (based on my Excel look, there are no records to be fully eliminated, but we will put the step in our R script anyway).</p>
-<p><strong>Select rows and columns </strong> Select rows only with complete data, and we can select columns based on data we will likely be using in the project. For rows, we require an observation of at least one “yes”. For columns, we will be eliminating some data that is descriptive but not necessary, columns that have unchanging data, all the “statistical” columns related to sample sizes and Julian dates, and all the observational “conflict” data. We have elected not to consider the statistical elements (e.g. min, max, std-dev, etc) as all observations are a sample sizes are either 1 or 2. For samples sizes of 2, the data already contains the mean, so that is the only value we will be using, as the distribution for a sample size of 2 is pretty meaningless.</p>
-<p>Select ROWS where the following are true: First_Yes_Sample_Size &gt; 0 and Last_Yes_Sample_Size &gt; 0</p>
-<p><strong>Selected columns </strong> • Site_ID • Site_Name • Latitude • Longitude • Species_ID • Common_Name • Kingdom • Species_Functional_Type • Phenophase_ID • Phenophase_Description • Mean_First_Yes_Year • Mean_First_Yes_DOY • Mean_Num_Days_Since_Prior_No • Mean_Last_Yes_Year • Mean_Last_Yes_DOY • Mean_Num_Days_Until_Next_No</p>
+<p><strong>Select rows and columns</strong></p>
+<p>Select rows only with complete data, and we can select columns based on data we will likely be using in the project. For rows, we require an observation of at least one “yes”. For columns, we will be eliminating some data that is descriptive but not necessary, columns that have unchanging data, all the “statistical” columns related to sample sizes and Julian dates, and all the observational “conflict” data. We have elected not to consider the statistical elements (e.g. min, max, std-dev, etc) as all observations are a sample sizes are either 1 or 2. For samples sizes of 2, the data already contains the mean, so that is the only value we will be using, as the distribution for a sample size of 2 is pretty meaningless.</p>
+<p><strong>Selected columns</strong></p>
+<p>•SiteID •SiteName •Latitude •Longitude •SpeciesID •SpeciesDesc •Kingdom •SpeciesType •PhenophaseID •PhenophaseDesc •First_Yes_Year •Mean_First_Yes_DOY •NumLastNo •Last_Yes_Year •Mean_Last_Yes_DOY •NumFirstNo</p>
 <p>This should yield a dataset with 768 ROWS and 18 COLUMNS. In the next pass, we will enrich the data with some date calculations.</p>
 <p><strong><em>Contributorship Statement</em></strong> : Priyanka Choudhary, Mike Rouw, Pratheeba Nalligounder Palanisami contributed to the data cleaning undertaking and the writing of this document.</p>
 <p><strong><em>Proofreader statement</em></strong> : I, have reviewed and proofread the following work and agree that it is ready for submission.</p>
