@@ -84,6 +84,18 @@ Third, the temporal integrity of the following dates was checked, and any rows t
 # Data cleaning steps
 **Fill in missing information about dates**
 
+The following columns are renamed directly in the csv file and the updated csv file is used for further cleaning.
+
+Site_ID - SiteID
+Site_Name - SiteName
+Species_ID - SpeciesID
+Common_Name - SpeciesDesc
+Phenophase_ID - PhenophaseID
+Phenophase_Category - PhenophaseCategory
+Phenophase_Description - PhenophaseDesc
+Mean_NumDays_Until_Next_No - NumFirstNo
+Mean_NumDays_Since_Prior_No - NumLastNo
+
 If the data contains a “first yes” but no “last yes” information, then set the “last yes” information to the same values as the “first yes” information, and set the lag days to “no” at zero.  
 
 ```{r FirstYes}
@@ -144,7 +156,6 @@ The temporal integrity of the following dates was checked, and any rows that did
 
 ```{r create col}
 data['TotDays'] <- (data$FirstNo - data$LastNo)
-data['AveDays'] <- round(mean(data$FirstNo - data$LastYes) + mean(data$FirstYes - data$LastNo)+1 , 0)
 ```
 The final data set is written back into the csv file
 
