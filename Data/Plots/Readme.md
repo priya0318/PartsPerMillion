@@ -2,3 +2,5 @@ This directory contains the PDF and PNG files created by the GGPLOT.R code, also
 
 These plots should be able to answer pretty much all of our research questions, although I also want to create some interval data (time lapse in days) and create some bar charts to compare durations of phenophase activity.  This will have to wait for another day, however.
 
+Added four new sets of plots focusing on specific phenophases across species.  These include Breaking Leaf Buds, Falling Leaves, Colored Leaves, and Open Flowers.  Also added R code for these plots, and divided the R code into 2 files with the code for plots either by Species or by Phenophase.
+
