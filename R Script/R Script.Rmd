@@ -1,7 +1,7 @@
 ---
 title: "R Script"
 author: "Priyanka Choudhary <br /> Mike Rouw <br /> Pratheeba Nalligounder Palanisami"
-date: "November 04, 2019"
+date: "November 07, 2019"
 output:
   html_document: 
     theme: cosmo
@@ -21,7 +21,7 @@ Note: Root directory path needs to be updated to your local
 
 ```{r setup, echo=FALSE, message=FALSE, warning=FALSE} 
 knitr::opts_chunk$set(cache=TRUE)
-knitr::opts_knit$set(root.dir = "C:/Users/Pratheeba/UNO/DatatoDecisions/R Script") 
+knitr::opts_knit$set(root.dir = "C:/Users/Priya/Desktop/D2D_4thNov/PartsPerMillion/R Script") 
 ```
 
 ## Load data
@@ -39,13 +39,14 @@ Site_ID - SiteID
 Site_Name - SiteName
 Species_ID - SpeciesID
 Common_Name - SpeciesDesc
-Phenophase_ID - PhenophaseID
-Phenophase_Category - PhenophaseCategory
-Phenophase_Description - PhenophaseDesc
+Phenophase_ID - PhenoID
+Phenophase_Category - PhenoCat
+Phenophase_Description - PhenoDesc
 Mean_NumDays_Until_Next_No - NumFirstNo
 Mean_NumDays_Since_Prior_No - NumLastNo
 
 If the data contains a “first yes” but no “last yes” information, then set the “last yes” information to the same values as the “first yes” information, and set the lag days to “no” at zero.  
+# FirstYes
 
 ```{r FirstYes}
 for(i in 1:nrow(data)){
@@ -59,6 +60,7 @@ for(i in 1:nrow(data)){
 ```
 The same is true if the data contains a “last yes” but no “first yes”.  Effectively, we are saying that if only one “yes” exists, it is both first and last, and the number of days to “no” is zero.
 
+# FirstNo
 ```{r FirstNo}
 for(i in 1:nrow(data)){
   if(data$Last_Yes_Sample_Size[i] == 0 & data$First_Yes_Sample_Size[i] > 0) {
@@ -90,6 +92,9 @@ cols <- c('SiteID', 'SiteName', 'Latitude', 'Longitude', 'SpeciesID',
 data <- data[cols]
 ```
 We will be adding the DOY for “last no” and “first no” to the dataset. This will add 2 columns to the data.
+
+# LastNo and FirstNo
+
 ```{r selectcol}
 data['LastNo'] <- data$FirstYes - data$NumLastNo
 data['FirstNo'] <- data$LastYes + data$NumFirstNo
@@ -103,17 +108,27 @@ The temporal integrity of the following dates was checked, and any rows that did
           data$LastYes <= data$FirstNo)
 ```
 
+# Total Days
+
 ```{r create col}
 data['TotDays'] <- (data$FirstNo - data$LastNo)+1
 ```
+
+
+# Average Days
+
 ```{r create AveDays}
 for(i in 1:nrow(data)){
 data$aveDays[i] <- ceiling((median(data$LastYes[i]:data$FirstNo[i])-median(data$LastNo[i]:data$FirstYes))+1)}
 ```
 
+# Yes Days
+
 ```{r create YesDays}
 data['YesDays'] <- (data$LastYes - data$FirstYes)+1
 ```
+
+# Yes Duration Group
 
 ```{r create YesDurationGroup}
 data['YesDurationGroup'] <- NA
@@ -135,12 +150,33 @@ data$YesDurationGroup[i] <- "F. 201+ Days"
 }
 ```
 
+# Descriptive Statistics (Mean, Median, Min, Max, Range, Sum, Standard mean, variance, Standard deviation, Coefficient variance)
+
+```{r descstats}
+library(pastecs)
+stat.desc(data)
+
+```
+
+# Descriptive Statistics (n, mean, sd, median, min, max, range, skewness, kurtosis, se)
+
+```{r descstats2}
+library(psych)
+describe(data)
+
+```
+
+
 The final data set is written back into the csv file
+
+# Final Dataset
 
 ```{r finaldataset}
 write.csv(data, file = "JeanFinalDataSet.csv",row.names=FALSE)
 ```
 This should yield a dataset with `r nrow(data)` rows and `r ncol(data)` columns in the data set. In the next pass, we will enrich the data with some date calculations.
+
+
 
 **_Contributorship Statement_** : Priyanka Choudhary, Mike Rouw, Pratheeba Nalligounder Palanisami contributed to the descriptive statistics and R script undertaking and the writing of this document.
 
