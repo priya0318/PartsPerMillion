@@ -24,3 +24,8 @@
     * [Initial Dataset](https://github.com/priya0318/PartsPerMillion/blob/master/DataCleaningDocumentation/site_phenometrics_data%20-%20Updated.csv)
     * [Final Dataset](https://github.com/priya0318/PartsPerMillion/blob/master/DataCleaningDocumentation/JeanFinalDataSet.csv)
  
+* R script 
+    * [RScript RMarkdown](https://github.com/priya0318/PartsPerMillion/blob/master/R%20Script/R%20Script.Rmd)
+    * [RScript HTML](https://github.com/priya0318/PartsPerMillion/blob/master/R%20Script/R-Script.html)
+    * [Initial Dataset](https://github.com/priya0318/PartsPerMillion/blob/master/R%20Script/site_phenometrics_data%20-%20Updated.csv)
+    * [Final Dataset](https://github.com/priya0318/PartsPerMillion/blob/master/R%20Script/JeanFinalDataSet.csv)
