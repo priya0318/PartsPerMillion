@@ -119,7 +119,7 @@ data['TotDays'] <- (data$FirstNo - data$LastNo)+1
 
 ```{r create AveDays}
 for(i in 1:nrow(data)){
-data$aveDays[i] <- ceiling((median(data$LastYes[i]:data$FirstNo[i])-median(data$LastNo[i]:data$FirstYes))+1)}
+data$aveDays[i] <- ceiling((median(data$LastYes[i]:data$FirstNo[i])-median(data$LastNo[i]:data$FirstYes[i]))+1)}
 ```
 
 # Yes Days
