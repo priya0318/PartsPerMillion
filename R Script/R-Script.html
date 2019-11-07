@@ -469,6 +469,8 @@ data &lt;- data[cols]</code></pre>
 </div>
 <div id="lastno-and-firstno" class="section level1">
 <h1>LastNo and FirstNo</h1>
+<p>LastNo is the difference between FirstYes of the phenophase and the NumLastNo ( mean of the nummber of the days between the FirstYes phenophase and the Last pirior phenophase)</p>
+<p>FirstNo is sum of LastYes (mean day of year of the LastYes phenophase) of the phenophase and the NumFirstNo ( mean of the nummber of the days between the Last First phenophase and the Next No phenophase)</p>
 <pre class="r"><code>data[&#39;LastNo&#39;] &lt;- data$FirstYes - data$NumLastNo
 data[&#39;FirstNo&#39;] &lt;- data$LastYes + data$NumFirstNo</code></pre>
 <p>The temporal integrity of the following dates was checked, and any rows that did not follow this rule were de-selected.</p>
@@ -478,19 +480,23 @@ data[&#39;FirstNo&#39;] &lt;- data$LastYes + data$NumFirstNo</code></pre>
 </div>
 <div id="total-days" class="section level1">
 <h1>Total Days</h1>
+<p>Total Days is the difference between FirstNo and LastNo plus one. We added one to get at least one observation if both the columns ‘FirstNo’ and ‘LastNo’ have the same values.</p>
 <pre class="r"><code>data[&#39;TotDays&#39;] &lt;- (data$FirstNo - data$LastNo)+1</code></pre>
 </div>
 <div id="average-days" class="section level1">
 <h1>Average Days</h1>
+<p>Average Days is the measures the most likely number of days when the phenophase was occurring by taking midpoints between no and yes observations</p>
 <pre class="r"><code>for(i in 1:nrow(data)){
 data$aveDays[i] &lt;- ceiling((median(data$LastYes[i]:data$FirstNo[i])-median(data$LastNo[i]:data$FirstYes[i]))+1)}</code></pre>
 </div>
 <div id="yes-days" class="section level1">
 <h1>Yes Days</h1>
+<p>Yes Days is the difference between LastYes and FirstYes plus one. We added one to get at least one observation if both the columns ‘LastYes’ and ‘FirstYes’ have the same values.</p>
 <pre class="r"><code>data[&#39;YesDays&#39;] &lt;- (data$LastYes - data$FirstYes)+1</code></pre>
 </div>
 <div id="yes-duration-group" class="section level1">
 <h1>Yes Duration Group</h1>
+<p>Yes Duration group is grouping the YesDays in six different categories for easy understanding.</p>
 <pre class="r"><code>data[&#39;YesDurationGroup&#39;] &lt;- NA
 
 for(i in 1:nrow(data)){
@@ -511,6 +517,7 @@ data$YesDurationGroup[i] &lt;- &quot;F. 201+ Days&quot;
 </div>
 <div id="descriptive-statistics" class="section level1">
 <h1>Descriptive Statistics</h1>
+<p>The below is descriptive statistics for Species Type ‘Deciduous broadleaf’ for different phenophase</p>
 <pre class="r"><code>library(pastecs)
 library(dplyr)
 stat.desc(data %&gt;% filter(SpeciesType == &quot;Deciduous broadleaf&quot; &amp; PhenophaseDesc == &quot;Breaking leaf buds&quot;)%&gt;%select(FirstYes))</code></pre>
@@ -530,6 +537,7 @@ stat.desc(data %&gt;% filter(SpeciesType == &quot;Deciduous broadleaf&quot; &amp
 ## std.dev        71.1863135
 ## coef.var        0.9159413</code></pre>
 <p>Descrptive statistics with Mean, Median, Min, Max, Range, Sum, Standard mean, variance, Standard deviation, Coefficient variance for species type - decidous broadleaf and phenophaseDesc - breaking leaf buds.</p>
+<p>The mean is 77.71, and we can predict that the number of observations is from the first quarter of the year. i.e., January to March</p>
 <pre class="r"><code>library(pastecs)
 library(dplyr)
 stat.desc(data %&gt;% filter(SpeciesType == &quot;Deciduous broadleaf&quot; &amp; PhenophaseDesc == &quot;Breaking leaf buds&quot;)%&gt;%select(TotDays))</code></pre>
