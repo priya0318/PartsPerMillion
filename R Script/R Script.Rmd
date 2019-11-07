@@ -239,6 +239,28 @@ stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc 
 ```
 The mean is 21.71, and we can predict that the more number of observations is in the first month of the year. 
 
+```{r descstats13}
+library(e1071)
+skewness(data$FirstYes)
+```
+
+The skewness for this dataset is 0.675. A positive skewness indicates that the size of the right-handed tail is larger than the left-handed tail.
+
+```{r descstats14}
+library(e1071)
+skewness(data$YesDays)
+```
+
+The skewness for this dataset is 2.42. A positive skewness indicates that the size of the right-handed tail is larger than the left-handed tail.
+
+```{r descstats15}
+library(e1071)
+skewness(data$TotDays)
+```
+
+The skewness for this dataset is 2.21. A positive skewness indicates that the size of the right-handed tail is larger than the left-handed tail.
+
+
 The final data set is written back into the csv file
 
 # Final Dataset

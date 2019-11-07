@@ -518,8 +518,8 @@ data$YesDurationGroup[i] &lt;- &quot;F. 201+ Days&quot;
 <div id="descriptive-statistics" class="section level1">
 <h1>Descriptive Statistics</h1>
 <p>The below is descriptive statistics for Species Type ‘Deciduous broadleaf’ for different phenophase</p>
+<p>Descrptive statistics for phenophaseDesc ‘breaking leaf buds’ selecting FirstYes only.</p>
 <pre class="r"><code>library(pastecs)
-library(dplyr)
 stat.desc(data %&gt;% filter(SpeciesType == &quot;Deciduous broadleaf&quot; &amp; PhenophaseDesc == &quot;Breaking leaf buds&quot;)%&gt;%select(FirstYes))</code></pre>
 <pre><code>##                  FirstYes
 ## nbr.val        57.0000000
@@ -536,11 +536,9 @@ stat.desc(data %&gt;% filter(SpeciesType == &quot;Deciduous broadleaf&quot; &amp
 ## var          5067.4912281
 ## std.dev        71.1863135
 ## coef.var        0.9159413</code></pre>
-<p>Descrptive statistics with Mean, Median, Min, Max, Range, Sum, Standard mean, variance, Standard deviation, Coefficient variance for species type - decidous broadleaf and phenophaseDesc - breaking leaf buds.</p>
-<p>The mean is 77.71, and we can predict that the number of observations is from the first quarter of the year. i.e., January to March</p>
-<pre class="r"><code>library(pastecs)
-library(dplyr)
-stat.desc(data %&gt;% filter(SpeciesType == &quot;Deciduous broadleaf&quot; &amp; PhenophaseDesc == &quot;Breaking leaf buds&quot;)%&gt;%select(TotDays))</code></pre>
+<p>The mean is 77.71, and we can predict that the more number of observations is from the first quarter of the year. i.e., January to March</p>
+<p>Descrptive statistics for phenophaseDesc ‘breaking leaf buds’ selecting TotDays only.</p>
+<pre class="r"><code>stat.desc(data %&gt;% filter(SpeciesType == &quot;Deciduous broadleaf&quot; &amp; PhenophaseDesc == &quot;Breaking leaf buds&quot;)%&gt;%select(TotDays))</code></pre>
 <pre><code>##                   TotDays
 ## nbr.val        57.0000000
 ## nbr.null        0.0000000
@@ -556,9 +554,9 @@ stat.desc(data %&gt;% filter(SpeciesType == &quot;Deciduous broadleaf&quot; &amp
 ## var          1546.3737469
 ## std.dev        39.3239589
 ## coef.var        0.7309524</code></pre>
-<pre class="r"><code>library(pastecs)
-library(dplyr)
-stat.desc(data %&gt;% filter(SpeciesType == &quot;Deciduous broadleaf&quot; &amp; PhenophaseDesc == &quot;Breaking leaf buds&quot;)%&gt;%select(YesDays))</code></pre>
+<p>The mean is 53.79, and we can predict that the more number of observations is from the first quarter of the year. i.e., January to February</p>
+<p>Descrptive statistics for phenophaseDesc ‘breaking leaf buds’ selecting YesDays only.</p>
+<pre class="r"><code>stat.desc(data %&gt;% filter(SpeciesType == &quot;Deciduous broadleaf&quot; &amp; PhenophaseDesc == &quot;Breaking leaf buds&quot;)%&gt;%select(YesDays))</code></pre>
 <pre><code>##                  YesDays
 ## nbr.val        57.000000
 ## nbr.null        0.000000
@@ -574,9 +572,9 @@ stat.desc(data %&gt;% filter(SpeciesType == &quot;Deciduous broadleaf&quot; &amp
 ## var          1341.491228
 ## std.dev        36.626373
 ## coef.var        1.236791</code></pre>
-<pre class="r"><code>library(pastecs)
-library(dplyr)
-stat.desc(data %&gt;% filter(SpeciesType == &quot;Deciduous broadleaf&quot; &amp; PhenophaseDesc == &quot;Falling leaves&quot;)%&gt;%select(FirstYes))</code></pre>
+<p>The mean is 29.61, and we can predict that the more number of observations is in the first month of the year. i.e., January</p>
+<p>Descrptive statistics for phenophaseDesc ‘Falling leaves’ selecting FirstYes Only.</p>
+<pre class="r"><code>stat.desc(data %&gt;% filter(SpeciesType == &quot;Deciduous broadleaf&quot; &amp; PhenophaseDesc == &quot;Falling leaves&quot;)%&gt;%select(FirstYes))</code></pre>
 <pre><code>##                  FirstYes
 ## nbr.val      5.000000e+01
 ## nbr.null     0.000000e+00
@@ -592,9 +590,9 @@ stat.desc(data %&gt;% filter(SpeciesType == &quot;Deciduous broadleaf&quot; &amp
 ## var          9.483351e+03
 ## std.dev      9.738250e+01
 ## coef.var     4.033738e-01</code></pre>
-<pre class="r"><code>library(pastecs)
-library(dplyr)
-stat.desc(data %&gt;% filter(SpeciesType == &quot;Deciduous broadleaf&quot; &amp; PhenophaseDesc == &quot;Falling leaves&quot;)%&gt;%select(TotDays))</code></pre>
+<p>The mean is 241.42, and we can predict that the more number of observations is from the last quarter of the year.</p>
+<p>Descrptive statistics for phenophaseDesc ‘Falling leaves’ selecting TotalDays only .</p>
+<pre class="r"><code>stat.desc(data %&gt;% filter(SpeciesType == &quot;Deciduous broadleaf&quot; &amp; PhenophaseDesc == &quot;Falling leaves&quot;)%&gt;%select(TotDays))</code></pre>
 <pre><code>##                  TotDays
 ## nbr.val        50.000000
 ## nbr.null        0.000000
@@ -610,9 +608,9 @@ stat.desc(data %&gt;% filter(SpeciesType == &quot;Deciduous broadleaf&quot; &amp
 ## var          3321.126939
 ## std.dev        57.629219
 ## coef.var        1.184324</code></pre>
-<pre class="r"><code>library(pastecs)
-library(dplyr)
-stat.desc(data %&gt;% filter(SpeciesType == &quot;Deciduous broadleaf&quot; &amp; PhenophaseDesc == &quot;Falling leaves&quot;)%&gt;%select(YesDays))</code></pre>
+<p>The mean is 48.66, and we can predict that the more number of observations is from the first quarter of the year. i.e., January to February</p>
+<p>Descrptive statistics for phenophaseDesc ‘Falling leaves’ selecting YesDays only.</p>
+<pre class="r"><code>stat.desc(data %&gt;% filter(SpeciesType == &quot;Deciduous broadleaf&quot; &amp; PhenophaseDesc == &quot;Falling leaves&quot;)%&gt;%select(YesDays))</code></pre>
 <pre><code>##                  YesDays
 ## nbr.val        50.000000
 ## nbr.null        0.000000
@@ -628,9 +626,9 @@ stat.desc(data %&gt;% filter(SpeciesType == &quot;Deciduous broadleaf&quot; &amp
 ## var          3153.624898
 ## std.dev        56.157145
 ## coef.var        2.223165</code></pre>
-<pre class="r"><code>library(pastecs)
-library(dplyr)
-stat.desc(data %&gt;% filter(SpeciesType == &quot;Deciduous broadleaf&quot; &amp; PhenophaseDesc == &quot;Colored leaves&quot;)%&gt;%select(FirstYes))</code></pre>
+<p>The mean is 25.26, and we can predict that the more number of observations is in the first month of the year. i.e., January</p>
+<p>Descrptive statistics for phenophaseDesc ‘Colored leaves’ selecting FirstYes only.</p>
+<pre class="r"><code>stat.desc(data %&gt;% filter(SpeciesType == &quot;Deciduous broadleaf&quot; &amp; PhenophaseDesc == &quot;Colored leaves&quot;)%&gt;%select(FirstYes))</code></pre>
 <pre><code>##                  FirstYes
 ## nbr.val         46.000000
 ## nbr.null         0.000000
@@ -646,9 +644,9 @@ stat.desc(data %&gt;% filter(SpeciesType == &quot;Deciduous broadleaf&quot; &amp
 ## var           6491.686957
 ## std.dev         80.571006
 ## coef.var         0.314784</code></pre>
-<pre class="r"><code>library(pastecs)
-library(dplyr)
-stat.desc(data %&gt;% filter(SpeciesType == &quot;Deciduous broadleaf&quot; &amp; PhenophaseDesc == &quot;Colored leaves&quot;)%&gt;%select(TotDays))</code></pre>
+<p>The mean is 255.95, and we can predict that the number of observations is from the last quarter of the year.</p>
+<p>Descrptive statistics for phenophaseDesc ‘Colored leaves’ selecting TotalDays only.</p>
+<pre class="r"><code>stat.desc(data %&gt;% filter(SpeciesType == &quot;Deciduous broadleaf&quot; &amp; PhenophaseDesc == &quot;Colored leaves&quot;)%&gt;%select(TotDays))</code></pre>
 <pre><code>##                  TotDays
 ## nbr.val        46.000000
 ## nbr.null        0.000000
@@ -664,9 +662,9 @@ stat.desc(data %&gt;% filter(SpeciesType == &quot;Deciduous broadleaf&quot; &amp
 ## var          2654.651812
 ## std.dev        51.523313
 ## coef.var        1.148569</code></pre>
-<pre class="r"><code>library(pastecs)
-library(dplyr)
-stat.desc(data %&gt;% filter(SpeciesType == &quot;Deciduous broadleaf&quot; &amp; PhenophaseDesc == &quot;Colored leaves&quot;)%&gt;%select(YesDays))</code></pre>
+<p>The mean is 44.85, and we can predict that the number of observations is from the first quarter of the year. i.e., January to February</p>
+<p>Descrptive statistics for phenophaseDesc ‘Colored leaves’ selecting YesDays only.</p>
+<pre class="r"><code>stat.desc(data %&gt;% filter(SpeciesType == &quot;Deciduous broadleaf&quot; &amp; PhenophaseDesc == &quot;Colored leaves&quot;)%&gt;%select(YesDays))</code></pre>
 <pre><code>##                  YesDays
 ## nbr.val        46.000000
 ## nbr.null        0.000000
@@ -682,6 +680,73 @@ stat.desc(data %&gt;% filter(SpeciesType == &quot;Deciduous broadleaf&quot; &amp
 ## var          2286.191304
 ## std.dev        47.814133
 ## coef.var        2.190687</code></pre>
+<p>The mean is 21.71, and we can predict that the more number of observations is in the first month of the year.</p>
+<p>Descrptive statistics for phenophaseDesc ‘Open flowers’ selecting FirstYes only.</p>
+<pre class="r"><code>stat.desc(data %&gt;% filter(SpeciesType == &quot;Deciduous broadleaf&quot; &amp; PhenophaseDesc == &quot;Open flowers&quot;)%&gt;%select(FirstYes))</code></pre>
+<pre><code>##                  FirstYes
+## nbr.val        46.0000000
+## nbr.null        0.0000000
+## nbr.na          0.0000000
+## min            17.0000000
+## max           354.0000000
+## range         337.0000000
+## sum          5353.0000000
+## median         84.5000000
+## mean          116.3695652
+## SE.mean        11.9895429
+## CI.mean.0.95   24.1481790
+## var          6612.4603865
+## std.dev        81.3170363
+## coef.var        0.6987827</code></pre>
+<p>The mean is 116.36, and we can predict that the more number of observations is in the second quater of the year. i.e., April</p>
+<p>Descrptive statistics for phenophaseDesc ‘Open flowers’ selecting TotDays only.</p>
+<pre class="r"><code>stat.desc(data %&gt;% filter(SpeciesType == &quot;Deciduous broadleaf&quot; &amp; PhenophaseDesc == &quot;Open flowers&quot;)%&gt;%select(TotDays))</code></pre>
+<pre><code>##                  TotDays
+## nbr.val        46.000000
+## nbr.null        0.000000
+## nbr.na          0.000000
+## min             6.000000
+## max           227.000000
+## range         221.000000
+## sum          2162.500000
+## median         36.250000
+## mean           47.010870
+## SE.mean         6.945378
+## CI.mean.0.95   13.988710
+## var          2218.960990
+## std.dev        47.105849
+## coef.var        1.002020</code></pre>
+<p>The mean is 47.01, and we can predict that the more number of observations is in the first month of the year.</p>
+<p>Descrptive statistics for phenophaseDesc ‘Open flowers’ selecting YesDays only.</p>
+<pre class="r"><code>stat.desc(data %&gt;% filter(SpeciesType == &quot;Deciduous broadleaf&quot; &amp; PhenophaseDesc == &quot;Open flowers&quot;)%&gt;%select(YesDays))</code></pre>
+<pre><code>##                  YesDays
+## nbr.val        46.000000
+## nbr.null        0.000000
+## nbr.na          0.000000
+## min             1.000000
+## max           193.000000
+## range         192.000000
+## sum           999.000000
+## median          1.000000
+## mean           21.717391
+## SE.mean         6.313291
+## CI.mean.0.95   12.715621
+## var          1833.451691
+## std.dev        42.818824
+## coef.var        1.971638</code></pre>
+<p>The mean is 21.71, and we can predict that the more number of observations is in the first month of the year.</p>
+<pre class="r"><code>library(e1071)
+skewness(data$FirstYes)</code></pre>
+<pre><code>## [1] 0.6751004</code></pre>
+<p>The skewness for this dataset is 0.675. A positive skewness indicates that the size of the right-handed tail is larger than the left-handed tail.</p>
+<pre class="r"><code>library(e1071)
+skewness(data$YesDays)</code></pre>
+<pre><code>## [1] 2.420822</code></pre>
+<p>The skewness for this dataset is 2.42. A positive skewness indicates that the size of the right-handed tail is larger than the left-handed tail.</p>
+<pre class="r"><code>library(e1071)
+skewness(data$TotDays)</code></pre>
+<pre><code>## [1] 2.21226</code></pre>
+<p>The skewness for this dataset is 2.21. A positive skewness indicates that the size of the right-handed tail is larger than the left-handed tail.</p>
 <p>The final data set is written back into the csv file</p>
 </div>
 <div id="final-dataset" class="section level1">
@@ -689,6 +754,7 @@ stat.desc(data %&gt;% filter(SpeciesType == &quot;Deciduous broadleaf&quot; &amp
 <pre class="r"><code>write.csv(data, file = &quot;JeanFinalDataSet.csv&quot;,row.names=FALSE)</code></pre>
 <p>This should yield a dataset with 720 rows and 22 columns in the data set. In the next pass, we will enrich the data with some date calculations.</p>
 <p><strong><em>Contributorship Statement</em></strong> : Priyanka Choudhary, Mike Rouw, Pratheeba Nalligounder Palanisami contributed to the descriptive statistics and R script undertaking and the writing of this document.</p>
+<p><strong><em>Proofreader statement</em></strong> : I, Pratheeba Nalligounder Palanisami, have reviewed and proofread the following work and agree that it is ready for submission.</p>
 </div>
 
 
