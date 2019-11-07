@@ -168,98 +168,96 @@ The below is descriptive statistics for Species Type 'Deciduous broadleaf' for d
 
 ```{r descstats1}
 library(pastecs)
-library(dplyr)
 stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc == "Breaking leaf buds")%>%select(FirstYes))
-
 ```
 
-Descrptive statistics with Mean, Median, Min, Max, Range, Sum, Standard mean, variance, Standard deviation, Coefficient variance for phenophaseDesc 'breaking leaf buds' selecting FirstYes only. 
+Descrptive statistics for phenophaseDesc 'breaking leaf buds' selecting FirstYes only. 
 
-The mean is 77.71, and we can predict that the number of observations is from the first quarter of the year. i.e., January to March 
+The mean is 77.71, and we can predict that the more number of observations is from the first quarter of the year. i.e., January to March 
 
 ```{r descstats2}
-library(pastecs)
-library(dplyr)
 stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc == "Breaking leaf buds")%>%select(TotDays))
-
 ```
 
-Descrptive statistics with Mean, Median, Min, Max, Range, Sum, Standard mean, variance, Standard deviation, Coefficient variance for phenophaseDesc 'breaking leaf buds' selecting TotDays only. 
+Descrptive statistics for phenophaseDesc 'breaking leaf buds' selecting TotDays only. 
 
-The mean is 77.71, and we can predict that the number of observations is from the first quarter of the year. i.e., January to March 
+The mean is 53.79, and we can predict that the more number of observations is from the first quarter of the year. i.e., January to February 
 
 ```{r descstats3}
-library(pastecs)
-library(dplyr)
 stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc == "Breaking leaf buds")%>%select(YesDays))
-
 ```
 
-Descrptive statistics with Mean, Median, Min, Max, Range, Sum, Standard mean, variance, Standard deviation, Coefficient variance for phenophaseDesc 'breaking leaf buds' selecting YesDays only. 
+Descrptive statistics for phenophaseDesc 'breaking leaf buds' selecting YesDays only. 
 
-The mean is 77.71, and we can predict that the number of observations is from the first quarter of the year. i.e., January to March 
+The mean is 29.61, and we can predict that the more number of observations is in the first month of the year. i.e., January 
 
 ```{r descstats4}
-library(pastecs)
-library(dplyr)
 stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc == "Falling leaves")%>%select(FirstYes))
-
 ```
 
-Descrptive statistics with Mean, Median, Min, Max, Range, Sum, Standard mean, variance, Standard deviation, Coefficient variance for phenophaseDesc 'Falling leaves' selecting FirstYes Only. 
+Descrptive statistics for phenophaseDesc 'Falling leaves' selecting FirstYes Only. 
 
-The mean is 77.71, and we can predict that the number of observations is from the first quarter of the year. i.e., January to March 
+The mean is 241.42, and we can predict that the more number of observations is from the last quarter of the year. 
 
 ```{r descstats5}
-library(pastecs)
-library(dplyr)
 stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc == "Falling leaves")%>%select(TotDays))
-
 ```
 
-Descrptive statistics with Mean, Median, Min, Max, Range, Sum, Standard mean, variance, Standard deviation, Coefficient variance for phenophaseDesc 'Falling leaves' selecting TotalDays only . 
+Descrptive statistics for phenophaseDesc 'Falling leaves' selecting TotalDays only . 
 
-The mean is 77.71, and we can predict that the number of observations is from the first quarter of the year. i.e., January to March 
+The mean is 48.66, and we can predict that the more number of observations is from the first quarter of the year. i.e., January to February 
 
 ```{r descstats6}
-library(pastecs)
-library(dplyr)
 stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc == "Falling leaves")%>%select(YesDays))
-
 ```
 
-Descrptive statistics with Mean, Median, Min, Max, Range, Sum, Standard mean, variance, Standard deviation, Coefficient variance for phenophaseDesc 'Falling leaves' selecting YesDays only. 
+Descrptive statistics for phenophaseDesc 'Falling leaves' selecting YesDays only. 
 
-The mean is 77.71, and we can predict that the number of observations is from the first quarter of the year. i.e., January to March 
+The mean is 25.26, and we can predict that the more number of observations is in the first month of the year. i.e., January
 
 ```{r descstats7}
-library(pastecs)
-library(dplyr)
 stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc == "Colored leaves")%>%select(FirstYes))
-
 ```
 
-Descrptive statistics with Mean, Median, Min, Max, Range, Sum, Standard mean, variance, Standard deviation, Coefficient variance for phenophaseDesc 'Colored leaves' selecting FirstYes only. 
+Descrptive statistics for phenophaseDesc 'Colored leaves' selecting FirstYes only. 
 
-The mean is 77.71, and we can predict that the number of observations is from the first quarter of the year. i.e., January to March 
+The mean is 255.95, and we can predict that the number of observations is from the last quarter of the year. 
 
 ```{r descstats8}
-library(pastecs)
-library(dplyr)
 stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc == "Colored leaves")%>%select(TotDays))
-
 ```
 
-Descrptive statistics with Mean, Median, Min, Max, Range, Sum, Standard mean, variance, Standard deviation, Coefficient variance for phenophaseDesc 'Colored leaves' selecting TotalDays only. 
+Descrptive statistics for phenophaseDesc 'Colored leaves' selecting TotalDays only. 
 
-The mean is 77.71, and we can predict that the number of observations is from the first quarter of the year. i.e., January to March 
+The mean is 44.85, and we can predict that the number of observations is from the first quarter of the year. i.e., January to February 
 
 ```{r descstats9}
-library(pastecs)
-library(dplyr)
 stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc == "Colored leaves")%>%select(YesDays))
-
 ```
+Descrptive statistics for phenophaseDesc 'Colored leaves' selecting YesDays only. 
+
+The mean is 21.71, and we can predict that the more number of observations is in the first month of the year. 
+
+```{r descstats10}
+stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc == "Open flowers")%>%select(FirstYes))
+```
+Descrptive statistics for phenophaseDesc 'Open flowers' selecting FirstYes only. 
+
+The mean is 116.36, and we can predict that the more number of observations is in the second quater of the year. i.e., April
+
+```{r descstats11}
+stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc == "Open flowers")%>%select(TotDays))
+```
+Descrptive statistics for phenophaseDesc 'Open flowers' selecting TotDays only. 
+
+The mean is 47.01, and we can predict that the more number of observations is in the first month of the year. 
+
+```{r descstats12}
+stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc == "Open flowers")%>%select(YesDays))
+```
+Descrptive statistics for phenophaseDesc 'Open flowers' selecting YesDays only. 
+
+The mean is 21.71, and we can predict that the more number of observations is in the first month of the year. 
 
 The final data set is written back into the csv file
 
