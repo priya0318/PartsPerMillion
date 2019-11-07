@@ -31,7 +31,6 @@ data <- read.csv("site_phenometrics_data - Updated.csv")
 ```
 
 # Data cleaning steps
-**Fill in missing information about dates**
 
 The following columns are renamed directly in the csv file and the updated csv file is used for further cleaning.
 
@@ -151,22 +150,74 @@ data$YesDurationGroup[i] <- "F. 201+ Days"
 }
 ```
 
-# Descriptive Statistics (Mean, Median, Min, Max, Range, Sum, Standard mean, variance, Standard deviation, Coefficient variance)
+# Descriptive Statistics  
 
-```{r descstats}
+```{r descstats1}
 library(pastecs)
-stat.desc(data)
+library(dplyr)
+stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc == "Breaking leaf buds")%>%select(FirstYes))
 
 ```
 
-# Descriptive Statistics (n, mean, sd, median, min, max, range, skewness, kurtosis, se)
+Descrptive statistics with Mean, Median, Min, Max, Range, Sum, Standard mean, variance, Standard deviation, Coefficient variance for species type - decidous broadleaf and phenophaseDesc - breaking leaf buds. 
 
 ```{r descstats2}
-library(psych)
-describe(data)
+library(pastecs)
+library(dplyr)
+stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc == "Breaking leaf buds")%>%select(TotDays))
 
 ```
 
+```{r descstats3}
+library(pastecs)
+library(dplyr)
+stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc == "Breaking leaf buds")%>%select(YesDays))
+
+```
+
+```{r descstats4}
+library(pastecs)
+library(dplyr)
+stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc == "Falling leaves")%>%select(FirstYes))
+
+```
+
+```{r descstats5}
+library(pastecs)
+library(dplyr)
+stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc == "Falling leaves")%>%select(TotDays))
+
+```
+
+
+```{r descstats6}
+library(pastecs)
+library(dplyr)
+stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc == "Falling leaves")%>%select(YesDays))
+
+```
+
+```{r descstats7}
+library(pastecs)
+library(dplyr)
+stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc == "Colored leaves")%>%select(FirstYes))
+
+```
+
+
+```{r descstats8}
+library(pastecs)
+library(dplyr)
+stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc == "Colored leaves")%>%select(TotDays))
+
+```
+
+```{r descstats9}
+library(pastecs)
+library(dplyr)
+stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc == "Colored leaves")%>%select(YesDays))
+
+```
 
 The final data set is written back into the csv file
 

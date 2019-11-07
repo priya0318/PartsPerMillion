@@ -394,14 +394,14 @@ summary {
 <li><a href="#load-data">Load data</a></li>
 </ul></li>
 <li><a href="#data-cleaning-steps">Data cleaning steps</a></li>
+<li><a href="#firstyes">FirstYes</a></li>
 <li><a href="#firstno">FirstNo</a></li>
 <li><a href="#lastno-and-firstno">LastNo and FirstNo</a></li>
 <li><a href="#total-days">Total Days</a></li>
 <li><a href="#average-days">Average Days</a></li>
 <li><a href="#yes-days">Yes Days</a></li>
 <li><a href="#yes-duration-group">Yes Duration Group</a></li>
-<li><a href="#descriptive-statistics-mean-median-min-max-range-sum-standard-mean-variance-standard-deviation-coefficient-variance">Descriptive Statistics (Mean, Median, Min, Max, Range, Sum, Standard mean, variance, Standard deviation, Coefficient variance)</a></li>
-<li><a href="#descriptive-statistics-n-mean-sd-median-min-max-range-skewness-kurtosis-se">Descriptive Statistics (n, mean, sd, median, min, max, range, skewness, kurtosis, se)</a></li>
+<li><a href="#descriptive-statistics">Descriptive Statistics</a></li>
 <li><a href="#final-dataset">Final Dataset</a></li>
 </ul>
 </div>
@@ -420,11 +420,12 @@ summary {
 </div>
 <div id="data-cleaning-steps" class="section level1">
 <h1>Data cleaning steps</h1>
-<p><strong>Fill in missing information about dates</strong></p>
 <p>The following columns are renamed directly in the csv file and the updated csv file is used for further cleaning.</p>
-<p>Site_ID - SiteID Site_Name - SiteName Species_ID - SpeciesID Common_Name - SpeciesDesc Phenophase_ID - PhenoID Phenophase_Category - PhenoCat Phenophase_Description - PhenoDesc Mean_NumDays_Until_Next_No - NumFirstNo Mean_NumDays_Since_Prior_No - NumLastNo</p>
-<p>If the data contains a “first yes” but no “last yes” information, then set the “last yes” information to the same values as the “first yes” information, and set the lag days to “no” at zero.<br />
-# FirstYes</p>
+<p>Site_ID - SiteID Site_Name - SiteName Species_ID - SpeciesID Common_Name - SpeciesDesc Phenophase_ID - PhenophaseID Phenophase_Category - PhenophaseCategory Phenophase_Description - PhenophaseDesc Mean_NumDays_Until_Next_No - NumFirstNo Mean_NumDays_Since_Prior_No - NumLastNo</p>
+<p>If the data contains a “first yes” but no “last yes” information, then set the “last yes” information to the same values as the “first yes” information, and set the lag days to “no” at zero.</p>
+</div>
+<div id="firstyes" class="section level1">
+<h1>FirstYes</h1>
 <pre class="r"><code>for(i in 1:nrow(data)){
   if(data$First_Yes_Sample_Size[i] == 0 &amp; data$Last_Yes_Sample_Size[i] &gt; 0) {
     data$First_Yes_Sample_Size[i] &lt;- data$Last_Yes_Sample_Size[i]
@@ -508,161 +509,171 @@ data$YesDurationGroup[i] &lt;- &quot;F. 201+ Days&quot;
 }
 }</code></pre>
 </div>
-<div id="descriptive-statistics-mean-median-min-max-range-sum-standard-mean-variance-standard-deviation-coefficient-variance" class="section level1">
-<h1>Descriptive Statistics (Mean, Median, Min, Max, Range, Sum, Standard mean, variance, Standard deviation, Coefficient variance)</h1>
-<pre class="r"><code>library(pastecs)</code></pre>
-<pre><code>## 
-## Attaching package: &#39;pastecs&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:dplyr&#39;:
-## 
-##     first, last</code></pre>
-<pre class="r"><code>stat.desc(data)</code></pre>
-<pre><code>##                    SiteID SiteName     Latitude     Longitude    SpeciesID
-## nbr.val      7.200000e+02       NA 7.200000e+02  7.200000e+02 7.200000e+02
-## nbr.null     0.000000e+00       NA 0.000000e+00  0.000000e+00 0.000000e+00
-## nbr.na       0.000000e+00       NA 0.000000e+00  0.000000e+00 0.000000e+00
-## min          2.747400e+04       NA 2.978381e+01 -9.012245e+01 2.000000e+00
-## max          2.747700e+04       NA 2.979382e+01 -9.011019e+01 1.710000e+03
-## range        3.000000e+00       NA 1.000300e-02  1.226100e-02 1.708000e+03
-## sum          1.978268e+07       NA 2.144761e+04 -6.488436e+04 4.370870e+05
-## median       2.747600e+04       NA 2.978526e+01 -9.011756e+01 3.090000e+02
-## mean         2.747595e+04       NA 2.978835e+01 -9.011717e+01 6.070653e+02
-## SE.mean      3.972377e-02       NA 1.692653e-04  1.876199e-04 1.936955e+01
-## CI.mean.0.95 7.798844e-02       NA 3.323134e-04  3.683483e-04 3.802764e+01
-## var          1.136144e+00       NA 2.062854e-05  2.534488e-05 2.701292e+05
-## std.dev      1.065901e+00       NA 4.541866e-03  5.034370e-03 5.197396e+02
-## coef.var     3.879395e-05       NA 1.524712e-04 -5.586471e-05 8.561511e-01
-##              SpeciesDesc Kingdom SpeciesType PhenophaseID
-## nbr.val               NA      NA          NA 7.200000e+02
-## nbr.null              NA      NA          NA 0.000000e+00
-## nbr.na                NA      NA          NA 0.000000e+00
-## min                   NA      NA          NA 2.920000e+02
-## max                   NA      NA          NA 5.420000e+02
-## range                 NA      NA          NA 2.500000e+02
-## sum                   NA      NA          NA 3.319930e+05
-## median                NA      NA          NA 4.830000e+02
-## mean                  NA      NA          NA 4.611014e+02
-## SE.mean               NA      NA          NA 2.215087e+00
-## CI.mean.0.95          NA      NA          NA 4.348811e+00
-## var                   NA      NA          NA 3.532759e+03
-## std.dev               NA      NA          NA 5.943702e+01
-## coef.var              NA      NA          NA 1.289023e-01
-##              PhenophaseCategory PhenophaseDesc         Year     FirstYes
-## nbr.val                      NA             NA 7.200000e+02 7.200000e+02
-## nbr.null                     NA             NA 0.000000e+00 0.000000e+00
-## nbr.na                       NA             NA 0.000000e+00 0.000000e+00
-## min                          NA             NA 2.017000e+03 3.000000e+00
-## max                          NA             NA 2.019000e+03 3.550000e+02
-## range                        NA             NA 2.000000e+00 3.520000e+02
-## sum                          NA             NA 1.453027e+06 1.043820e+05
-## median                       NA             NA 2.018000e+03 9.600000e+01
-## mean                         NA             NA 2.018093e+03 1.449750e+02
-## SE.mean                      NA             NA 2.550545e-02 3.964099e+00
-## CI.mean.0.95                 NA             NA 5.007405e-02 7.782591e+00
-## var                          NA             NA 4.683801e-01 1.131414e+04
-## std.dev                      NA             NA 6.843830e-01 1.063679e+02
-## coef.var                     NA             NA 3.391236e-04 7.336984e-01
-##                   LastYes    NumLastNo   NumFirstNo       LastNo
-## nbr.val      7.200000e+02  720.0000000  720.0000000 7.200000e+02
-## nbr.null     0.000000e+00   96.0000000  133.0000000 0.000000e+00
-## nbr.na       0.000000e+00    0.0000000    0.0000000 0.000000e+00
-## min          3.000000e+00    0.0000000    0.0000000 3.000000e+00
-## max          3.550000e+02   30.0000000   30.0000000 3.540000e+02
-## range        3.520000e+02   30.0000000   30.0000000 3.510000e+02
-## sum          1.282790e+05 8009.5000000 8443.0000000 9.637250e+04
-## median       1.430000e+02   10.0000000   10.0000000 8.700000e+01
-## mean         1.781653e+02   11.1243056   11.7263889 1.338507e+02
-## SE.mean      3.949519e+00    0.3149949    0.3483938 3.993454e+00
-## CI.mean.0.95 7.753968e+00    0.6184196    0.6839908 7.840224e+00
-## var          1.123106e+04   71.4396727   87.3923486 1.148233e+04
-## std.dev      1.059767e+02    8.4521993    9.3483875 1.071556e+02
-## coef.var     5.948225e-01    0.7597957    0.7972094 8.005608e-01
-##                   FirstNo      TotDays      aveDays      YesDays
-## nbr.val      7.200000e+02   720.000000   720.000000   720.000000
-## nbr.null     0.000000e+00     0.000000     0.000000     0.000000
-## nbr.na       0.000000e+00     0.000000     0.000000     0.000000
-## min          2.100000e+01     2.000000     2.000000     1.000000
-## max          3.570000e+02   330.000000   318.000000   305.000000
-## range        3.360000e+02   328.000000   316.000000   304.000000
-## sum          1.367220e+05 41069.500000 33023.000000 24617.000000
-## median       1.567500e+02    33.000000    19.000000     1.000000
-## mean         1.898917e+02    57.040972    45.865278    34.190278
-## SE.mean      3.996286e+00     2.414404     2.334986     2.274647
-## CI.mean.0.95 7.845783e+00     4.740124     4.584205     4.465744
-## var          1.149862e+04  4197.129404  3925.554843  3725.294759
-## std.dev      1.072316e+02    64.785256    62.654248    61.035193
-## coef.var     5.646988e-01     1.135767     1.366050     1.785162
-##              YesDurationGroup
-## nbr.val                    NA
-## nbr.null                   NA
-## nbr.na                     NA
-## min                        NA
-## max                        NA
-## range                      NA
-## sum                        NA
-## median                     NA
-## mean                       NA
-## SE.mean                    NA
-## CI.mean.0.95               NA
-## var                        NA
-## std.dev                    NA
-## coef.var                   NA</code></pre>
-</div>
-<div id="descriptive-statistics-n-mean-sd-median-min-max-range-skewness-kurtosis-se" class="section level1">
-<h1>Descriptive Statistics (n, mean, sd, median, min, max, range, skewness, kurtosis, se)</h1>
-<pre class="r"><code>library(psych)
-describe(data)</code></pre>
-<pre><code>## Warning in describe(data): NAs introduced by coercion</code></pre>
-<pre><code>## Warning in FUN(newX[, i], ...): no non-missing arguments to min; returning
-## Inf</code></pre>
-<pre><code>## Warning in FUN(newX[, i], ...): no non-missing arguments to max; returning
-## -Inf</code></pre>
-<pre><code>##                     vars   n     mean     sd   median  trimmed    mad
-## SiteID                 1 720 27475.95   1.07 27476.00 27476.06   1.48
-## SiteName*              2 720     2.14   1.10     2.00     2.05   1.48
-## Latitude               3 720    29.79   0.00    29.79    29.79   0.00
-## Longitude              4 720   -90.12   0.01   -90.12   -90.12   0.01
-## SpeciesID              5 720   607.07 519.74   309.00   554.67 455.16
-## SpeciesDesc*           6 720    13.01   7.01    12.00    13.19   8.90
-## Kingdom*               7 720     1.93   0.25     2.00     2.00   0.00
-## SpeciesType*           8 720     2.47   1.22     2.00     2.21   0.00
-## PhenophaseID           9 720   461.10  59.44   483.00   469.92  26.69
-## PhenophaseCategory*   10 720     4.38   1.51     5.00     4.35   1.48
-## PhenophaseDesc*       11 720    16.70  10.54    15.00    16.38  14.83
-## Year                  12 720  2018.09   0.68  2018.00  2018.12   0.00
-## FirstYes              13 720   144.97 106.37    96.00   136.00  70.42
-## LastYes               14 720   178.17 105.98   143.00   175.68 124.54
-## NumLastNo             15 720    11.12   8.45    10.00    10.80  11.86
-## NumFirstNo            16 720    11.73   9.35    10.00    11.17  13.34
-## LastNo                17 720   133.85 107.16    87.00   124.48  72.65
-## FirstNo               18 720   189.89 107.23   156.75   187.45 130.84
-## TotDays               19 720    57.04  64.79    33.00    42.67  28.17
-## aveDays               20 720    45.87  62.65    19.00    30.83  19.27
-## YesDays               21 720    34.19  61.04     1.00    18.47   0.00
-## YesDurationGroup*     22 720      NaN     NA       NA      NaN     NA
-##                          min      max   range  skew kurtosis    se
-## SiteID              27474.00 27477.00    3.00 -0.57    -0.98  0.04
-## SiteName*               1.00     4.00    3.00  0.35    -1.30  0.04
-## Latitude               29.78    29.79    0.01  0.35    -1.83  0.00
-## Longitude             -90.12   -90.11    0.01  0.27    -1.50  0.00
-## SpeciesID               2.00  1710.00 1708.00  0.64    -0.79 19.37
-## SpeciesDesc*            1.00    24.00   23.00 -0.13    -1.34  0.26
-## Kingdom*                1.00     2.00    1.00 -3.47    10.04  0.01
-## SpeciesType*            1.00     6.00    5.00  1.94     2.92  0.05
-## PhenophaseID          292.00   542.00  250.00 -1.35     0.79  2.22
-## PhenophaseCategory*     1.00     9.00    8.00  0.35     1.91  0.06
-## PhenophaseDesc*         1.00    37.00   36.00  0.29    -1.13  0.39
-## Year                 2017.00  2019.00    2.00 -0.12    -0.87  0.03
-## FirstYes                3.00   355.00  352.00  0.68    -1.10  3.96
-## LastYes                 3.00   355.00  352.00  0.25    -1.48  3.95
-## NumLastNo               0.00    30.00   30.00  0.27    -1.19  0.31
-## NumFirstNo              0.00    30.00   30.00  0.22    -1.23  0.35
-## LastNo                  3.00   354.00  351.00  0.68    -1.06  3.99
-## FirstNo                21.00   357.00  336.00  0.25    -1.45  4.00
-## TotDays                 2.00   330.00  328.00  2.21     4.79  2.41
-## aveDays                 2.00   318.00  316.00  2.34     5.28  2.33
-## YesDays                 1.00   305.00  304.00  2.42     5.61  2.27
-## YesDurationGroup*        Inf     -Inf    -Inf    NA       NA    NA</code></pre>
+<div id="descriptive-statistics" class="section level1">
+<h1>Descriptive Statistics</h1>
+<pre class="r"><code>library(pastecs)
+library(dplyr)
+stat.desc(data %&gt;% filter(SpeciesType == &quot;Deciduous broadleaf&quot; &amp; PhenophaseDesc == &quot;Breaking leaf buds&quot;)%&gt;%select(FirstYes))</code></pre>
+<pre><code>##                  FirstYes
+## nbr.val        57.0000000
+## nbr.null        0.0000000
+## nbr.na          0.0000000
+## min            10.0000000
+## max           354.0000000
+## range         344.0000000
+## sum          4430.0000000
+## median         61.0000000
+## mean           77.7192982
+## SE.mean         9.4288576
+## CI.mean.0.95   18.8882714
+## var          5067.4912281
+## std.dev        71.1863135
+## coef.var        0.9159413</code></pre>
+<p>Descrptive statistics with Mean, Median, Min, Max, Range, Sum, Standard mean, variance, Standard deviation, Coefficient variance for species type - decidous broadleaf and phenophaseDesc - breaking leaf buds.</p>
+<pre class="r"><code>library(pastecs)
+library(dplyr)
+stat.desc(data %&gt;% filter(SpeciesType == &quot;Deciduous broadleaf&quot; &amp; PhenophaseDesc == &quot;Breaking leaf buds&quot;)%&gt;%select(TotDays))</code></pre>
+<pre><code>##                   TotDays
+## nbr.val        57.0000000
+## nbr.null        0.0000000
+## nbr.na          0.0000000
+## min             5.0000000
+## max           211.0000000
+## range         206.0000000
+## sum          3066.5000000
+## median         52.0000000
+## mean           53.7982456
+## SE.mean         5.2085856
+## CI.mean.0.95   10.4340508
+## var          1546.3737469
+## std.dev        39.3239589
+## coef.var        0.7309524</code></pre>
+<pre class="r"><code>library(pastecs)
+library(dplyr)
+stat.desc(data %&gt;% filter(SpeciesType == &quot;Deciduous broadleaf&quot; &amp; PhenophaseDesc == &quot;Breaking leaf buds&quot;)%&gt;%select(YesDays))</code></pre>
+<pre><code>##                  YesDays
+## nbr.val        57.000000
+## nbr.null        0.000000
+## nbr.na          0.000000
+## min             1.000000
+## max           194.000000
+## range         193.000000
+## sum          1688.000000
+## median         21.000000
+## mean           29.614035
+## SE.mean         4.851282
+## CI.mean.0.95    9.718285
+## var          1341.491228
+## std.dev        36.626373
+## coef.var        1.236791</code></pre>
+<pre class="r"><code>library(pastecs)
+library(dplyr)
+stat.desc(data %&gt;% filter(SpeciesType == &quot;Deciduous broadleaf&quot; &amp; PhenophaseDesc == &quot;Falling leaves&quot;)%&gt;%select(FirstYes))</code></pre>
+<pre><code>##                  FirstYes
+## nbr.val      5.000000e+01
+## nbr.null     0.000000e+00
+## nbr.na       0.000000e+00
+## min          2.100000e+01
+## max          3.450000e+02
+## range        3.240000e+02
+## sum          1.207100e+04
+## median       2.725000e+02
+## mean         2.414200e+02
+## SE.mean      1.377196e+01
+## CI.mean.0.95 2.767580e+01
+## var          9.483351e+03
+## std.dev      9.738250e+01
+## coef.var     4.033738e-01</code></pre>
+<pre class="r"><code>library(pastecs)
+library(dplyr)
+stat.desc(data %&gt;% filter(SpeciesType == &quot;Deciduous broadleaf&quot; &amp; PhenophaseDesc == &quot;Falling leaves&quot;)%&gt;%select(TotDays))</code></pre>
+<pre><code>##                  TotDays
+## nbr.val        50.000000
+## nbr.null        0.000000
+## nbr.na          0.000000
+## min             3.000000
+## max           330.000000
+## range         327.000000
+## sum          2433.000000
+## median         33.000000
+## mean           48.660000
+## SE.mean         8.150002
+## CI.mean.0.95   16.378043
+## var          3321.126939
+## std.dev        57.629219
+## coef.var        1.184324</code></pre>
+<pre class="r"><code>library(pastecs)
+library(dplyr)
+stat.desc(data %&gt;% filter(SpeciesType == &quot;Deciduous broadleaf&quot; &amp; PhenophaseDesc == &quot;Falling leaves&quot;)%&gt;%select(YesDays))</code></pre>
+<pre><code>##                  YesDays
+## nbr.val        50.000000
+## nbr.null        0.000000
+## nbr.na          0.000000
+## min             1.000000
+## max           305.000000
+## range         304.000000
+## sum          1263.000000
+## median          1.000000
+## mean           25.260000
+## SE.mean         7.941820
+## CI.mean.0.95   15.959684
+## var          3153.624898
+## std.dev        56.157145
+## coef.var        2.223165</code></pre>
+<pre class="r"><code>library(pastecs)
+library(dplyr)
+stat.desc(data %&gt;% filter(SpeciesType == &quot;Deciduous broadleaf&quot; &amp; PhenophaseDesc == &quot;Colored leaves&quot;)%&gt;%select(FirstYes))</code></pre>
+<pre><code>##                  FirstYes
+## nbr.val         46.000000
+## nbr.null         0.000000
+## nbr.na           0.000000
+## min             21.000000
+## max            345.000000
+## range          324.000000
+## sum          11774.000000
+## median         259.000000
+## mean           255.956522
+## SE.mean         11.879547
+## CI.mean.0.95    23.926635
+## var           6491.686957
+## std.dev         80.571006
+## coef.var         0.314784</code></pre>
+<pre class="r"><code>library(pastecs)
+library(dplyr)
+stat.desc(data %&gt;% filter(SpeciesType == &quot;Deciduous broadleaf&quot; &amp; PhenophaseDesc == &quot;Colored leaves&quot;)%&gt;%select(TotDays))</code></pre>
+<pre><code>##                  TotDays
+## nbr.val        46.000000
+## nbr.null        0.000000
+## nbr.na          0.000000
+## min             6.000000
+## max           294.000000
+## range         288.000000
+## sum          2063.500000
+## median         23.750000
+## mean           44.858696
+## SE.mean         7.596698
+## CI.mean.0.95   15.300535
+## var          2654.651812
+## std.dev        51.523313
+## coef.var        1.148569</code></pre>
+<pre class="r"><code>library(pastecs)
+library(dplyr)
+stat.desc(data %&gt;% filter(SpeciesType == &quot;Deciduous broadleaf&quot; &amp; PhenophaseDesc == &quot;Colored leaves&quot;)%&gt;%select(YesDays))</code></pre>
+<pre><code>##                  YesDays
+## nbr.val        46.000000
+## nbr.null        0.000000
+## nbr.na          0.000000
+## min             1.000000
+## max           252.000000
+## range         251.000000
+## sum          1004.000000
+## median          1.000000
+## mean           21.826087
+## SE.mean         7.049809
+## CI.mean.0.95   14.199045
+## var          2286.191304
+## std.dev        47.814133
+## coef.var        2.190687</code></pre>
 <p>The final data set is written back into the csv file</p>
 </div>
 <div id="final-dataset" class="section level1">
