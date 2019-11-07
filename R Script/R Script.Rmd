@@ -173,7 +173,7 @@ stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc 
 
 ```
 
-Descrptive statistics with Mean, Median, Min, Max, Range, Sum, Standard mean, variance, Standard deviation, Coefficient variance for species type - decidous broadleaf and phenophaseDesc - breaking leaf buds. 
+Descrptive statistics with Mean, Median, Min, Max, Range, Sum, Standard mean, variance, Standard deviation, Coefficient variance for phenophaseDesc 'breaking leaf buds' selecting FirstYes only. 
 
 The mean is 77.71, and we can predict that the number of observations is from the first quarter of the year. i.e., January to March 
 
@@ -184,12 +184,20 @@ stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc 
 
 ```
 
+Descrptive statistics with Mean, Median, Min, Max, Range, Sum, Standard mean, variance, Standard deviation, Coefficient variance for phenophaseDesc 'breaking leaf buds' selecting TotDays only. 
+
+The mean is 77.71, and we can predict that the number of observations is from the first quarter of the year. i.e., January to March 
+
 ```{r descstats3}
 library(pastecs)
 library(dplyr)
 stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc == "Breaking leaf buds")%>%select(YesDays))
 
 ```
+
+Descrptive statistics with Mean, Median, Min, Max, Range, Sum, Standard mean, variance, Standard deviation, Coefficient variance for phenophaseDesc 'breaking leaf buds' selecting YesDays only. 
+
+The mean is 77.71, and we can predict that the number of observations is from the first quarter of the year. i.e., January to March 
 
 ```{r descstats4}
 library(pastecs)
@@ -198,6 +206,10 @@ stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc 
 
 ```
 
+Descrptive statistics with Mean, Median, Min, Max, Range, Sum, Standard mean, variance, Standard deviation, Coefficient variance for phenophaseDesc 'Falling leaves' selecting FirstYes Only. 
+
+The mean is 77.71, and we can predict that the number of observations is from the first quarter of the year. i.e., January to March 
+
 ```{r descstats5}
 library(pastecs)
 library(dplyr)
@@ -205,6 +217,9 @@ stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc 
 
 ```
 
+Descrptive statistics with Mean, Median, Min, Max, Range, Sum, Standard mean, variance, Standard deviation, Coefficient variance for phenophaseDesc 'Falling leaves' selecting TotalDays only . 
+
+The mean is 77.71, and we can predict that the number of observations is from the first quarter of the year. i.e., January to March 
 
 ```{r descstats6}
 library(pastecs)
@@ -213,6 +228,10 @@ stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc 
 
 ```
 
+Descrptive statistics with Mean, Median, Min, Max, Range, Sum, Standard mean, variance, Standard deviation, Coefficient variance for phenophaseDesc 'Falling leaves' selecting YesDays only. 
+
+The mean is 77.71, and we can predict that the number of observations is from the first quarter of the year. i.e., January to March 
+
 ```{r descstats7}
 library(pastecs)
 library(dplyr)
@@ -220,6 +239,9 @@ stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc 
 
 ```
 
+Descrptive statistics with Mean, Median, Min, Max, Range, Sum, Standard mean, variance, Standard deviation, Coefficient variance for phenophaseDesc 'Colored leaves' selecting FirstYes only. 
+
+The mean is 77.71, and we can predict that the number of observations is from the first quarter of the year. i.e., January to March 
 
 ```{r descstats8}
 library(pastecs)
@@ -227,6 +249,10 @@ library(dplyr)
 stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc == "Colored leaves")%>%select(TotDays))
 
 ```
+
+Descrptive statistics with Mean, Median, Min, Max, Range, Sum, Standard mean, variance, Standard deviation, Coefficient variance for phenophaseDesc 'Colored leaves' selecting TotalDays only. 
+
+The mean is 77.71, and we can predict that the number of observations is from the first quarter of the year. i.e., January to March 
 
 ```{r descstats9}
 library(pastecs)
