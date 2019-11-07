@@ -92,5 +92,17 @@ stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc 
 
 stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc == "Open flowers")%>%select(YesDays))
 
+# Skewness 
+
+library(e1071)
+skewness(data$FirstYes)
+
+
+library(e1071)
+skewness(data$YesDays)
+
+library(e1071)
+skewness(data$TotDays)
+
 # Write to csv
 write.csv(data, file = "JeanFinalDataSet.csv",row.names=FALSE)
