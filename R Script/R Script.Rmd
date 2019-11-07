@@ -239,31 +239,36 @@ stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc 
 ```
 The mean is 21.71, and we can predict that the more number of observations is in the first month of the year. 
 
+# Skewness 
 ```{r descstats13}
 library(e1071)
 skewness(data$FirstYes)
 ```
 
-The skewness for this dataset is 0.675. A positive skewness indicates that the size of the right-handed tail is larger than the left-handed tail.
+The skewness for this FirstYes dataset is 0.675. A positive skewness indicates that the size of the right-handed tail is larger 
+than the left-handed tail. If skewness is positive, mean will usually be more than the median and the distribution shape will be extremely skewed right.
 
 ```{r descstats14}
 library(e1071)
 skewness(data$YesDays)
 ```
 
-The skewness for this dataset is 2.42. A positive skewness indicates that the size of the right-handed tail is larger than the left-handed tail.
+The skewness for this YesDays dataset is 2.42. A positive skewness indicates that the size of the right-handed tail is larger 
+than the left-handed tail.Skewness is positive (often above 1.0), mean will usually be more than the median and the distribution shape will be highly skewed right.
+
 
 ```{r descstats15}
 library(e1071)
 skewness(data$TotDays)
 ```
 
-The skewness for this dataset is 2.21. A positive skewness indicates that the size of the right-handed tail is larger than the left-handed tail.
+The skewness for this TotDays dataset is 2.21. A positive skewness indicates that the size of the right-handed tail is s larger 
+than the left-handed tail.Skewness is positive (often above 1.0), mean will usually be more than the median and the distribution shape will be highly skewed right.
 
-
-The final data set is written back into the csv file
 
 # Final Dataset
+The final data set is written back into the csv file
+
 
 ```{r finaldataset}
 write.csv(data, file = "JeanFinalDataSet.csv",row.names=FALSE)
