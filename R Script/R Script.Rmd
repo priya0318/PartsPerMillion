@@ -39,13 +39,14 @@ Site_ID - SiteID
 Site_Name - SiteName
 Species_ID - SpeciesID
 Common_Name - SpeciesDesc
-Phenophase_ID - PhenoID
-Phenophase_Category - PhenoCat
-Phenophase_Description - PhenoDesc
+Phenophase_ID - PhenophaseID
+Phenophase_Category - PhenophaseCategory
+Phenophase_Description - PhenophaseDesc
 Mean_NumDays_Until_Next_No - NumFirstNo
 Mean_NumDays_Since_Prior_No - NumLastNo
 
 If the data contains a “first yes” but no “last yes” information, then set the “last yes” information to the same values as the “first yes” information, and set the lag days to “no” at zero.  
+
 # FirstYes
 
 ```{r FirstYes}
