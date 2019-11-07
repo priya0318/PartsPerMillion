@@ -177,7 +177,6 @@ Descrptive statistics for phenophaseDesc 'breaking leaf buds' selecting TotDays 
 ```{r descstats2}
 stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc == "Breaking leaf buds")%>%select(TotDays))
 ```
-
 The mean is 53.79, and we can predict that the more number of observations is from the first quarter of the year. i.e., January to February 
 
 Descrptive statistics for phenophaseDesc 'breaking leaf buds' selecting YesDays only.
@@ -252,5 +251,7 @@ This should yield a dataset with `r nrow(data)` rows and `r ncol(data)` columns 
 
 
 **_Contributorship Statement_** : Priyanka Choudhary, Mike Rouw, Pratheeba Nalligounder Palanisami contributed to the descriptive statistics and R script undertaking and the writing of this document.
+
+**_Proofreader statement_** : I, Pratheeba Nalligounder Palanisami, have reviewed and proofread the following work and agree that it is ready for submission.
 
 
