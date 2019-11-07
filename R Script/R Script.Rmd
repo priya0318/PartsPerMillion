@@ -95,6 +95,10 @@ We will be adding the DOY for “last no” and “first no” to the dataset. T
 
 # LastNo and FirstNo
 
+LastNo is the difference between FirstYes of the phenophase and the NumLastNo ( mean of the nummber of the days between the FirstYes phenophase and the Last pirior phenophase)
+
+FirstNo is sum of LastYes (mean day of year of the LastYes phenophase) of the phenophase and the NumFirstNo ( mean of the nummber of the days between the Last First phenophase and the Next No phenophase)
+
 ```{r selectcol}
 data['LastNo'] <- data$FirstYes - data$NumLastNo
 data['FirstNo'] <- data$LastYes + data$NumFirstNo
@@ -110,12 +114,16 @@ The temporal integrity of the following dates was checked, and any rows that did
 
 # Total Days
 
+Total Days is the difference between FirstNo and LastNo plus one. We added one to get at least one observation if both the columns 'FirstNo' and 'LastNo' have the same values.  
+
 ```{r create col}
 data['TotDays'] <- (data$FirstNo - data$LastNo)+1
 ```
 
 
 # Average Days
+
+Average Days is the measures the most likely number of days when the phenophase was occurring by taking midpoints between no and yes observations
 
 ```{r create AveDays}
 for(i in 1:nrow(data)){
@@ -124,11 +132,15 @@ data$aveDays[i] <- ceiling((median(data$LastYes[i]:data$FirstNo[i])-median(data$
 
 # Yes Days
 
+Yes Days is the difference between LastYes and FirstYes plus one. We added one to get at least one observation if both the columns 'LastYes' and 'FirstYes' have the same values.
+
 ```{r create YesDays}
 data['YesDays'] <- (data$LastYes - data$FirstYes)+1
 ```
 
 # Yes Duration Group
+
+Yes Duration group is grouping the YesDays in six different categories for easy understanding.
 
 ```{r create YesDurationGroup}
 data['YesDurationGroup'] <- NA
@@ -152,6 +164,8 @@ data$YesDurationGroup[i] <- "F. 201+ Days"
 
 # Descriptive Statistics  
 
+The below is descriptive statistics for Species Type 'Deciduous broadleaf' for different phenophase
+
 ```{r descstats1}
 library(pastecs)
 library(dplyr)
@@ -160,6 +174,8 @@ stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc 
 ```
 
 Descrptive statistics with Mean, Median, Min, Max, Range, Sum, Standard mean, variance, Standard deviation, Coefficient variance for species type - decidous broadleaf and phenophaseDesc - breaking leaf buds. 
+
+The mean is 77.71, and we can predict that the number of observations is from the first quarter of the year. i.e., January to March 
 
 ```{r descstats2}
 library(pastecs)
