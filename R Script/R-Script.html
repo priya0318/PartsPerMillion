@@ -402,6 +402,7 @@ summary {
 <li><a href="#yes-days">Yes Days</a></li>
 <li><a href="#yes-duration-group">Yes Duration Group</a></li>
 <li><a href="#descriptive-statistics">Descriptive Statistics</a></li>
+<li><a href="#skewness">Skewness</a></li>
 <li><a href="#final-dataset">Final Dataset</a></li>
 </ul>
 </div>
@@ -519,8 +520,13 @@ data$YesDurationGroup[i] &lt;- &quot;F. 201+ Days&quot;
 <h1>Descriptive Statistics</h1>
 <p>The below is descriptive statistics for Species Type ‘Deciduous broadleaf’ for different phenophase</p>
 <p>Descrptive statistics for phenophaseDesc ‘breaking leaf buds’ selecting FirstYes only.</p>
-<pre class="r"><code>library(pastecs)
-stat.desc(data %&gt;% filter(SpeciesType == &quot;Deciduous broadleaf&quot; &amp; PhenophaseDesc == &quot;Breaking leaf buds&quot;)%&gt;%select(FirstYes))</code></pre>
+<pre class="r"><code>library(pastecs)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;pastecs&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:dplyr&#39;:
+## 
+##     first, last</code></pre>
+<pre class="r"><code>stat.desc(data %&gt;% filter(SpeciesType == &quot;Deciduous broadleaf&quot; &amp; PhenophaseDesc == &quot;Breaking leaf buds&quot;)%&gt;%select(FirstYes))</code></pre>
 <pre><code>##                  FirstYes
 ## nbr.val        57.0000000
 ## nbr.null        0.0000000
@@ -680,7 +686,7 @@ stat.desc(data %&gt;% filter(SpeciesType == &quot;Deciduous broadleaf&quot; &amp
 ## var          2286.191304
 ## std.dev        47.814133
 ## coef.var        2.190687</code></pre>
-<p>The mean is 21.71, and we can predict that the more number of observations is in the first month of the year.</p>
+<p>The mean is 21.82, and we can predict that the more number of observations is in the first month of the year.</p>
 <p>Descrptive statistics for phenophaseDesc ‘Open flowers’ selecting FirstYes only.</p>
 <pre class="r"><code>stat.desc(data %&gt;% filter(SpeciesType == &quot;Deciduous broadleaf&quot; &amp; PhenophaseDesc == &quot;Open flowers&quot;)%&gt;%select(FirstYes))</code></pre>
 <pre><code>##                  FirstYes
@@ -735,22 +741,23 @@ stat.desc(data %&gt;% filter(SpeciesType == &quot;Deciduous broadleaf&quot; &amp
 ## std.dev        42.818824
 ## coef.var        1.971638</code></pre>
 <p>The mean is 21.71, and we can predict that the more number of observations is in the first month of the year.</p>
+</div>
+<div id="skewness" class="section level1">
+<h1>Skewness</h1>
 <pre class="r"><code>library(e1071)
 skewness(data$FirstYes)</code></pre>
 <pre><code>## [1] 0.6751004</code></pre>
-<p>The skewness for this dataset is 0.675. A positive skewness indicates that the size of the right-handed tail is larger than the left-handed tail.</p>
-<pre class="r"><code>library(e1071)
-skewness(data$YesDays)</code></pre>
+<p>The skewness for this FirstYes dataset is 0.675. A positive skewness indicates that the size of the right-handed tail is larger than the left-handed tail. If skewness is positive, mean will usually be more than the median and the distribution shape will be extremely skewed right.</p>
+<pre class="r"><code>skewness(data$YesDays)</code></pre>
 <pre><code>## [1] 2.420822</code></pre>
-<p>The skewness for this dataset is 2.42. A positive skewness indicates that the size of the right-handed tail is larger than the left-handed tail.</p>
-<pre class="r"><code>library(e1071)
-skewness(data$TotDays)</code></pre>
+<p>The skewness for this YesDays dataset is 2.42. A positive skewness indicates that the size of the right-handed tail is larger than the left-handed tail.Skewness is positive (often above 1.0), mean will usually be more than the median and the distribution shape will be highly skewed right.</p>
+<pre class="r"><code>skewness(data$TotDays)</code></pre>
 <pre><code>## [1] 2.21226</code></pre>
-<p>The skewness for this dataset is 2.21. A positive skewness indicates that the size of the right-handed tail is larger than the left-handed tail.</p>
-<p>The final data set is written back into the csv file</p>
+<p>The skewness for this TotDays dataset is 2.21. A positive skewness indicates that the size of the right-handed tail is s larger than the left-handed tail.Skewness is positive (often above 1.0), mean will usually be more than the median and the distribution shape will be highly skewed right.</p>
 </div>
 <div id="final-dataset" class="section level1">
 <h1>Final Dataset</h1>
+<p>The final data set is written back into the csv file</p>
 <pre class="r"><code>write.csv(data, file = &quot;JeanFinalDataSet.csv&quot;,row.names=FALSE)</code></pre>
 <p>This should yield a dataset with 720 rows and 22 columns in the data set. In the next pass, we will enrich the data with some date calculations.</p>
 <p><strong><em>Contributorship Statement</em></strong> : Priyanka Choudhary, Mike Rouw, Pratheeba Nalligounder Palanisami contributed to the descriptive statistics and R script undertaking and the writing of this document.</p>

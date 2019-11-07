@@ -21,7 +21,7 @@ Note: Root directory path needs to be updated to your local
 
 ```{r setup, echo=FALSE, message=FALSE, warning=FALSE} 
 knitr::opts_chunk$set(cache=TRUE)
-knitr::opts_knit$set(root.dir = "C:/Users/Priya/Desktop/D2D_4thNov/PartsPerMillion/R Script") 
+knitr::opts_knit$set(root.dir = "C:/Users/Pratheeba/UNO/DatatoDecisions/R Script") 
 ```
 
 ## Load data
@@ -219,7 +219,7 @@ Descrptive statistics for phenophaseDesc 'Colored leaves' selecting YesDays only
 ```{r descstats9}
 stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc == "Colored leaves")%>%select(YesDays))
 ```
-The mean is 21.71, and we can predict that the more number of observations is in the first month of the year. 
+The mean is 21.82, and we can predict that the more number of observations is in the first month of the year. 
 
 Descrptive statistics for phenophaseDesc 'Open flowers' selecting FirstYes only.
 ```{r descstats10}
@@ -249,7 +249,6 @@ The skewness for this FirstYes dataset is 0.675. A positive skewness indicates t
 than the left-handed tail. If skewness is positive, mean will usually be more than the median and the distribution shape will be extremely skewed right.
 
 ```{r descstats14}
-library(e1071)
 skewness(data$YesDays)
 ```
 
@@ -258,7 +257,6 @@ than the left-handed tail.Skewness is positive (often above 1.0), mean will usua
 
 
 ```{r descstats15}
-library(e1071)
 skewness(data$TotDays)
 ```
 

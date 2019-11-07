@@ -97,11 +97,8 @@ stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc 
 library(e1071)
 skewness(data$FirstYes)
 
-
-library(e1071)
 skewness(data$YesDays)
 
-library(e1071)
 skewness(data$TotDays)
 
 # Write to csv
