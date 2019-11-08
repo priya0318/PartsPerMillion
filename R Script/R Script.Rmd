@@ -171,73 +171,73 @@ Descrptive statistics for phenophaseDesc 'breaking leaf buds' selecting FirstYes
 library(pastecs)
 stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc == "Breaking leaf buds")%>%select(FirstYes))
 ```
-The mean is 77.71, and we can predict that the more number of observations is from the first quarter of the year. i.e., January to March 
+The mean is 77.71, which is the day of the year when the phenophase event was first observed. This is the mean first observed date.  We can note that the event occurs during the first quarter of the year. i.e., January to March 
 
 Descrptive statistics for phenophaseDesc 'breaking leaf buds' selecting TotDays only. 
 ```{r descstats2}
 stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc == "Breaking leaf buds")%>%select(TotDays))
 ```
-The mean is 53.79, and we can predict that the more number of observations is from the first quarter of the year. i.e., January to February 
+The mean is 53.79, which is the maximum number of days between the Last No and the First No observations.  This is the mean total possible duration.  Thus, we can observe that the average duration of this phenophase is less than two months.
 
 Descrptive statistics for phenophaseDesc 'breaking leaf buds' selecting YesDays only.
 ```{r descstats3}
 stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc == "Breaking leaf buds")%>%select(YesDays))
 ```
-The mean is 29.61, and we can predict that the more number of observations is in the first month of the year. i.e., January 
+The mean is 29.61, which is the number of days between the First Yes and Last Yes observations.  This is the mean positive observed duration.  Based on these last two mean statistics, we note that the durartion of this phenophase is likely 1-2 months long.
 
 Descrptive statistics for phenophaseDesc 'Falling leaves' selecting FirstYes Only.
 ```{r descstats4}
 stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc == "Falling leaves")%>%select(FirstYes))
 ```
-The mean is 241.42, and we can predict that the more number of observations is from the last quarter of the year. 
+The mean starting day of the year is 241.42, and we can note that the more number of observations is from the last quarter of the year. 
 
 Descrptive statistics for phenophaseDesc 'Falling leaves' selecting TotalDays only . 
 ```{r descstats5}
 stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc == "Falling leaves")%>%select(TotDays))
 ```
-The mean is 48.66, and we can predict that the more number of observations is from the first quarter of the year. i.e., January to February 
+The mean total possible duration is 48.66 days, which is about 7 weeks. 
 
 Descrptive statistics for phenophaseDesc 'Falling leaves' selecting YesDays only.
 ```{r descstats6}
 stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc == "Falling leaves")%>%select(YesDays))
 ```
-The mean is 25.26, and we can predict that the more number of observations is in the first month of the year. i.e., January
+The mean positively observed duration is 25.26 days.  With the two means, we can determine that this phenophase event lasts approximately 3-7 weeks.
 
 Descrptive statistics for phenophaseDesc 'Colored leaves' selecting FirstYes only.
 ```{r descstats7}
 stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc == "Colored leaves")%>%select(FirstYes))
 ```
-The mean is 255.95, and we can predict that the number of observations is from the last quarter of the year. 
+The mean starting day of the year is 255.95, and we can note that the number of observations is from the last quarter of the year. 
 
 Descrptive statistics for phenophaseDesc 'Colored leaves' selecting TotalDays only. 
 ```{r descstats8}
 stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc == "Colored leaves")%>%select(TotDays))
 ```
-The mean is 44.85, and we can predict that the number of observations is from the first quarter of the year. i.e., January to February 
+The mean total possible duration is 44.85 days, which is about 6 weeks.
 
 Descrptive statistics for phenophaseDesc 'Colored leaves' selecting YesDays only. 
 ```{r descstats9}
 stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc == "Colored leaves")%>%select(YesDays))
 ```
-The mean is 21.82, and we can predict that the more number of observations is in the first month of the year. 
+The mean positive observed duration is 21.82 days.  Taking the two duration means shows this phenophase likely lasts 3-6 weeks.
 
 Descrptive statistics for phenophaseDesc 'Open flowers' selecting FirstYes only.
 ```{r descstats10}
 stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc == "Open flowers")%>%select(FirstYes))
 ```
-The mean is 116.36, and we can predict that the more number of observations is in the second quater of the year. i.e., April
+The mean first observed day of the year is 116.36, so we note that the more number of observations is in the second quater of the year. i.e., April
 
 Descrptive statistics for phenophaseDesc 'Open flowers' selecting TotDays only. 
 ```{r descstats11}
 stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc == "Open flowers")%>%select(TotDays))
 ```
-The mean is 47.01, and we can predict that the more number of observations is in the first month of the year. 
+The mean total possible duration is 47.01 days, which is about 7 weeks.
 
 Descrptive statistics for phenophaseDesc 'Open flowers' selecting YesDays only. 
 ```{r descstats12}
 stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc == "Open flowers")%>%select(YesDays))
 ```
-The mean is 21.71, and we can predict that the more number of observations is in the first month of the year. 
+The mean positive observed duration is 21.71 days. Taken in conjunction with the mean noted above, this phenophase appears to last about 3-7 weeks.
 
 # Skewness 
 ```{r descstats13}
