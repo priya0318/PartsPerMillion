@@ -164,7 +164,7 @@ theme(legend.position="bottom")
 
 ## Analysis 
 
-(Mike)
+For this plot view, we have observation data from 2018 and 2019 across 15 different species (all deciduous) from 4 different locations within the Jean Lafitte NHPP.  One can see that _breaking leaf buds_ occurs during the first third of the calendar year for all species in all locations.  It appears from the plot that this phenophase event may have started a bit earlier in 2019 than in 2018, although in both cases the event is about 150 days in duration across all species.  As most of the colors are overlapping, it is not apparent that there was much difference in timing or duration for the event which was dependent on location.
 
 
 ## For PhenophaseDesc (Open flowers)
@@ -191,7 +191,7 @@ theme(legend.position="bottom")
 
 ## Analysis 
 
-(Mike)
+For this plot view, we again have observation data from 2018 and 2019 (with some 2017 data) across 15 different species (all deciduous) from 4 different locations within the Jean Lafitte NHPP.  The data plotted for 2017 for _open flowers_ was primarily from the Vistor Center Trail.  This location also has no data points in 2019, and some extended durations in 2018.  It may be that the data from observations on this trail may have some accuracy issues.  We can also see that the _open flowers_ phenophase event happens mostly from Feb-May across all noted species.
 
 ## For PhenophaseDesc (Colored leaves)
 
@@ -215,7 +215,7 @@ theme(legend.position="bottom")
 
 ## Analysis 
 
-(Mike)
+For this phenophase event, our data is mostly from 2017 and 2018, since this event primarily occurs in the fall.  We have data from 13 different species across four different locations.  It is difficult to compare year over year observations, as we may have left censured data for 2017 where we cannot see the beginning of all the _colored leaves_ observations.  We also have some possible errant data where this event is shown starting in the first quarter of the year in 2018 and 2019, even though it is an event that should occur in the fall.  This can be seen in 2018 with the _live oak_ and _red maple_, and in 2019 with the _water tupelo_, _sweetgum_, and again _live oak_ observations.
 
 ## For PhenophaseDesc (Falling leaves)
 
@@ -238,7 +238,7 @@ theme(legend.position="bottom")
 ```
 ## Analysis 
 
-(Mike)
+For this phenophase event, similar to our last plot, our data is mostly from 2017 and 2018 since this event primarily occurs in the fall.  We again have data from 13 different species across four different locations.  As before, it is difficult to compare year over year observations, as we may have left censured data for 2017 where we cannot see the beginning of all the _falling leaves_ observations.  We also have some possible errant data where this event is shown starting in the first quarter of the year in 2018 and 2019, even though it is an event that should occur in the fall.  This can be seen in 2018 with the _live oak_ and _sweetgum_ and _possumhaw_, and in 2019 with the _water tupelo_, _sweetgum_, and again _trumpet creeper_ observations.
 
 
 **_Contributorship Statement_** : Priyanka Choudhary, Mike Rouw, Pratheeba Nalligounder Palanisami contributed to the R Plot and R script undertaking and the writing of this document.
