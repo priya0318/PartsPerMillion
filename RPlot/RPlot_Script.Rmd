@@ -125,7 +125,7 @@ geom_point(aes(x=LastNo, y=PhenophaseDesc)) +
 geom_point(aes(x=FirstNo, y=PhenophaseDesc)) +
 geom_segment(aes(x=FirstYes, xend=LastYes, yend=PhenophaseDesc)) +
 facet_grid(rows=vars(Year)) +
-labs(x="Day of Year",y="Trumpet creeper",title="Phenophase Observations") +
+labs(x="Day of Year",y="Trumpet creeper",title="Phenophase Observations by Species") +
 theme(legend.position="bottom")
 
 ```
@@ -157,7 +157,7 @@ geom_point(aes(x=LastNo, y=SpeciesDesc)) +
 geom_point(aes(x=FirstNo, y=SpeciesDesc)) +
 geom_segment(aes(x=FirstYes, xend=LastYes, yend=SpeciesDesc)) +
 facet_grid(rows=vars(Year)) +
-labs(x="Day of Year",y="Breaking leaf buds",title="Phenophase Observations") +
+labs(x="Day of Year",y="Breaking leaf buds",title="Phenophase Observations by Event") +
 theme(legend.position="bottom")
 
 ```
@@ -184,7 +184,7 @@ geom_point(aes(x=LastNo, y=SpeciesDesc)) +
 geom_point(aes(x=FirstNo, y=SpeciesDesc)) +
 geom_segment(aes(x=FirstYes, xend=LastYes, yend=SpeciesDesc)) +
 facet_grid(rows=vars(Year)) +
-labs(x="Day of Year",y="Open flowers",title="Phenophase Observations") +
+labs(x="Day of Year",y="Open flowers",title="Phenophase Observations by Event") +
 theme(legend.position="bottom")
 
 ```
@@ -208,7 +208,7 @@ geom_point(aes(x=LastNo, y=SpeciesDesc)) +
 geom_point(aes(x=FirstNo, y=SpeciesDesc)) +
 geom_segment(aes(x=FirstYes, xend=LastYes, yend=SpeciesDesc)) +
 facet_grid(rows=vars(Year)) +
-labs(x="Day of Year",y="Colored leaves",title="Phenophase Observations") +
+labs(x="Day of Year",y="Colored leaves",title="Phenophase Observations by Event") +
 theme(legend.position="bottom")
 
 ```
