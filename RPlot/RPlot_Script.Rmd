@@ -59,13 +59,11 @@ As can be seen from the plot above, a very large proportion of the observations 
 
 # Species Plots
 
-The following several plots follow the same general format.  While the data had over two dozen different species, we selected three specific species to focus on for this report, namely SweetGum, Bald Cyprus, and Trumpet Creeper.  We selected these as they are all members of the decidious plants group, and all had data observations across three years and four locations.  Plots for all the species (except Birds, which are in a single plot), can be found _here_ (link to PPM/Rcode/Rplots).
+The following several plots follow the same general format.  While the data had over two dozen different species, we selected three specific species to focus on for this report, namely SweetGum, Eastern Poison Ivy, and Trumpet Creeper.  We selected these as they are all members of the decidious plants group, and all had data observations across three years and four locations.  Plots for all the species (except Birds, which are in a single plot), can be found _here_ (link to PPM/Rcode/Rplots).
 
 Each of these plots show the specific phenophase event on the left (y-axis), with the day of the year (365 day per year scale) along the bottom (x-axis).  The data is then further segmented by year, and then color-coded to denote the location of the observations.  The line segment shown gives the timing and positive duration for the phenophase event, while the outer data points show the timing and potential duration for the event.  For those observations that do not include a line segment, the event's positive duration was a single day, as discussed earlier.
 
-## For SpeciesDesc (sweetgum)
-
-The below R script is used to get the species plot for Species Description 'Sweetgum' 
+## For SpeciesDesc (sweetThis plot shows that data has been collected from the fall of 2017 through the spring of 2019 from four different locations within Jean Lafitte NHPP.The below R script is used to get the species plot for Species Description 'Sweetgum' 
 
 ```{r, echo=FALSE}
 
@@ -78,39 +76,39 @@ geom_point(aes(x=LastNo, y=PhenophaseDesc)) +
 geom_point(aes(x=FirstNo, y=PhenophaseDesc)) +
 geom_segment(aes(x=FirstYes, xend=LastYes, yend=PhenophaseDesc)) +
 facet_grid(rows=vars(Year)) +
-labs(x="Day of Year",y="Sweetgum",title="Phenophase Observations") +
+labs(x="Day of Year",y="Sweetgum",title="Phenophase Observations by Species") +
 theme(legend.position="bottom")
 
 ```
 
 ## Analysis
 
-(Mike)
+This plot shows that data has been collected from the fall of 2017 through the spring of 2019 from four different locations within Jean Lafitte NHPP.  It again shows there may be some problems with data quality.  There are two observations of _falling leaves_ from the Sweetgum speices which occur in the early part of 2018 and 2019 along two different trails.  This phenophase event usually occurs in the fall.  However, there are also some observations that look to be more accurate.  For instance, _breaking leaf buds_ in 2018 occurs over approximately a 50-day period beginning on day 50 (around Feb 20th), while in 2019 it is of much shorter duration of about 30-days starting near day 65 (around Mar 5th).  In both years, however, this phenophase event is over by about day 85 (Mar 25th).  Also, the colors on the plot largely overlap, indicating that the various locations are similar in timing for this phenophase event.
 
 
 ## For SpeciesDesc (bald cypress)
 
-The below R script is used to get the species plot for Species Description 'bald cypress' 
+The below R script is used to get the species plot for Species Description 'eastern poison ivy' 
 
 ```{r, echo=FALSE}
 
 library(ggplot2)
 library(dplyr)
 
-PlotData <- filter(JeanFinalDataSet, SpeciesDesc == "bald cypress")
+PlotData <- filter(JeanFinalDataSet, SpeciesDesc == "eastern poison ivy")
 ggplot(PlotData,aes(x=FirstNo, y=PhenophaseDesc, color=SiteName)) +
 geom_point(aes(x=LastNo, y=PhenophaseDesc)) +
 geom_point(aes(x=FirstNo, y=PhenophaseDesc)) +
 geom_segment(aes(x=FirstYes, xend=LastYes, yend=PhenophaseDesc)) +
 facet_grid(rows=vars(Year)) +
-labs(x="Day of Year",y="Bald cypress",title="Phenophase Observations") +
+labs(x="Day of Year",y="Eastern poison ivy",title="Phenophase Observations by Species") +
 theme(legend.position="bottom")
 
 ```
 
 ## Analysis 
 
-(Mike)
+This plot again shows that data has been collected from the fall of 2017 through the spring of 2019 from three different locations within Jean Lafitte NHPP.  One interesting item to point out is for _colored leaves_ and _falling leaves_ in 2018.  While two of the trail locations have this event occuring approximately days 220-250 (Jul-Aug), the observation on Ring Levee Trail shows the event happening on days 330-360 (Dec).  This may be a data accuracy problem for the Ring Levee Trail observation.  Also note the _open flowers_ observations for 2018.  This is how we would expect the data to plot, with similar timings and durations for the same phenophase event at different locations for this specific species.
 
 ## For SpeciesDesc (trumpet creeper)
 
@@ -134,11 +132,11 @@ theme(legend.position="bottom")
 
 ## Analysis 
 
-(Mike)
+This plot shows that data has been collected from the fall of 2017 through the summer of 2019 from four different locations within Jean Lafitte NHPP.  Just to pick out one notable item, we can compare a fall event from 2017 to 2018 in this data.  For _falling leaves_, the event occured in 2017 between days 285-360 (late Sep-Dec), while in 2018 the event occurred between days 245-330 (mid Aug-Nov).  In both cases, the duration was about the same (75-80 days), but the event started and finished earlier in 2018 than 2017.  Also in 2018, the data for _falling leaves_ shows that the Ring Levee Trail had a significantly later occurance and shorter duration than did other locations.  This again may suggest some accuracy problems in the data.
 
 # Phenophase Plots
 
-We then decided it might be interesting to view how a specific, common phenophase event occurs across various species.  So we created a series of plots to explore the timing and duration of a given phenophase event across different species.
+We then decided it might be interesting to view how a specific, common phenophase event occurs across various species.  So we created a series of plots to explore the timing and duration of a given phenophase event across different species within the same group.
 
 The following several plots again follow the same general format.  While the data had over a dozen different phenophase events, we selected four specific phenophases to focus on for this report, namely Breaking Leaf Buds, Open Flowers, Colored Leaves and Falling Leaves.  We selected these as they are all members of the decidious plants group, and all had data observations across three years and four locations.
 
