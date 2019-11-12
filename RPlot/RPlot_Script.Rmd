@@ -32,12 +32,14 @@ JeanFinalDataSet <- read.csv("JeanFinalDataSet.csv")
 
 # Introduction to the data plotting
 
-(Mike)
+The data received from Jean Lafitte NHPP is primarily about points in time when certain observations were taken of phenophase events.  Specifically, the data is the day of the year when a particular observation was made about the event's starting or stopping point.  Thus, we have the _Last No Day_, which is the last day of the year when the event was observed *not* happening.  We have the _First Yes Day_, which is the first day of the year in which the event was positively noted as occuring.  We have the _last Yes Day_, or the last day of the year when the event was noted as positively occuring.  And we have the _First No Day_, which is the first day of the year when the observation notes the event *not* happening.  From this, we then computed the _Total Duration_ as the number of days between the _Last No Day_ and the _First No Day_ to show the potential duration of the phenophase event.  And we computed the _Yes Duration_ as the number of days between the _First Yes Day_ and the _Last Yes Day_ to show the known positive duration of the phenophase event.  All of this data is categorized by event, species, kingdom, location, and year of observation.
+
+After looking at several views of the data, we selected three plot types to present the data for analysis.  These three plot types are the Duration Plot, the Species Plot, and the Phenophase Plot.
 
 
 # Duration Plot
 
-(Intro)
+After reviewing the dataset, we discovered that a large number of the observations for the positive phenophase duration were just a single day.  Going back to the data cleaning on the project, we noted this is mostly due to the lack of either a _First Yes Day_ observation, or a _Last Yes Day_ observation.  In these cases, we equated the two days to the same day.  So our question was this:  How many of the observations had positive durations of various lengths in categories, and specifically how many have one a single day of positive duration?
 
 The below R script is used to get the duration plot
 ```{r, echo=FALSE}
@@ -53,13 +55,15 @@ ggplot(JeanFinalDataSet,aes(x=YesDurationGroup)) +
 
 ## Analysis
 
-(Mike)
+As can be seen from the plot above, a very large proportion of the observations in the dataset have only a single day of positive observed duration, while other observations have widely varying positive durations.  It is possible that the quality and quantity of data collected during the actual observations played a large role in having such a large number of single day positive durations.  This may impact the further analysis presented subsequently.  It also maybe suggests that the data collection strategies be reviewed to see if improvements can be made to increase the quantity and quality of phenophase event observations.
 
 # Species Plots
 
-## For SpeciesDesc (sweetgum)
+The following several plots follow the same general format.  While the data had over two dozen different species, we selected three specific species to focus on for this report, namely SweetGum, Bald Cyprus, and Trumpet Creeper.  We selected these as they are all members of the decidious plants group, and all had data observations across three years and four locations.  Plots for all the species (except Birds, which are in a single plot), can be found _here_ (link to PPM/Rcode/Rplots).
 
-(Intro)
+Each of these plots show the specific phenophase event on the left (y-axis), with the day of the year (365 day per year scale) along the bottom (x-axis).  The data is then further segmented by year, and then color-coded to denote the location of the observations.  The line segment shown gives the timing and positive duration for the phenophase event, while the outer data points show the timing and potential duration for the event.  For those observations that do not include a line segment, the event's positive duration was a single day, as discussed earlier.
+
+## For SpeciesDesc (sweetgum)
 
 The below R script is used to get the species plot for Species Description 'Sweetgum' 
 
@@ -79,15 +83,12 @@ theme(legend.position="bottom")
 
 ```
 
-
 ## Analysis
 
 (Mike)
 
 
 ## For SpeciesDesc (bald cypress)
-
-(Intro)
 
 The below R script is used to get the species plot for Species Description 'bald cypress' 
 
@@ -113,8 +114,6 @@ theme(legend.position="bottom")
 
 ## For SpeciesDesc (trumpet creeper)
 
-(Intro)
-
 The below R script is used to get the species plot for Species Description 'Trumpet creeper' 
 
 ```{r, echo=FALSE}
@@ -139,9 +138,13 @@ theme(legend.position="bottom")
 
 # Phenophase Plots
 
-## For PhenophaseDesc (Breaking leaf buds)
+We then decided it might be interesting to view how a specific, common phenophase event occurs across various species.  So we created a series of plots to explore the timing and duration of a given phenophase event across different species.
 
-(Intro)
+The following several plots again follow the same general format.  While the data had over a dozen different phenophase events, we selected four specific phenophases to focus on for this report, namely Breaking Leaf Buds, Open Flowers, Colored Leaves and Falling Leaves.  We selected these as they are all members of the decidious plants group, and all had data observations across three years and four locations.
+
+Each of these plots show a specific species on the left (y-axis), with the day of the year (365 day per year scale) along the bottom (x-axis).  The data is then further segmented by year, and then color-coded to denote the location of the observations.  The line segment shown gives the timing and positive duration for the phenophase event, while the outer data points show the timing and potential duration for the event.  For those observations that do not include a line segment, the event's positive duration was a single day, as discussed earlier.
+
+## For PhenophaseDesc (Breaking leaf buds)
 
 The below R script is used to get the species plot for Phenophase Description 'Breaking leaf buds' 
 
@@ -160,6 +163,7 @@ labs(x="Day of Year",y="Breaking leaf buds",title="Phenophase Observations") +
 theme(legend.position="bottom")
 
 ```
+
 ## Analysis 
 
 (Mike)
@@ -186,15 +190,12 @@ labs(x="Day of Year",y="Open flowers",title="Phenophase Observations") +
 theme(legend.position="bottom")
 
 ```
+
 ## Analysis 
 
 (Mike)
 
-
-
 ## For PhenophaseDesc (Colored leaves)
-
-(Intro)
 
 The below R script is used to get the species plot for Phenophase Description 'Colored leaves' 
 
@@ -213,15 +214,12 @@ labs(x="Day of Year",y="Colored leaves",title="Phenophase Observations") +
 theme(legend.position="bottom")
 
 ```
+
 ## Analysis 
 
 (Mike)
 
-
-
 ## For PhenophaseDesc (Falling leaves)
-
-(Intro)
 
 The below R script is used to get the species plot for Phenophase Description 'Falling leaves' 
 
