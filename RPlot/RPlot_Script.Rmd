@@ -1,0 +1,250 @@
+---
+title: "RPlot_Script"
+author: "Priyanka Choudhary <br /> Mike Rouw <br /> Pratheeba Nalligounder Palanisami"
+date: "November 14, 2019"
+output:
+  html_document: 
+    theme: cosmo
+    toc: yes
+    github_document:
+      toc: yes
+    word_document: default
+    pdf_document:
+      toc:yes
+---
+* * *
+
+# Embed Code
+## Set Directory
+
+Note: Root directory path needs to be updated to your local
+
+```{r setup, echo=FALSE, message=FALSE, warning=FALSE} 
+knitr::opts_chunk$set(cache=TRUE)
+knitr::opts_knit$set(root.dir = "C:/Users/Priya/Desktop/RPlot") 
+```
+
+## Load data
+
+```{r loadData}
+JeanFinalDataSet <- read.csv("JeanFinalDataSet.csv")
+```
+
+# Introduction to the data plotting
+
+(Mike)
+
+
+# Duration Plot
+
+(Intro)
+
+The below R script is used to get the duration plot
+```{r, echo=FALSE}
+
+library(ggplot2)
+
+ggplot(JeanFinalDataSet,aes(x=YesDurationGroup)) + 
+  
+  geom_bar(color="blue",fill="blue") + 
+  
+  labs(title="Duration of Positive Phenophase Observation", y="Number of Observations",x="Duration Groups")
+```
+
+## Analysis
+
+(Mike)
+
+# Species Plots
+
+## For SpeciesDesc (sweetgum)
+
+(Intro)
+
+The below R script is used to get the species plot for Species Description 'Sweetgum' 
+
+```{r, echo=FALSE}
+
+library(ggplot2)
+library(dplyr)
+
+PlotData <- filter(JeanFinalDataSet, SpeciesDesc == "sweetgum")
+ggplot(PlotData,aes(x=FirstNo, y=PhenophaseDesc, color=SiteName)) +
+geom_point(aes(x=LastNo, y=PhenophaseDesc)) +
+geom_point(aes(x=FirstNo, y=PhenophaseDesc)) +
+geom_segment(aes(x=FirstYes, xend=LastYes, yend=PhenophaseDesc)) +
+facet_grid(rows=vars(Year)) +
+labs(x="Day of Year",y="Sweetgum",title="Phenophase Observations") +
+theme(legend.position="bottom")
+
+```
+
+
+## Analysis
+
+(Mike)
+
+
+## For SpeciesDesc (bald cypress)
+
+(Intro)
+
+The below R script is used to get the species plot for Species Description 'bald cypress' 
+
+```{r, echo=FALSE}
+
+library(ggplot2)
+library(dplyr)
+
+PlotData <- filter(JeanFinalDataSet, SpeciesDesc == "bald cypress")
+ggplot(PlotData,aes(x=FirstNo, y=PhenophaseDesc, color=SiteName)) +
+geom_point(aes(x=LastNo, y=PhenophaseDesc)) +
+geom_point(aes(x=FirstNo, y=PhenophaseDesc)) +
+geom_segment(aes(x=FirstYes, xend=LastYes, yend=PhenophaseDesc)) +
+facet_grid(rows=vars(Year)) +
+labs(x="Day of Year",y="Bald cypress",title="Phenophase Observations") +
+theme(legend.position="bottom")
+
+```
+
+## Analysis 
+
+(Mike)
+
+## For SpeciesDesc (trumpet creeper)
+
+(Intro)
+
+The below R script is used to get the species plot for Species Description 'Trumpet creeper' 
+
+```{r, echo=FALSE}
+
+library(ggplot2)
+library(dplyr)
+
+PlotData <- filter(JeanFinalDataSet, SpeciesDesc == "trumpet creeper")
+ggplot(PlotData,aes(x=FirstNo, y=PhenophaseDesc, color=SiteName)) +
+geom_point(aes(x=LastNo, y=PhenophaseDesc)) +
+geom_point(aes(x=FirstNo, y=PhenophaseDesc)) +
+geom_segment(aes(x=FirstYes, xend=LastYes, yend=PhenophaseDesc)) +
+facet_grid(rows=vars(Year)) +
+labs(x="Day of Year",y="Trumpet creeper",title="Phenophase Observations") +
+theme(legend.position="bottom")
+
+```
+
+## Analysis 
+
+(Mike)
+
+# Phenophase Plots
+
+## For PhenophaseDesc (Breaking leaf buds)
+
+(Intro)
+
+The below R script is used to get the species plot for Phenophase Description 'Breaking leaf buds' 
+
+```{r, echo=FALSE}
+
+library(ggplot2)
+library(dplyr)
+
+PlotData <- filter(JeanFinalDataSet, PhenophaseDesc == "Breaking leaf buds")
+ggplot(PlotData,aes(x=FirstNo, y=SpeciesDesc, color=SiteName)) +
+geom_point(aes(x=LastNo, y=SpeciesDesc)) +
+geom_point(aes(x=FirstNo, y=SpeciesDesc)) +
+geom_segment(aes(x=FirstYes, xend=LastYes, yend=SpeciesDesc)) +
+facet_grid(rows=vars(Year)) +
+labs(x="Day of Year",y="Breaking leaf buds",title="Phenophase Observations") +
+theme(legend.position="bottom")
+
+```
+## Analysis 
+
+(Mike)
+
+
+## For PhenophaseDesc (Open flowers)
+
+(Intro)
+
+The below R script is used to get the species plot for Phenophase Description 'Open flowers' 
+
+```{r, echo=FALSE}
+
+library(ggplot2)
+library(dplyr)
+
+PlotData <- filter(JeanFinalDataSet, PhenophaseDesc == "Open flowers")
+ggplot(PlotData,aes(x=FirstNo, y=SpeciesDesc, color=SiteName)) +
+geom_point(aes(x=LastNo, y=SpeciesDesc)) +
+geom_point(aes(x=FirstNo, y=SpeciesDesc)) +
+geom_segment(aes(x=FirstYes, xend=LastYes, yend=SpeciesDesc)) +
+facet_grid(rows=vars(Year)) +
+labs(x="Day of Year",y="Open flowers",title="Phenophase Observations") +
+theme(legend.position="bottom")
+
+```
+## Analysis 
+
+(Mike)
+
+
+
+## For PhenophaseDesc (Colored leaves)
+
+(Intro)
+
+The below R script is used to get the species plot for Phenophase Description 'Colored leaves' 
+
+```{r, echo=FALSE}
+
+library(ggplot2)
+library(dplyr)
+
+PlotData <- filter(JeanFinalDataSet, PhenophaseDesc == "Colored leaves")
+ggplot(PlotData,aes(x=FirstNo, y=SpeciesDesc, color=SiteName)) +
+geom_point(aes(x=LastNo, y=SpeciesDesc)) +
+geom_point(aes(x=FirstNo, y=SpeciesDesc)) +
+geom_segment(aes(x=FirstYes, xend=LastYes, yend=SpeciesDesc)) +
+facet_grid(rows=vars(Year)) +
+labs(x="Day of Year",y="Colored leaves",title="Phenophase Observations") +
+theme(legend.position="bottom")
+
+```
+## Analysis 
+
+(Mike)
+
+
+
+## For PhenophaseDesc (Falling leaves)
+
+(Intro)
+
+The below R script is used to get the species plot for Phenophase Description 'Falling leaves' 
+
+```{r, echo=FALSE}
+
+library(ggplot2)
+library(dplyr)
+
+PlotData <- filter(JeanFinalDataSet, PhenophaseDesc == "Falling leaves")
+ggplot(PlotData,aes(x=FirstNo, y=SpeciesDesc, color=SiteName)) +
+geom_point(aes(x=LastNo, y=SpeciesDesc)) +
+geom_point(aes(x=FirstNo, y=SpeciesDesc)) +
+geom_segment(aes(x=FirstYes, xend=LastYes, yend=SpeciesDesc)) +
+facet_grid(rows=vars(Year)) +
+labs(x="Day of Year",y="Falling leaves",title="Phenophase Observations") +
+theme(legend.position="bottom")
+
+```
+## Analysis 
+
+(Mike)
+
+
+**_Contributorship Statement_** : Priyanka Choudhary, Mike Rouw, Pratheeba Nalligounder Palanisami contributed to the R Plot and R script undertaking and the writing of this document.
+
+**_Proofreader statement_** : I, Priyanka Choudhary, have reviewed and proofread the following work and agree that it is ready for submission.
