@@ -36,6 +36,8 @@ The data received from Jean Lafitte NHPP is primarily about points in time when 
 
 After looking at several views of the data, we selected three plot types to present the data for analysis.  These three plot types are the Duration Plot, the Species Plot, and the Phenophase Plot.
 
+https://github.com/priya0318/PartsPerMillion/tree/master/Data/Plots
+
 
 # Duration Plot
 
