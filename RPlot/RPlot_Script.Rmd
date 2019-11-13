@@ -36,15 +36,13 @@ The data received from Jean Lafitte NHPP is primarily about points in time when 
 
 After looking at several views of the data, we selected three plot types to present the data for analysis.  These three plot types are the Duration Plot, the Species Plot, and the Phenophase Plot.
 
-{r} [Link to access all the Plots](https://github.com/priya0318/PartsPerMillion/tree/master/Data/Plots)
-
 
 # Duration Plot
 
 After reviewing the dataset, we discovered that a large number of the observations for the positive phenophase duration were just a single day.  Going back to the data cleaning on the project, we noted this is mostly due to the lack of either a _First Yes Day_ observation, or a _Last Yes Day_ observation.  In these cases, we equated the two days to the same day.  So our question was this:  How many of the observations had positive durations of various lengths in categories, and specifically how many have one a single day of positive duration?
 
 The below R script is used to get the duration plot
-```{r, echo=FALSE}
+```{r, echo=TRUE}
 
 library(ggplot2)
 
@@ -61,7 +59,7 @@ As can be seen from the plot above, a very large proportion of the observations 
 
 # Species Plots
 
-The following several plots follow the same general format.  While the data had over two dozen different species, we selected three specific species to focus on for this report, namely SweetGum, Eastern Poison Ivy, and Trumpet Creeper.  We selected these as they are all members of the decidious plants group, and all had data observations across three years and four locations.  Plots for all the species (except Birds, which are in a single plot), can be found _here_ (link to PPM/Rcode/Rplots).
+The following several plots follow the same general format.  While the data had over two dozen different species, we selected three specific species to focus on for this report, namely SweetGum, Eastern Poison Ivy, and Trumpet Creeper.  We selected these as they are all members of the decidious plants group, and all had data observations across three years and four locations.  Plots for all the species (except Birds, which are in a single plot), can be found [here](https://github.com/priya0318/PartsPerMillion/tree/master/Data/Plots).
 
 Each of these plots show the specific phenophase event on the left (y-axis), with the day of the year (365 day per year scale) along the bottom (x-axis).  The data is then further segmented by year, and then color-coded to denote the location of the observations.  The line segment shown gives the timing and positive duration for the phenophase event, while the outer data points show the timing and potential duration for the event.  For those observations that do not include a line segment, the event's positive duration was a single day, as discussed earlier.
 
@@ -69,7 +67,7 @@ Each of these plots show the specific phenophase event on the left (y-axis), wit
 
 This plot shows that data has been collected from the fall of 2017 through the spring of 2019 from four different locations within Jean Lafitte NHPP.The below R script is used to get the species plot for Species Description 'Sweetgum' 
 
-```{r, echo=FALSE}
+```{r, echo=TRUE}
 
 library(ggplot2)
 library(dplyr)
@@ -94,7 +92,7 @@ This plot shows that data has been collected from the fall of 2017 through the s
 
 The below R script is used to get the species plot for Species Description 'eastern poison ivy' 
 
-```{r, echo=FALSE}
+```{r, echo=TRUE}
 
 library(ggplot2)
 library(dplyr)
@@ -118,7 +116,7 @@ This plot again shows that data has been collected from the fall of 2017 through
 
 The below R script is used to get the species plot for Species Description 'Trumpet creeper' 
 
-```{r, echo=FALSE}
+```{r, echo=TRUE}
 
 library(ggplot2)
 library(dplyr)
@@ -150,7 +148,7 @@ Each of these plots show a specific species on the left (y-axis), with the day o
 
 The below R script is used to get the species plot for Phenophase Description 'Breaking leaf buds' 
 
-```{r, echo=FALSE}
+```{r, echo=TRUE}
 
 library(ggplot2)
 library(dplyr)
@@ -173,11 +171,10 @@ For this plot view, we have observation data from 2018 and 2019 across 15 differ
 
 ## For PhenophaseDesc (Open flowers)
 
-(Intro)
 
 The below R script is used to get the species plot for Phenophase Description 'Open flowers' 
 
-```{r, echo=FALSE}
+```{r, echo=TRUE}
 
 library(ggplot2)
 library(dplyr)
@@ -201,7 +198,7 @@ For this plot view, we again have observation data from 2018 and 2019 (with some
 
 The below R script is used to get the species plot for Phenophase Description 'Colored leaves' 
 
-```{r, echo=FALSE}
+```{r, echo=TRUE}
 
 library(ggplot2)
 library(dplyr)
@@ -225,7 +222,7 @@ For this phenophase event, our data is mostly from 2017 and 2018, since this eve
 
 The below R script is used to get the species plot for Phenophase Description 'Falling leaves' 
 
-```{r, echo=FALSE}
+```{r, echo=TRUE}
 
 library(ggplot2)
 library(dplyr)
