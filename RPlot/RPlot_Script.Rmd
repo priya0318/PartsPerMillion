@@ -36,7 +36,7 @@ The data received from Jean Lafitte NHPP is primarily about points in time when 
 
 After looking at several views of the data, we selected three plot types to present the data for analysis.  These three plot types are the Duration Plot, the Species Plot, and the Phenophase Plot.
 
-https://github.com/priya0318/PartsPerMillion/tree/master/Data/Plots
+{r} [Link to access all the Plots](https://github.com/priya0318/PartsPerMillion/tree/master/Data/Plots)
 
 
 # Duration Plot
@@ -65,7 +65,9 @@ The following several plots follow the same general format.  While the data had 
 
 Each of these plots show the specific phenophase event on the left (y-axis), with the day of the year (365 day per year scale) along the bottom (x-axis).  The data is then further segmented by year, and then color-coded to denote the location of the observations.  The line segment shown gives the timing and positive duration for the phenophase event, while the outer data points show the timing and potential duration for the event.  For those observations that do not include a line segment, the event's positive duration was a single day, as discussed earlier.
 
-## For SpeciesDesc (sweetThis plot shows that data has been collected from the fall of 2017 through the spring of 2019 from four different locations within Jean Lafitte NHPP.The below R script is used to get the species plot for Species Description 'Sweetgum' 
+## For SpeciesDesc (sweetgum)
+
+This plot shows that data has been collected from the fall of 2017 through the spring of 2019 from four different locations within Jean Lafitte NHPP.The below R script is used to get the species plot for Species Description 'Sweetgum' 
 
 ```{r, echo=FALSE}
 
@@ -88,7 +90,7 @@ theme(legend.position="bottom")
 This plot shows that data has been collected from the fall of 2017 through the spring of 2019 from four different locations within Jean Lafitte NHPP.  It again shows there may be some problems with data quality.  There are two observations of _falling leaves_ from the Sweetgum speices which occur in the early part of 2018 and 2019 along two different trails.  This phenophase event usually occurs in the fall.  However, there are also some observations that look to be more accurate.  For instance, _breaking leaf buds_ in 2018 occurs over approximately a 50-day period beginning on day 50 (around Feb 20th), while in 2019 it is of much shorter duration of about 30-days starting near day 65 (around Mar 5th).  In both years, however, this phenophase event is over by about day 85 (Mar 25th).  Also, the colors on the plot largely overlap, indicating that the various locations are similar in timing for this phenophase event.
 
 
-## For SpeciesDesc (bald cypress)
+## For SpeciesDesc (eastern poison ivy)
 
 The below R script is used to get the species plot for Species Description 'eastern poison ivy' 
 
