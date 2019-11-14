@@ -61,11 +61,11 @@ As can be seen from the plot above, a very large proportion of the observations 
 
 The following several plots follow the same general format.  While the data had over two dozen different species, we selected three specific species to focus on for this report, namely SweetGum, Eastern Poison Ivy, and Trumpet Creeper.  We selected these as they are all members of the decidious plants group, and all had data observations across three years and four locations.  Plots for all the species (except Birds, which are in a single plot), can be found [here](https://github.com/priya0318/PartsPerMillion/tree/master/Data/Plots).
 
-Each of these plots show the specific phenophase event on the left (y-axis), with the day of the year (365 day per year scale) along the bottom (x-axis).  The data is then further segmented by year, and then color-coded to denote the location of the observations.  The line segment shown gives the timing and positive duration for the phenophase event, while the outer data points show the timing and potential duration for the event.  For those observations that do not include a line segment, the event's positive duration was a single day, as discussed earlier.
+Each of these plots show the specific phenophase event on the left (y-axis), with the day of the year (365 day per year scale) along the bottom (x-axis).  The data is then further segmented by year, and then color-coded to denote the location of the observations.  The line segment shown gives the timing and positive duration for the phenophase event, while the outer data points show the timing and potential duration for the event.  For those observations that do not include a line segment, the event's positive duration was a single day, as discussed earlier.  Each of the following plots shows that data has been collected from the fall of 2017 through the eary summer of 2019 from four different locations within Jean Lafitte NHPP.
 
 ## For SpeciesDesc (sweetgum)
 
-This plot shows that data has been collected from the fall of 2017 through the spring of 2019 from four different locations within Jean Lafitte NHPP.The below R script is used to get the species plot for Species Description 'Sweetgum' 
+The below R script is used to get the species plot for Species Description 'Sweetgum' 
 
 ```{r, echo=TRUE}
 
