@@ -21,7 +21,7 @@ Note: Root directory path needs to be updated to your local
 
 ```{r setup, echo=FALSE, message=FALSE, warning=FALSE} 
 knitr::opts_chunk$set(cache=TRUE)
-knitr::opts_knit$set(root.dir = "C:/Users/Pratheeba/UNO/DatatoDecisions/PartsPerMillion/RPlot") 
+knitr::opts_knit$set(root.dir = "C:/Users/Priya/Desktop/RPlot") 
 ```
 
 ## Load data
