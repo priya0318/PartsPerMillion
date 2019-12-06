@@ -1,0 +1,498 @@
+---
+title: "R Script"
+author: "Priyanka Choudhary <br /> Mike Rouw <br /> Pratheeba Nalligounder Palanisami"
+date: "December 12, 2019"
+output:
+  html_document: 
+    theme: cosmo
+    toc: yes
+    github_document:
+      toc: yes
+    word_document: default
+    pdf_document:
+      toc:yes
+---
+* * *
+
+# Embed Code
+## Set Directory
+
+Note: Root directory path needs to be updated to your local
+
+```{r setup, echo=FALSE, message=FALSE, warning=FALSE} 
+knitr::opts_chunk$set(cache=TRUE)
+knitr::opts_knit$set(root.dir = "C:/Users/Priya/Desktop/RPlot") 
+```
+
+## Load data
+
+```{r loadData}
+data <- read.csv("site_phenometrics_data - Updated.csv")
+```
+
+# Data cleaning steps
+
+The following columns are renamed directly in the csv file and the updated csv file is used for further cleaning.
+
+Site_ID - SiteID
+Site_Name - SiteName
+Species_ID - SpeciesID
+Common_Name - SpeciesDesc
+Phenophase_ID - PhenophaseID
+Phenophase_Category - PhenophaseCategory
+Phenophase_Description - PhenophaseDesc
+Mean_NumDays_Until_Next_No - NumFirstNo
+Mean_NumDays_Since_Prior_No - NumLastNo
+
+If the data contains a “first yes” but no “last yes” information, then set the “last yes” information to the same values as the “first yes” information, and set the lag days to “no” at zero.  
+
+# FirstYes
+
+```{r FirstYes}
+for(i in 1:nrow(data)){
+  if(data$First_Yes_Sample_Size[i] == 0 & data$Last_Yes_Sample_Size[i] > 0) {
+    data$First_Yes_Sample_Size[i] <- data$Last_Yes_Sample_Size[i]
+    data$First_Yes_Year[i] <- data$Last_Yes_Year[i]
+    data$FirstYes[i] <- data$LastYes[i]
+    data$NumLastNo[i] <- 0
+  }
+}
+```
+The same is true if the data contains a “last yes” but no “first yes”.  Effectively, we are saying that if only one “yes” exists, it is both first and last, and the number of days to “no” is zero.
+
+# FirstNo
+```{r FirstNo}
+for(i in 1:nrow(data)){
+  if(data$Last_Yes_Sample_Size[i] == 0 & data$First_Yes_Sample_Size[i] > 0) {
+    data$Last_Yes_Sample_Size[i] <- data$First_Yes_Sample_Size[i]
+    data$Last_Yes_Year[i] <- data$First_Yes_Year[i]
+    data$LastYes[i] <- data$FirstYes[i]
+    data$NumFirstNo[i] <- 0
+  }
+}
+```
+We could also move the Julian date and all the statistical columns associated with “first yes” and “last yes”, however in the next pass we will be de-selecting all those columns anyway.
+
+We should now have a dataset with complete information on each observation for “first yes” and “last yes” – anything remaining had NO “yes” observations and will be eliminated in the next pass (based on my Excel look, there are no records to be fully eliminated, but we will put the step in our R script anyway).
+
+**Select rows and columns**
+
+Select rows only with complete data, and we can select columns based on data we will likely be using in the project.  For rows, we require an observation of at least one “yes”.  For columns, we will be eliminating some data that is descriptive but not necessary, columns that have unchanging data, all the “statistical” columns related to sample sizes and Julian dates, and all the observational “conflict” data.  We have elected not to consider the statistical elements (e.g. min, max, std-dev, etc) as all observations are a sample sizes are either 1 or 2.  For samples sizes of 2, the data already contains the mean, so that is the only value we will be using, as the distribution for a sample size of 2 is pretty meaningless.
+
+The columns is replaced to get it convenient for reading
+```{r rename column}
+ library(dplyr)
+ data <- data %>% rename(Year = First_Yes_Year)
+```
+
+```{r selectrow}
+cols <- c('SiteID', 'SiteName', 'Latitude', 'Longitude', 'SpeciesID', 
+          'SpeciesDesc', 'Kingdom', 'SpeciesType', 'PhenophaseID', 'PhenophaseCategory', 'PhenophaseDesc',
+          'Year', 'FirstYes', 'LastYes', 'NumLastNo', 'NumFirstNo')
+data <- data[cols]
+```
+We will be adding the DOY for “last no” and “first no” to the dataset. This will add 2 columns to the data.
+
+# LastNo and FirstNo
+
+LastNo is the difference between FirstYes of the phenophase and the NumLastNo ( mean of the nummber of the days between the FirstYes phenophase and the Last pirior phenophase)
+
+FirstNo is sum of LastYes (mean day of year of the LastYes phenophase) of the phenophase and the NumFirstNo ( mean of the nummber of the days between the Last First phenophase and the Next No phenophase)
+
+```{r selectcol}
+data['LastNo'] <- data$FirstYes - data$NumLastNo
+data['FirstNo'] <- data$LastYes + data$NumFirstNo
+```  
+
+The temporal integrity of the following dates was checked, and any rows that did not follow this rule were de-selected.
+
+```{r deselect rows}
+   data <- data %>% filter(data$LastNo <= data$FirstYes &
+          data$FirstYes <= data$LastYes &
+          data$LastYes <= data$FirstNo)
+```
+
+# Total Days
+
+Total Days is the difference between FirstNo and LastNo plus one. We added one to get at least one observation if both the columns 'FirstNo' and 'LastNo' have the same values.  
+
+```{r create col}
+data['TotDays'] <- (data$FirstNo - data$LastNo)+1
+```
+
+
+# Average Days
+
+Average Days is the measures the most likely number of days when the phenophase was occurring by taking midpoints between no and yes observations
+
+```{r create AveDays}
+for(i in 1:nrow(data)){
+data$aveDays[i] <- ceiling((median(data$LastYes[i]:data$FirstNo[i])-median(data$LastNo[i]:data$FirstYes[i]))+1)}
+```
+
+# Yes Days
+
+Yes Days is the difference between LastYes and FirstYes plus one. We added one to get at least one observation if both the columns 'LastYes' and 'FirstYes' have the same values.
+
+```{r create YesDays}
+data['YesDays'] <- (data$LastYes - data$FirstYes)+1
+```
+
+# Yes Duration Group
+
+Yes Duration group is grouping the YesDays in six different categories for easy understanding.
+
+```{r create YesDurationGroup}
+data['YesDurationGroup'] <- NA
+
+for(i in 1:nrow(data)){
+if(data$YesDays[i] <= 1){
+data$YesDurationGroup[i] <- "A. One Day"
+} else if (data$YesDays[i] <= 20){
+data$YesDurationGroup[i] <- "B. 2-20 Days"
+} else if (data$YesDays[i] <= 50){
+data$YesDurationGroup[i] <- "C. 21-50 Days"
+} else if (data$YesDays[i] <= 100){
+data$YesDurationGroup[i] <- "D. 51-100 Days"
+} else if (data$YesDays[i] <= 200){
+data$YesDurationGroup[i] <- "E. 101-200 Days"
+} else {
+data$YesDurationGroup[i] <- "F. 201+ Days"
+}
+}
+```
+
+# Descriptive Statistics  
+
+The below is descriptive statistics for Species Type 'Deciduous broadleaf' for different phenophase
+
+Descrptive statistics for phenophaseDesc 'breaking leaf buds' selecting FirstYes only. 
+```{r descstats1}
+library(pastecs)
+stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc == "Breaking leaf buds")%>%select(FirstYes))
+```
+The mean is 77.71, which is the day of the year when the phenophase event was first observed. This is the mean first observed date.  We can note that the event occurs during the first quarter of the year. i.e., January to March 
+
+Descrptive statistics for phenophaseDesc 'breaking leaf buds' selecting TotDays only. 
+```{r descstats2}
+stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc == "Breaking leaf buds")%>%select(TotDays))
+```
+The mean is 53.79, which is the maximum number of days between the Last No and the First No observations.  This is the mean total possible duration.  Thus, we can observe that the average duration of this phenophase is less than two months.
+
+Descrptive statistics for phenophaseDesc 'breaking leaf buds' selecting YesDays only.
+```{r descstats3}
+stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc == "Breaking leaf buds")%>%select(YesDays))
+```
+The mean is 29.61, which is the number of days between the First Yes and Last Yes observations.  This is the mean positive observed duration.  Based on these last two mean statistics, we note that the durartion of this phenophase is likely 1-2 months long.
+
+Descrptive statistics for phenophaseDesc 'Falling leaves' selecting FirstYes Only.
+```{r descstats4}
+stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc == "Falling leaves")%>%select(FirstYes))
+```
+The mean starting day of the year is 241.42, and we can note that the more number of observations is from the last quarter of the year. 
+
+Descrptive statistics for phenophaseDesc 'Falling leaves' selecting TotalDays only . 
+```{r descstats5}
+stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc == "Falling leaves")%>%select(TotDays))
+```
+The mean total possible duration is 48.66 days, which is about 7 weeks. 
+
+Descrptive statistics for phenophaseDesc 'Falling leaves' selecting YesDays only.
+```{r descstats6}
+stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc == "Falling leaves")%>%select(YesDays))
+```
+The mean positively observed duration is 25.26 days.  With the two means, we can determine that this phenophase event lasts approximately 3-7 weeks.
+
+Descrptive statistics for phenophaseDesc 'Colored leaves' selecting FirstYes only.
+```{r descstats7}
+stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc == "Colored leaves")%>%select(FirstYes))
+```
+The mean starting day of the year is 255.95, and we can note that the number of observations is from the last quarter of the year. 
+
+Descrptive statistics for phenophaseDesc 'Colored leaves' selecting TotalDays only. 
+```{r descstats8}
+stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc == "Colored leaves")%>%select(TotDays))
+```
+The mean total possible duration is 44.85 days, which is about 6 weeks.
+
+Descrptive statistics for phenophaseDesc 'Colored leaves' selecting YesDays only. 
+```{r descstats9}
+stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc == "Colored leaves")%>%select(YesDays))
+```
+The mean positive observed duration is 21.82 days.  Taking the two duration means shows this phenophase likely lasts 3-6 weeks.
+
+Descrptive statistics for phenophaseDesc 'Open flowers' selecting FirstYes only.
+```{r descstats10}
+stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc == "Open flowers")%>%select(FirstYes))
+```
+The mean first observed day of the year is 116.36, so we note that the more number of observations is in the second quater of the year. i.e., April
+
+Descrptive statistics for phenophaseDesc 'Open flowers' selecting TotDays only. 
+```{r descstats11}
+stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc == "Open flowers")%>%select(TotDays))
+```
+The mean total possible duration is 47.01 days, which is about 7 weeks.
+
+Descrptive statistics for phenophaseDesc 'Open flowers' selecting YesDays only. 
+```{r descstats12}
+stat.desc(data %>% filter(SpeciesType == "Deciduous broadleaf" & PhenophaseDesc == "Open flowers")%>%select(YesDays))
+```
+The mean positive observed duration is 21.71 days. Taken in conjunction with the mean noted above, this phenophase appears to last about 3-7 weeks.
+
+# Skewness 
+```{r descstats13}
+library(e1071)
+skewness(data$FirstYes)
+```
+
+The skewness for this FirstYes dataset is 0.675. A positive skewness indicates that the size of the right-handed tail is larger 
+than the left-handed tail. If skewness is positive, mean will usually be more than the median and the distribution shape will be extremely skewed right.
+
+```{r descstats14}
+skewness(data$YesDays)
+```
+
+The skewness for this YesDays dataset is 2.42. A positive skewness indicates that the size of the right-handed tail is larger 
+than the left-handed tail.Skewness is positive (often above 1.0), mean will usually be more than the median and the distribution shape will be highly skewed right.
+
+
+```{r descstats15}
+skewness(data$TotDays)
+```
+
+The skewness for this TotDays dataset is 2.21. A positive skewness indicates that the size of the right-handed tail is s larger 
+than the left-handed tail.Skewness is positive (often above 1.0), mean will usually be more than the median and the distribution shape will be highly skewed right.
+
+# Assign data to JeanFinalDataset
+``` {r assigndataset}
+
+JeanFinalDataSet <- data
+```
+
+
+# Introduction to the data plotting
+
+The data received from Jean Lafitte NHPP is primarily about points in time when certain observations were taken of phenophase events.  Specifically, the data is the day of the year when a particular observation was made about the event's starting or stopping point.  Thus, we have the _Last No Day_, which is the last day of the year when the event was observed **not** happening.  We have the _First Yes Day_, which is the first day of the year in which the event was positively noted as occuring.  We have the _Last Yes Day_, or the last day of the year when the event was noted as positively occuring.  And we have the _First No Day_, which is the first day of the year when the observation notes the event **not** happening.  From this, we then computed the _Total Duration_ as the number of days between the _Last No Day_ and the _First No Day_ to show the potential duration of the phenophase event.  And we computed the _Yes Duration_ as the number of days between the _First Yes Day_ and the _Last Yes Day_ to show the known positive duration of the phenophase event.  All of this data is categorized by event, species, kingdom, location, and year of observation.
+
+After looking at several views of the data, we selected three plot types to present the data for analysis.  These three plot types are the Duration Plot, the Species Plot, and the Phenophase Plot.
+
+# Duration Plot
+
+After reviewing the dataset, we discovered that a large number of the observations for the positive phenophase duration were just a single day.  Going back to the data cleaning on the project, we noted this is mostly due to the lack of either a _First Yes Day_ observation, or a _Last Yes Day_ observation.  In these cases, we equated the two days to the same day.  So our question was this:  How many of the observations had positive durations of various lengths in categories, and specifically how many have one a single day of positive duration?
+
+The below R script is used to get the duration plot
+```{r, echo=TRUE}
+
+library(ggplot2)
+
+ggplot(JeanFinalDataSet,aes(x=YesDurationGroup)) + 
+  
+  geom_bar(color="blue",fill="blue") + 
+  
+  labs(title="Duration of Positive Phenophase Observation", y="Number of Observations",x="Duration Groups")
+```
+
+## Analysis
+
+As can be seen from the plot above, a very large proportion of the observations in the dataset have only a single day of positive observed duration, while other observations have widely varying positive durations.  It is possible that the quality and quantity of data collected during the actual observations played a large role in having such a large number of single day positive durations.  This may impact the further analysis presented subsequently.  It also maybe suggests that the data collection strategies be reviewed to see if improvements can be made to increase the quantity and quality of phenophase event observations.
+
+# Species Plots
+
+The following several plots follow the same general format.  While the data had over two dozen different species, we selected three specific species to focus on for this report, namely SweetGum, Eastern Poison Ivy, and Trumpet Creeper.  We selected these as they are all members of the decidious plants group, and all had data observations across three years and four locations.  Plots for all the species (except Birds, which are in a single plot), can be found [here](https://github.com/priya0318/PartsPerMillion/tree/master/Data/Plots).
+
+Each of these plots show the specific phenophase event on the left (y-axis), with the day of the year (365 day per year scale) along the bottom (x-axis).  The data is then further segmented by year, and then color-coded to denote the location of the observations.  The line segment shown gives the timing and positive duration for the phenophase event, while the outer data points show the timing and potential duration for the event.  For those observations that do not include a line segment, the event's positive duration was a single day, as discussed earlier.  Each of the following plots shows that data has been collected from the fall of 2017 through the eary summer of 2019 from four different locations within Jean Lafitte NHPP.
+
+## For SpeciesDesc (sweetgum)
+
+The below R script is used to get the species plot for Species Description 'Sweetgum' 
+
+```{r, echo=TRUE}
+
+library(ggplot2)
+library(dplyr)
+
+PlotData <- filter(JeanFinalDataSet, SpeciesDesc == "sweetgum")
+ggplot(PlotData,aes(x=FirstNo, y=PhenophaseDesc, color=SiteName)) +
+geom_point(aes(x=LastNo, y=PhenophaseDesc)) +
+geom_point(aes(x=FirstNo, y=PhenophaseDesc)) +
+geom_segment(aes(x=FirstYes, xend=LastYes, yend=PhenophaseDesc)) +
+facet_grid(rows=vars(Year)) +
+labs(x="Day of Year",y="Sweetgum",title="Phenophase Observations by Species") +
+theme(legend.position="bottom")
+
+```
+
+## Analysis
+
+This plot shows that data has been collected from the fall of 2017 through the spring of 2019 from four different locations within Jean Lafitte NHPP.  It again shows there may be some problems with data quality.  There are two observations of _falling leaves_ from the Sweetgum speices which occur in the early part of 2018 and 2019 along two different trails.  This phenophase event usually occurs in the fall.  However, there are also some observations that look to be more accurate.  For instance, _breaking leaf buds_ in 2018 occurs over approximately a 50-day period beginning on day 50 (around Feb 20th), while in 2019 it is of much shorter duration of about 30-days starting near day 65 (around Mar 5th).  In both years, however, this phenophase event is over by about day 85 (Mar 25th).  Also, the colors on the plot largely overlap, indicating that the various locations are similar in timing for this phenophase event.
+
+
+## For SpeciesDesc (eastern poison ivy)
+
+The below R script is used to get the species plot for Species Description 'eastern poison ivy' 
+
+```{r, echo=TRUE}
+
+library(ggplot2)
+library(dplyr)
+
+PlotData <- filter(JeanFinalDataSet, SpeciesDesc == "eastern poison ivy")
+ggplot(PlotData,aes(x=FirstNo, y=PhenophaseDesc, color=SiteName)) +
+geom_point(aes(x=LastNo, y=PhenophaseDesc)) +
+geom_point(aes(x=FirstNo, y=PhenophaseDesc)) +
+geom_segment(aes(x=FirstYes, xend=LastYes, yend=PhenophaseDesc)) +
+facet_grid(rows=vars(Year)) +
+labs(x="Day of Year",y="Eastern poison ivy",title="Phenophase Observations by Species") +
+theme(legend.position="bottom")
+
+```
+
+## Analysis 
+
+This plot again shows that data has been collected from the fall of 2017 through the spring of 2019 from three different locations within Jean Lafitte NHPP.  One interesting item to point out is for _colored leaves_ and _falling leaves_ in 2018.  While two of the trail locations have this event occuring approximately days 220-250 (Jul-Aug), the observation on Ring Levee Trail shows the event happening on days 330-360 (Dec).  This may be a data accuracy problem for the Ring Levee Trail observation.  Also note the _open flowers_ observations for 2018.  This is how we would expect the data to plot, with similar timings and durations for the same phenophase event at different locations for this specific species.
+
+## For SpeciesDesc (trumpet creeper)
+
+The below R script is used to get the species plot for Species Description 'Trumpet creeper' 
+
+```{r, echo=TRUE}
+
+library(ggplot2)
+library(dplyr)
+
+PlotData <- filter(JeanFinalDataSet, SpeciesDesc == "trumpet creeper")
+ggplot(PlotData,aes(x=FirstNo, y=PhenophaseDesc, color=SiteName)) +
+geom_point(aes(x=LastNo, y=PhenophaseDesc)) +
+geom_point(aes(x=FirstNo, y=PhenophaseDesc)) +
+geom_segment(aes(x=FirstYes, xend=LastYes, yend=PhenophaseDesc)) +
+facet_grid(rows=vars(Year)) +
+labs(x="Day of Year",y="Trumpet creeper",title="Phenophase Observations by Species") +
+theme(legend.position="bottom")
+
+```
+
+## Analysis 
+
+This plot shows that data has been collected from the fall of 2017 through the summer of 2019 from four different locations within Jean Lafitte NHPP.  Just to pick out one notable item, we can compare a fall event from 2017 to 2018 in this data.  For _falling leaves_, the event occured in 2017 between days 285-360 (late Sep-Dec), while in 2018 the event occurred between days 245-330 (mid Aug-Nov).  In both cases, the duration was about the same (75-80 days), but the event started and finished earlier in 2018 than 2017.  Also in 2018, the data for _falling leaves_ shows that the Ring Levee Trail had a significantly later occurance and shorter duration than did other locations.  This again may suggest some accuracy problems in the data.
+
+# Phenophase Plots
+
+We then decided it might be interesting to view how a specific, common phenophase event occurs across various species.  So we created a series of plots to explore the timing and duration of a given phenophase event across different species within the same group.
+
+The following several plots again follow the same general format.  While the data had over a dozen different phenophase events, we selected four specific phenophases to focus on for this report, namely Breaking Leaf Buds, Open Flowers, Colored Leaves and Falling Leaves.  We selected these as they are all members of the decidious plants group, and all had data observations across three years and four locations.
+
+Each of these plots show a specific species on the left (y-axis), with the day of the year (365 day per year scale) along the bottom (x-axis).  The data is then further segmented by year, and then color-coded to denote the location of the observations.  The line segment shown gives the timing and positive duration for the phenophase event, while the outer data points show the timing and potential duration for the event.  For those observations that do not include a line segment, the event's positive duration was a single day, as discussed earlier.
+
+## For PhenophaseDesc (Breaking leaf buds)
+
+The below R script is used to get the species plot for Phenophase Description 'Breaking leaf buds' 
+
+```{r, echo=TRUE}
+
+library(ggplot2)
+library(dplyr)
+
+PlotData <- filter(JeanFinalDataSet, PhenophaseDesc == "Breaking leaf buds")
+ggplot(PlotData,aes(x=FirstNo, y=SpeciesDesc, color=SiteName)) +
+geom_point(aes(x=LastNo, y=SpeciesDesc)) +
+geom_point(aes(x=FirstNo, y=SpeciesDesc)) +
+geom_segment(aes(x=FirstYes, xend=LastYes, yend=SpeciesDesc)) +
+facet_grid(rows=vars(Year)) +
+labs(x="Day of Year",y="Breaking leaf buds",title="Phenophase Observations by Event") +
+theme(legend.position="bottom")
+
+```
+
+## Analysis 
+
+For this plot view, we have observation data from 2018 and 2019 across 15 different species (all deciduous) from 4 different locations within the Jean Lafitte NHPP.  One can see that _breaking leaf buds_ occurs during the first third of the calendar year for all species in all locations.  It appears from the plot that this phenophase event may have started a bit earlier in 2019 than in 2018, although in both cases the event is about 150 days in duration across all species.  As most of the colors are overlapping, it is not apparent that there was much difference in timing or duration for the event which was dependent on location.
+
+
+## For PhenophaseDesc (Open flowers)
+
+
+The below R script is used to get the species plot for Phenophase Description 'Open flowers' 
+
+```{r, echo=TRUE}
+
+library(ggplot2)
+library(dplyr)
+
+PlotData <- filter(JeanFinalDataSet, PhenophaseDesc == "Open flowers")
+ggplot(PlotData,aes(x=FirstNo, y=SpeciesDesc, color=SiteName)) +
+geom_point(aes(x=LastNo, y=SpeciesDesc)) +
+geom_point(aes(x=FirstNo, y=SpeciesDesc)) +
+geom_segment(aes(x=FirstYes, xend=LastYes, yend=SpeciesDesc)) +
+facet_grid(rows=vars(Year)) +
+labs(x="Day of Year",y="Open flowers",title="Phenophase Observations by Event") +
+theme(legend.position="bottom")
+
+```
+
+## Analysis 
+
+For this plot view, we again have observation data from 2018 and 2019 (with some 2017 data) across 15 different species (all deciduous) from 4 different locations within the Jean Lafitte NHPP.  The data plotted for 2017 for _open flowers_ was primarily from the Vistor Center Trail.  This location also has no data points in 2019, and some extended durations in 2018.  It may be that the data from observations on this trail may have some accuracy issues.  We can also see that the _open flowers_ phenophase event happens mostly from Feb-May across all noted species.
+
+## For PhenophaseDesc (Colored leaves)
+
+The below R script is used to get the species plot for Phenophase Description 'Colored leaves' 
+
+```{r, echo=TRUE}
+
+library(ggplot2)
+library(dplyr)
+
+PlotData <- filter(JeanFinalDataSet, PhenophaseDesc == "Colored leaves")
+ggplot(PlotData,aes(x=FirstNo, y=SpeciesDesc, color=SiteName)) +
+geom_point(aes(x=LastNo, y=SpeciesDesc)) +
+geom_point(aes(x=FirstNo, y=SpeciesDesc)) +
+geom_segment(aes(x=FirstYes, xend=LastYes, yend=SpeciesDesc)) +
+facet_grid(rows=vars(Year)) +
+labs(x="Day of Year",y="Colored leaves",title="Phenophase Observations by Event") +
+theme(legend.position="bottom")
+
+```
+
+## Analysis 
+
+For this phenophase event, our data is mostly from 2017 and 2018, since this event primarily occurs in the fall.  We have data from 13 different species across four different locations.  It is difficult to compare year over year observations, as we may have left censured data for 2017 where we cannot see the beginning of all the _colored leaves_ observations.  We also have some possible errant data where this event is shown starting in the first quarter of the year in 2018 and 2019, even though it is an event that should occur in the fall.  This can be seen in 2018 with the _live oak_ and _red maple_, and in 2019 with the _water tupelo_, _sweetgum_, and again _live oak_ observations.
+
+## For PhenophaseDesc (Falling leaves)
+
+The below R script is used to get the species plot for Phenophase Description 'Falling leaves' 
+
+```{r, echo=TRUE}
+
+library(ggplot2)
+library(dplyr)
+
+PlotData <- filter(JeanFinalDataSet, PhenophaseDesc == "Falling leaves")
+ggplot(PlotData,aes(x=FirstNo, y=SpeciesDesc, color=SiteName)) +
+geom_point(aes(x=LastNo, y=SpeciesDesc)) +
+geom_point(aes(x=FirstNo, y=SpeciesDesc)) +
+geom_segment(aes(x=FirstYes, xend=LastYes, yend=SpeciesDesc)) +
+facet_grid(rows=vars(Year)) +
+labs(x="Day of Year",y="Falling leaves",title="Phenophase Observations") +
+theme(legend.position="bottom")
+
+```
+
+## Analysis 
+
+For this phenophase event, similar to our last plot, our data is mostly from 2017 and 2018 since this event primarily occurs in the fall.  We again have data from 13 different species across four different locations.  As before, it is difficult to compare year over year observations, as we may have left censured data for 2017 where we cannot see the beginning of all the _falling leaves_ observations.  We also have some possible errant data where this event is shown starting in the first quarter of the year in 2018 and 2019, even though it is an event that should occur in the fall.  This can be seen in 2018 with the _live oak_ and _sweetgum_ and _possumhaw_, and in 2019 with the _water tupelo_, _sweetgum_, and again _trumpet creeper_ observations.
+
+# Final Dataset
+The final data set is written back into the csv file
+
+
+```{r finaldataset}
+write.csv(data, file = "JeanFinalDataSet.csv",row.names=FALSE)
+```
+This should yield a dataset with `r nrow(data)` rows and `r ncol(data)` columns in the data set. In the next pass, we will enrich the data with some date calculations.
+
+
+**_Contributorship Statement_** : Priyanka Choudhary, Mike Rouw, Pratheeba Nalligounder Palanisami contributed to the descriptive statistics and R script undertaking and the writing of this document.
+
+**_Proofreader statement_** : I, Pratheeba Nalligounder Palanisami, have reviewed and proofread the following work and agree that it is ready for submission.
+
+
