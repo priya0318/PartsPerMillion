@@ -21,7 +21,7 @@ Note: Root directory path needs to be updated to your local
 
 ```{r setup, echo=FALSE, message=FALSE, warning=FALSE} 
 knitr::opts_chunk$set(cache=TRUE)
-knitr::opts_knit$set(root.dir = "C:/Users/Priya/Desktop/RPlot") 
+knitr::opts_knit$set(root.dir = "C:/Users/Pratheeba/UNO/DatatoDecisions/PartsPerMillion/FinalSubmission") 
 ```
 
 ## Load data
@@ -480,6 +480,98 @@ theme(legend.position="bottom")
 ## Analysis 
 
 For this phenophase event, similar to our last plot, our data is mostly from 2017 and 2018 since this event primarily occurs in the fall.  We again have data from 13 different species across four different locations.  As before, it is difficult to compare year over year observations, as we may have left censured data for 2017 where we cannot see the beginning of all the _falling leaves_ observations.  We also have some possible errant data where this event is shown starting in the first quarter of the year in 2018 and 2019, even though it is an event that should occur in the fall.  This can be seen in 2018 with the _live oak_ and _sweetgum_ and _possumhaw_, and in 2019 with the _water tupelo_, _sweetgum_, and again _trumpet creeper_ observations.
+
+```{r attach}
+library(readr)
+attach(JeanFinalDataSet)
+```
+
+## Use only 4 Phenophases for this stage
+
+The below R script is used to filter only 4 phenophase events.
+
+```{r phenophase}
+workdf <- filter(JeanFinalDataSet, PhenophaseDesc=="Open flowers" | PhenophaseDesc=="Colored leaves" | PhenophaseDesc=="Falling leaves" | PhenophaseDesc=="Breaking leaf buds")
+```
+
+## Analysis
+
+
+## Select only columns to be used for plotting
+
+The below R script is used to select the required columns to do the plotting.
+
+```{r selectFewColumns}
+workdf <- select(workdf,SiteName,PhenophaseDesc,Year,FirstYes,TotDays,YesDays)
+```
+
+## Analysis
+
+
+## Eliminate spring observation of fall events, and fall observation of spring events
+
+The below R script is used to eliminate the spring observation of fall events, and fall observation of spring events.
+
+```{r Eliminate}
+workdf <- workdf[ !(workdf$PhenophaseDesc=="Falling leaves" & workdf$Year==2019), ]
+workdf <- workdf[ !(workdf$PhenophaseDesc=="Colored leaves" & workdf$Year==2019), ]
+workdf <- workdf[ !(workdf$PhenophaseDesc=="Open flowers" & workdf$Year==2017), ]
+workdf <- workdf[ !(workdf$PhenophaseDesc=="Breaking leaf buds" & workdf$Year==2017), ]
+arrange(workdf,PhenophaseDesc,SiteName,Year)
+```
+
+## Analysis
+
+
+## Dataframe - grouped mean data
+
+The below R script is used to create a new dataset with the grouped mean data.
+
+```{r Mean}
+workdf %>% group_by(PhenophaseDesc,SiteName) %>% summarise(StartDay=mean(FirstYes),TotDur=mean(TotDays),PosDur=mean(TotDays))
+ggreadydata <- workdf %>% group_by(PhenophaseDesc,SiteName) %>% summarise(StartDay=mean(FirstYes),TotDur=mean(TotDays),PosDur=mean(TotDays))
+```
+
+## Analysis
+
+
+## Bar chart - total duration
+
+The below R script is used to create a bar chart for the total duration
+
+```{r BarChartTotalDuration}
+ggplot(ggreadydata, aes(fill=SiteName, y=TotDur, x=PhenophaseDesc)) +
+geom_bar(position="dodge", stat="identity")+
+labs(title="Mean Total Duration - All Species", x="Phenophase Event", y="Number of Days")
+```
+
+## Analysis
+
+
+## Bar chart - positive duration
+
+The below R script is used to create a bar chart for the positive duration
+
+```{r BarChartPositiveDuration}
+ggplot(ggreadydata, aes(fill=SiteName, y=PosDur, x=PhenophaseDesc)) +
+  geom_bar(position="dodge", stat="identity")+
+  labs(title="Mean Positive Duration - All Species", x="Phenophase Event", y="Number of Days")
+```
+
+## Analysis
+
+
+## Bar chart - starting day of year
+
+The below R script is used to create a bar chart for the starting day of year
+
+```{r BarChartDayOfYear}
+ggplot(ggreadydata, aes(fill=SiteName, y=StartDay, x=PhenophaseDesc)) +
+  geom_bar(position="dodge", stat="identity")+
+  labs(title="Mean Starting Day of Year - All Species", x="Phenophase Event", y="Day of Year")
+```
+
+## Analysis
 
 # Final Dataset
 The final data set is written back into the csv file
