@@ -119,7 +119,7 @@ The temporal integrity of the following dates was checked, and any rows that did
           data$LastYes <= data$FirstNo)
 ```
 
-# Calculate Total Duration - Total Days Between "No" Observations
+### Calculate Total Duration - Total Days Between "No" Observations
 
 Total Days is the difference between FirstNo and LastNo plus one. We added one to get at least one observation if both the columns 'FirstNo' and 'LastNo' have the same values.  
 
@@ -180,7 +180,9 @@ This should yield a dataset with `r nrow(data)` rows and `r ncol(data)` columns 
 
 ## Descriptive Statistics  
 
-The below is descriptive statistics for Species Type 'Deciduous broadleaf' for different phenophase
+The below is descriptive statistics for Species Type 'Deciduous broadleaf' for different phenophase.Ba
+
+### Grouped Values
 
 Descrptive statistics for phenophaseDesc 'breaking leaf buds' selecting FirstYes only. 
 
@@ -332,7 +334,7 @@ ggplot(JeanFinalDataSet,aes(x=YesDurationGroup)) +
   labs(title="Duration of Positive Phenophase Observation", y="Number of Observations",x="Duration Groups")
 ```
 
-#### Analysis
+**Analysis**
 
 As can be seen from the plot above, a very large proportion of the observations in the dataset have only a single day of positive observed duration, while other observations have widely varying positive durations.  It is possible that the quality and quantity of data collected during the actual observations played a large role in having such a large number of single day positive durations.  This may impact the further analysis presented subsequently.  It also maybe suggests that the data collection strategies be reviewed to see if improvements can be made to increase the quantity and quality of phenophase event observations.
 
@@ -362,7 +364,7 @@ theme(legend.position="bottom")
 
 ```
 
-#### Analysis
+**Analysis**
 
 This plot shows that data has been collected from the fall of 2017 through the spring of 2019 from four different locations within Jean Lafitte NHPP.  It again shows there may be some problems with data quality.  There are two observations of _falling leaves_ from the Sweetgum speices which occur in the early part of 2018 and 2019 along two different trails.  This phenophase event usually occurs in the fall.  However, there are also some observations that look to be more accurate.  For instance, _breaking leaf buds_ in 2018 occurs over approximately a 50-day period beginning on day 50 (around Feb 20th), while in 2019 it is of much shorter duration of about 30-days starting near day 65 (around Mar 5th).  In both years, however, this phenophase event is over by about day 85 (Mar 25th).  Also, the colors on the plot largely overlap, indicating that the various locations are similar in timing for this phenophase event.
 
@@ -387,7 +389,7 @@ theme(legend.position="bottom")
 
 ```
 
-#### Analysis 
+**Analysis** 
 
 This plot again shows that data has been collected from the fall of 2017 through the spring of 2019 from three different locations within Jean Lafitte NHPP.  One interesting item to point out is for _colored leaves_ and _falling leaves_ in 2018.  While two of the trail locations have this event occuring approximately days 220-250 (Jul-Aug), the observation on Ring Levee Trail shows the event happening on days 330-360 (Dec).  This may be a data accuracy problem for the Ring Levee Trail observation.  Also note the _open flowers_ observations for 2018.  This is how we would expect the data to plot, with similar timings and durations for the same phenophase event at different locations for this specific species.
 
@@ -411,7 +413,7 @@ theme(legend.position="bottom")
 
 ```
 
-#### Analysis 
+**Analysis** 
 
 This plot shows that data has been collected from the fall of 2017 through the summer of 2019 from four different locations within Jean Lafitte NHPP.  Just to pick out one notable item, we can compare a fall event from 2017 to 2018 in this data.  For _falling leaves_, the event occured in 2017 between days 285-360 (late Sep-Dec), while in 2018 the event occurred between days 245-330 (mid Aug-Nov).  In both cases, the duration was about the same (75-80 days), but the event started and finished earlier in 2018 than 2017.  Also in 2018, the data for _falling leaves_ shows that the Ring Levee Trail had a significantly later occurance and shorter duration than did other locations.  This again may suggest some accuracy problems in the data.
 
@@ -443,7 +445,7 @@ theme(legend.position="bottom")
 
 ```
 
-#### Analysis 
+**Analysis** 
 
 For this plot view, we have observation data from 2018 and 2019 across 15 different species (all deciduous) from 4 different locations within the Jean Lafitte NHPP.  One can see that _breaking leaf buds_ occurs during the first third of the calendar year for all species in all locations.  It appears from the plot that this phenophase event may have started a bit earlier in 2019 than in 2018, although in both cases the event is about 150 days in duration across all species.  As most of the colors are overlapping, it is not apparent that there was much difference in timing or duration for the event which was dependent on location.
 
@@ -469,7 +471,7 @@ theme(legend.position="bottom")
 
 ```
 
-#### Analysis 
+**Analysis** 
 
 For this plot view, we again have observation data from 2018 and 2019 (with some 2017 data) across 15 different species (all deciduous) from 4 different locations within the Jean Lafitte NHPP.  The data plotted for 2017 for _open flowers_ was primarily from the Vistor Center Trail.  This location also has no data points in 2019, and some extended durations in 2018.  It may be that the data from observations on this trail may have some accuracy issues.  We can also see that the _open flowers_ phenophase event happens mostly from Feb-May across all noted species.
 
@@ -493,7 +495,7 @@ theme(legend.position="bottom")
 
 ```
 
-#### Analysis 
+**Analysis** 
 
 For this phenophase event, our data is mostly from 2017 and 2018, since this event primarily occurs in the fall.  We have data from 13 different species across four different locations.  It is difficult to compare year over year observations, as we may have left censured data for 2017 where we cannot see the beginning of all the _colored leaves_ observations.  We also have some possible errant data where this event is shown starting in the first quarter of the year in 2018 and 2019, even though it is an event that should occur in the fall.  This can be seen in 2018 with the _live oak_ and _red maple_, and in 2019 with the _water tupelo_, _sweetgum_, and again _live oak_ observations.
 
@@ -517,7 +519,7 @@ theme(legend.position="bottom")
 
 ```
 
-#### Analysis 
+**Analysis** 
 
 For this phenophase event, similar to our last plot, our data is mostly from 2017 and 2018 since this event primarily occurs in the fall.  We again have data from 13 different species across four different locations.  As before, it is difficult to compare year over year observations, as we may have left censured data for 2017 where we cannot see the beginning of all the _falling leaves_ observations.  We also have some possible errant data where this event is shown starting in the first quarter of the year in 2018 and 2019, even though it is an event that should occur in the fall.  This can be seen in 2018 with the _live oak_ and _sweetgum_ and _possumhaw_, and in 2019 with the _water tupelo_, _sweetgum_, and again _trumpet creeper_ observations.
 
@@ -573,7 +575,7 @@ ggreadydata <- workdf %>% group_by(PhenophaseDesc,SiteName) %>% summarise(StartD
 Now the means are calculated and placed into a new table ready for plotting.
 
 
-#### Bar chart - total duration
+### Bar chart - total duration
 
 The below R script is used to create a bar chart for the total duration
 
@@ -583,12 +585,12 @@ geom_bar(position="dodge", stat="identity")+
 labs(title="Mean Total Duration - All Species", x="Phenophase Event", y="Number of Days")
 ```
 
-#### Analysis
+**Analysis**
 
 This chart shows the total number of days from the Last No Day to the First No Day across four different phenophases at four different site locations. The plot is then able to answer the research questions about total durations of these events, as well as differences between observation sites.  What is shown is a very large variance in phenophase total duration from one site to the next.  This may be somewhat the case, but is more likely due to inaccuracies in the data collection process.  Since there is knowledge of the source of these variations, no real conclusions can be drawn.
 
 
-#### Bar chart - positive duration
+### Bar chart - positive duration
 
 The below R script is used to create a bar chart for the positive duration
 
@@ -598,12 +600,12 @@ ggplot(ggreadydata, aes(fill=SiteName, y=PosDur, x=PhenophaseDesc)) +
   labs(title="Mean Positive Duration - All Species", x="Phenophase Event", y="Number of Days")
 ```
 
-#### Analysis
+**Analysis**
 
 As the plot before, this again shows the number of days in duration for the select phenophase events by observation site.  However, this time it shows the positive duration, or the time between the First Yes Day and the Last Yes Day.  As with the prior plot for total duration, this again shows a wide variance among the sites, which again leads to questions about the accuracy of the data collection.  It is difficult to draw conclusions from this view, as again there is no knowledge of the source of where the variations may lie.
 
 
-#### Bar chart - starting day of year
+### Bar chart - starting day of year
 
 The below R script is used to create a bar chart for the starting day of year
 
@@ -613,7 +615,7 @@ ggplot(ggreadydata, aes(fill=SiteName, y=StartDay, x=PhenophaseDesc)) +
   labs(title="Mean Starting Day of Year - All Species", x="Phenophase Event", y="Day of Year")
 ```
 
-#### Analysis
+**Analysis**
 
 This plot does not show duration, but rather plots the first day of the year when the select phenophase was first observed.  It was developed to help answer the research questions about the starting point for the phenophase events and whether that starting point varied by location.  As expected, the _breaking leaf buds_ and _open flowers_ phenophases begin in the spring, while the _colored leaves_ and _falling leaves_ events were shown starting in the fall.  In this plot, the data looks as expected, which leads to a higher credibility on the collection process.  Also, it shows very little variability among the observation sites.
 
