@@ -1,8 +1,8 @@
 # PartsPerMillion
-**Description**: This is our team Git repository for the ISQA 4000/8086, From Data to Decisions.  
+**Description**: This is our team's final project submission Git repository for the ISQA 4000/8086, From Data to Decisions.  
 **Team Members**: Mike Rouw, Pratheeba Nalligounder Palanisami, Priyanka Choudhary
 
-### List of files in the repository
+### List of and links to assignment files in this repository
 * Data
   
     * [Inital_Dataset](https://github.com/priya0318/PartsPerMillion/blob/master/FinalSubmission/site_phenometrics_data%20-%20Updated.csv)
