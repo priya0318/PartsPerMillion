@@ -4,38 +4,29 @@
 
 ### List of files in the repository
 * Data
-  * [Search Parameter](https://github.com/priya0318/PartsPerMillion/blob/master/Data/search_parameters.csv)
-  * [site_phenometrics_data](https://github.com/priya0318/PartsPerMillion/blob/master/Data/site_phenometrics_data.csv)
-  * [site_phenometrics_datafield_descriptions](https://github.com/priya0318/PartsPerMillion/blob/master/Data/site_phenometrics_datafield_descriptions.csv)
+  
+    * [Inital_Dataset](https://github.com/priya0318/PartsPerMillion/blob/master/FinalSubmission/site_phenometrics_data%20-%20Updated.csv)
+    * [Final_Dataset](https://github.com/priya0318/PartsPerMillion/blob/master/FinalSubmission/JeanFinalDataSet.csv)
 
-* Project Work Plan
-  * [Project Work Plan.md](https://github.com/priya0318/PartsPerMillion/blob/master/ProjectWorkPlan/Project%20Work%20Plan.md)
-  
-* Background Research & RQs
-  * [Background Research & RQs](https://github.com/priya0318/PartsPerMillion/blob/master/Background%20Research%20%26%20RQs/Background%20Research%20%26%20RQs.md)
-  
- * Audience Profile
-    * [Audience Profile](https://github.com/priya0318/PartsPerMillion/blob/master/Audience%20Profile/AudienceProfile.md)
-    
- * Data Cleaning Documentation
-    * [DataCleaning Documentation](https://github.com/priya0318/PartsPerMillion/blob/master/DataCleaningDocumentation/DataCleaningDocument.md)
-    * [DataCleaning RMarkdown](https://github.com/priya0318/PartsPerMillion/blob/master/DataCleaningDocumentation/DataCleaningDocumentation.Rmd)
-    * [DataCleaning Html](https://github.com/priya0318/PartsPerMillion/blob/master/DataCleaningDocumentation/DataCleaningDocumentation.html)
-    * [Initial Dataset](https://github.com/priya0318/PartsPerMillion/blob/master/DataCleaningDocumentation/site_phenometrics_data%20-%20Updated.csv)
-    * [Final Dataset](https://github.com/priya0318/PartsPerMillion/blob/master/DataCleaningDocumentation/JeanFinalDataSet.csv)
+* DataCleaning, RScript and RPlot
+    * [JeanLafitte_Rmd ](https://github.com/priya0318/PartsPerMillion/blob/master/FinalSubmission/JeanLafitte.Rmd)
+    * [JeanLafitte_HTML](https://github.com/priya0318/PartsPerMillion/blob/master/FinalSubmission/JeanLafitte.html)
+
+* Audience Profile
+    * [Audience_Profile](https://github.com/priya0318/PartsPerMillion/blob/master/FinalSubmission/AudienceProfile.md)
+     
+* Summary 
+   * [Phenology_Report](https://github.com/priya0318/PartsPerMillion/blob/master/FinalSubmission/PhenologyReport.htm)
  
-* R script 
-    * [RScript RMarkdown](https://github.com/priya0318/PartsPerMillion/blob/master/R%20Script/R%20Script.Rmd)
-    * [RScript HTML](https://github.com/priya0318/PartsPerMillion/blob/master/R%20Script/R-Script.html)
-    * [RScript.R](https://github.com/priya0318/PartsPerMillion/blob/master/R%20Script/R%20Script.R)
-    * [Initial Dataset](https://github.com/priya0318/PartsPerMillion/blob/master/R%20Script/site_phenometrics_data%20-%20Updated.csv)
-    * [Final Dataset](https://github.com/priya0318/PartsPerMillion/blob/master/R%20Script/JeanFinalDataSet.csv)
-    
- * R Plot 
-    * [RScript RMarkdown](https://github.com/priya0318/PartsPerMillion/blob/master/RPlot/RPlot_Script.Rmd)
-    * [RScript HTML](https://github.com/priya0318/PartsPerMillion/blob/master/RPlot/RPlot_Script.html)
-    * [Final Dataset](https://github.com/priya0318/PartsPerMillion/blob/master/RPlot/JeanFinalDataSet.csv)
+* Final Presentation
+   * [Presentation_Slide](https://github.com/priya0318/PartsPerMillion/blob/master/FinalSubmission/PhenologyStudy.pdf)
+ 
+* Contributorship Statement
+   * [Contributorship_Statement](https://github.com/priya0318/PartsPerMillion/blob/master/FinalSubmission/Contributorship.md)
 
+**_Proofreader statement_** : I, Pratheeba Nalligounder Palanisami and Mike Rouw have reviewed and proofread the following work and agree that it is ready for submission.
+
+ 
 ### License
 
 MIT License
